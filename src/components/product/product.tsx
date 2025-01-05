@@ -11,14 +11,16 @@ export const Product = ({product}:{product:product}) => {
     return <>
         <div className="product">
             <img src={`${product.img}`} alt="IMG" />
+
             <div className="content">
                 <h5>{`${product.title}`}</h5>
-            <p className='price'>{`$ ${product.price}`}</p>
+                <p className='price'>{`$ ${product.price}`}</p>
                 <p className="info">{`${product.info}`}</p>
             </div>
+            
             <div className="actions">
-                <button className='button-29' onClick={goToDetail}>Details</button>
-                <button className='button-29'>Buy</button>
+                <button className='button-29' onClick={goToDetail}>Buy</button>
+                {/* <button className='button-29'>Buy</button> */}
             </div>
         </div>
     </>
