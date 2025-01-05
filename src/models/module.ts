@@ -18,9 +18,9 @@ export type product = {
 
 const product_1:product = {
     'id': 1,
-    'title':'Producto A',
+    'title':'TRI - legde',
     'img':'productoA.png',
-    'info':'Palanca super mecanica',
+    'info':'Soporte para telefono',
     'price': 100
 }
 

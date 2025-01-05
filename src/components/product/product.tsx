@@ -17,10 +17,9 @@ export const Product = ({product}:{product:product}) => {
                 <p className='price'>{`$ ${product.price}`}</p>
                 <p className="info">{`${product.info}`}</p>
             </div>
-            
+
             <div className="actions">
-                <button className='button-29' onClick={goToDetail}>Buy</button>
-                {/* <button className='button-29'>Buy</button> */}
+                <button className='button' onClick={goToDetail}>Comprar</button>
             </div>
         </div>
     </>
