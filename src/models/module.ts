@@ -18,26 +18,26 @@ export type product = {
 
 const product_1:product = {
     'id': 1,
-    'title':'Producto A',
-    'img':'./blabla',
-    'info':'Palanca super mecanica',
-    'price': 25
+    'title':'TRI - legde',
+    'img':'productoA.png',
+    'info':'Soporte para telefono',
+    'price': 100
 }
 
 const product_2:product = {
     'id': 2,
     'title':'Producto B',
-    'img':'./blabla',
+    'img':'productoA.png',
     'info':'Palanca media mecanica',
-    'price': 25
+    'price': 2325
 }
 
 const product_3:product = {
     'id': 3,
     'title':'Producto C',
-    'img':'./blabla',
+    'img':'productoA.png',
     'info':'Palanca no tan mecanica',
-    'price': 25
+    'price': 5000
 }
 
 export const products = [product_1, product_2, product_3]
