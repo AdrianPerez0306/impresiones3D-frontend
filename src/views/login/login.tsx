@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import './login.css'
 import { FormEvent, useState } from 'react'
+import { loginService } from '../../service/login.service'
 
 interface Credential {userName : string, pass: string}
 const mockCredential: Credential = {userName: 'admin', pass: 'mandarina'}
@@ -11,10 +12,11 @@ export const Login = () => {
 
     const [user, setUser] = useState({userName: '', pass: ''})
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => { //Hay que pasarle el e FromEvent saraza si no no lanzo warning
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => { //Hay que pasarle el e FromEvent saraza si no no lanzo warning
         e.preventDefault(); // Evita el refresco de la página porque me molesta
         isValid = checkValueUser()
-        alert(`Autenticación correcta: ${isValid} valor del name =>  ${user.userName} valor del pass => ${user.pass}`)
+        const data = await loginService.identityValidation(user)
+        //guardo la data... o simplemente veo en el back que los datos coincida y mando el OK de habilitado para finalmente guardar ese OK
     }
 
     const checkValueUser = () => {
