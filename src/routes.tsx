@@ -5,14 +5,11 @@ import { Home } from './views/home/home'
 import { ProductDetail } from './views/productDetail/productDetail'
 import { Contact } from './views/contact/contact'
 import { Login } from './views/login/login'
-import { Provider } from 'react-redux';
-import { userStore } from './redux/store';
 
 export const AppRouter = () => {
     return <>
         <Router>
             <Routes>
-                <Provider store={userStore}>
                     <Route element={<Login/>} path={'login'}/>
                     <Route element={<Layout />}>
                         <Route element={<Home />} path={`/home`} />
@@ -22,7 +19,6 @@ export const AppRouter = () => {
                     </Route>
                     {/* REDIRECCIONAR A ALGUNA ROUTA POR DEFAULT */}
                     <Route path="*" element={<Navigate to={`/home`} replace />} />
-                </Provider>
             </Routes>
         </Router>
     </>
