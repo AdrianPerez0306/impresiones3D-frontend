@@ -1,6 +1,7 @@
 footer{
     /* height: 4rem; */
     height: 8rem;
+    width: 100vw;
     display: flex;
     justify-content: space-around;
     align-items: center;

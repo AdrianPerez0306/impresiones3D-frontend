@@ -4,39 +4,20 @@ export const QuienSoy = () => {
 
     return <>
         <div className="aboutMe">
-            <h2>V-Laboratory</h2>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-            <span>{aboutMe}</span>
-          
-           
+            <div className="contenedor">
+
+                <div className='contenido'>
+                    <div className='imagen'>
+                        <img src="./src/assets/valen.png" alt="" />
+                    </div>
+                    <div className='texto'>
+                        <p>{aboutMe}</p>
+                    </div>
+                </div>
+            </div>
         </div>
-  
+
+
 
     </>
 };

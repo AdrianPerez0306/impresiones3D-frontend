@@ -2,7 +2,7 @@ import './footer.css'
 
 export const Footer = () => {
     return (
-        <div className='contenedor'>
+        <div >
         <footer>
             <span>Social 1</span>
             <span>Social 2</span>
