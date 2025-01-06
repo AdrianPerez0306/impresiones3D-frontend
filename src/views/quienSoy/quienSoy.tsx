@@ -3,10 +3,13 @@ import './quienSoy.css'
 export const QuienSoy = () => {
 
     return <>
+
+        
         <div className="aboutMe">
             <div className="contenedor">
 
                 <div className='contenido'>
+
                     <div className='imagen'>
                         <img src="./src/assets/valen.png" alt="" />
                     </div>

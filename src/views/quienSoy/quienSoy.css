@@ -8,6 +8,7 @@
     /* height: 50vh; */
 
     border-radius: 1rem;
+    margin: 4rem auto;
 }
 
 .contenedor {
@@ -36,7 +37,6 @@ p {
 .contenido {
     display: flex;
     flex-wrap: wrap;
-    /* flex-direction: row; */
     gap: 1rem;
     padding: 2rem;
     height: 95%;
@@ -45,7 +45,6 @@ p {
     background-color: #a2a1a0;
     justify-content: space-around;
     align-items: center;
-    margin: 0 auto; /* Center the content horizontally */
 }
 
 
