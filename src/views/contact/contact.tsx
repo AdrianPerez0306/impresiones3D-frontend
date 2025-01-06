@@ -7,6 +7,24 @@ export const Contact = () => {
             <h2>V-Laboratory</h2>
             <span>{aboutMe}</span>
         </div>
+        <div className="aboutMe">
+            <h2>V-Laboratory</h2>
+            <span>{aboutMe}</span>
+        </div>
+        <div className="aboutMe">
+            <h2>V-Laboratory</h2>
+            <span>{aboutMe}</span>
+        </div>
+        <div className="aboutMe">
+            <h2>V-Laboratory</h2>
+            <span>{aboutMe}</span>
+        </div>
+        <div className="aboutMe">
+            <h2>V-Laboratory</h2>
+            <span>{aboutMe}</span>
+        </div>
+        
+
     </>
 };
 
