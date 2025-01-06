@@ -1,7 +1,6 @@
 .aboutMe{
-    width: 98vw;
-    height: 100%;
     margin: 0 auto;
+    gap: 1rem;
 }
 
 span{
