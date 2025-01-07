@@ -1,25 +1,22 @@
 header{
-    height: 5rem;
-    width: 100vw;
+    height: 6rem;
     padding: 1rem;
     background: var(--colorGradietne);
 }
 
 .content{
-    display: flex;
     height: 100%;
-    width: 100%;
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    gap: 0.5rem;
     
     & .logo{
         width: 10vw;
-        height: 100%;
+        height: 5rem;
     }
     & .titulo{
         width: 80vw;
-        height: 90%;
+        height: 4.5rem;
     }
 }

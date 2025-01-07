@@ -1,6 +1,5 @@
 .search{
     width: 85vw;
-    height: 4rem;
     margin: 0 auto;
 }
 
@@ -11,17 +10,13 @@ input{
     background-color: transparent;
     outline: none;
     padding: 0.8rem 2rem;
-    /* margin-left: ; */
     font-size: 1.2rem;
-    
+    height: 4rem;   
 }
 
 button{
     background-color: transparent;
     border: none;
-    width: 15%;
-    height: 100%;
-    /* padding: 1rem; */
-    margin-right: 1rem;
-    
+    width: 10%;
+    margin-right: 0.5rem;
 }

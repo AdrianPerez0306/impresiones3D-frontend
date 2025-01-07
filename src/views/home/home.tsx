@@ -10,11 +10,9 @@ export const Home = () => {
     return <>
         <div className="products">
             {listProducts}
-        </div>
-       
-        <div className="products">
             {listProducts}
         </div>
+       
        
     </>
 };
