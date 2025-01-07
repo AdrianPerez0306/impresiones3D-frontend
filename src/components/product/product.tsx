@@ -22,7 +22,7 @@ export const Product = ({product}:{product:product}) => {
 
             <div className="actions">
                 <button className='button' onClick={goToDetail}>Comprar</button>
-                <button className='mock' onClick={()=> addToCart(product)}>Buy</button>
+                <button className='mock' onClick={()=> addToCart(product)}>MOCK COMPRAR</button>
             </div>
         </div>
     </>
