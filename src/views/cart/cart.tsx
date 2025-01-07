@@ -1,11 +1,10 @@
 // import { aboutMe } from '../../models/module';
-import { CartProvider } from '../../context/cart.context';
 import { useCart } from '../../hooks/useCart';
 import './cart.css'
 
+
 export const Cart = () => {
     const { cart, getCartLenght, removeFromCart } = useCart()
-
     return <>
         <div className="">
             <h2>CART</h2>
@@ -21,6 +20,7 @@ export const Cart = () => {
                         <button onClick={() => removeFromCart(item.product.id)}>Remove</button>
                     </li>
                 ))}
+
             </ul>
         )}
     </>

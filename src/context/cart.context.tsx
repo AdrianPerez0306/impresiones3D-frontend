@@ -6,7 +6,6 @@ export type CartItem = {
     quantity:number
 }
 
-
 interface CartContextType {
     cart: CartItem[];
     addToCart: (product: product) => void;
@@ -14,11 +13,7 @@ interface CartContextType {
     getCartLenght: () => number;
 }
 
-
-// Create the context
-
 export const CartContext = createContext<CartContextType | undefined>(undefined);
-
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>{
 
@@ -26,7 +21,6 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   
     const addToCart = (product: product) => {
         const existingItem = cart.find(item => item.product.id === product.id);
-        // existingItem ? setCart([]) : setCart([])
         if(existingItem){
             const newCart = cart.map(item=>
                 item.product.id == product.id ?

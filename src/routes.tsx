@@ -4,8 +4,8 @@ import { Layout } from './components/layout/layout'
 import { Home } from './views/home/home'
 import { ProductDetail } from './views/productDetail/productDetail'
 import { Login } from './views/login/login'
-import { QuienSoy } from './views/quienSoy/quienSoy';
 import { Cart } from './views/cart/cart';
+import { QuienSoy } from './views/quienSoy/quienSoy';
 
 export const AppRouter = () => {
     return <>
@@ -16,8 +16,8 @@ export const AppRouter = () => {
                         <Route element={<Home />} path={`/home`} />
                         {/* <Route element={<ProductList />} path={`/products`} /> */}
                         <Route element={<ProductDetail />} path={`/products/:id`} />
-                        <Route element={<QuienSoy />} path={`/quienSoy`} />
-                        <Route element={<Cart />} path={`/cart`} />
+                        <Route element={<QuienSoy />} path={`/contact`} />
+                        <Route element={<Cart />} path={`/cart`}/>
                     </Route>
                     {/* REDIRECCIONAR A ALGUNA ROUTA POR DEFAULT */}
                     <Route path="*" element={<Navigate to={`/home`} replace />} />

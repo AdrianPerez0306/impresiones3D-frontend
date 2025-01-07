@@ -3,10 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import './product.css'
 import { product } from '../../models/module';
 import { useCart } from '../../hooks/useCart';
+import { useToast } from '../../hooks/useToast';
 
 export const Product = ({product}:{product:product}) => {
     const navigate = useNavigate()
     const { addToCart } = useCart()
+    const toast = useToast()
+    
     function goToDetail(){
         navigate(`/products/${product.id}`)
     }
@@ -22,7 +25,8 @@ export const Product = ({product}:{product:product}) => {
 
             <div className="actions">
                 <button className='button' onClick={goToDetail}>Comprar</button>
-                <button className='button'  onClick={()=> addToCart(product)}>MOCK COMPRAR</button>
+                <button className='button'  onClick={()=> {addToCart(product), toast?.open("MOCK","success")}}>MOCK COMPRAR</button>                
+
             </div>
         </div>
     </>
