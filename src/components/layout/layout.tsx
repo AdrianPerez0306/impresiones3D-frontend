@@ -9,7 +9,6 @@ import { CartProvider } from "../../context/cart.context";
 export const Layout = () => {
 
     return <>
-    <div className="layout">
         <Header></Header>
         <Nav></Nav>
         <Search></Search>
@@ -20,6 +19,5 @@ export const Layout = () => {
             </CartProvider>
         </div>
         <Footer></Footer>
-        </div>
     </>
 };

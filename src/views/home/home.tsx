@@ -1,5 +1,4 @@
 import { Product } from "../../components/product/product";
-import { CartProvider } from "../../context/cart.context";
 import { products } from "../../models/module";
 import './home.css';
 
@@ -9,10 +8,13 @@ export const Home = () => {
     )
     
     return <>
-        {/* <CartProvider> */}
-            <div className="products">
-                {listProducts}
-            </div>
-        {/* </CartProvider> */}
+        <div className="products">
+            {listProducts}
+        </div>
+       
+        <div className="products">
+            {listProducts}
+        </div>
+       
     </>
 };

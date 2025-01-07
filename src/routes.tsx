@@ -11,16 +11,16 @@ export const AppRouter = () => {
     return <>
         <Router>
             <Routes>
-                <Route element={<Login/>} path={'login'}/>
-                <Route element={<Layout />}>
-                    <Route element={<Home />} path={`/home`} />
-                    {/* <Route element={<ProductList />} path={`/products`} /> */}
-                    <Route element={<ProductDetail />} path={`/products/:id`} />
-                    <Route element={<Contact />} path={`/contact`} />
-                    <Route element={<Cart />} path={`/cart`} />
-                </Route>
-                {/* REDIRECCIONAR A ALGUNA ROUTA POR DEFAULT */}
-                <Route path="*" element={<Navigate to={`/home`} replace />} />
+                    <Route element={<Login/>} path={'login'}/>
+                    <Route element={<Layout />}>
+                        <Route element={<Home />} path={`/home`} />
+                        {/* <Route element={<ProductList />} path={`/products`} /> */}
+                        <Route element={<ProductDetail />} path={`/products/:id`} />
+                        <Route element={<Contact />} path={`/contact`} />
+                        <Route element={<Cart />} path={`/cart`} />
+                    </Route>
+                    {/* REDIRECCIONAR A ALGUNA ROUTA POR DEFAULT */}
+                    <Route path="*" element={<Navigate to={`/home`} replace />} />
             </Routes>
         </Router>
     </>
