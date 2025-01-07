@@ -2,9 +2,11 @@
 import { useNavigate } from 'react-router-dom';
 import './product.css'
 import { product } from '../../models/module';
+import { useCart } from '../../hooks/useCart';
 
 export const Product = ({product}:{product:product}) => {
     const navigate = useNavigate()
+    const { addToCart } = useCart()
     function goToDetail(){
         navigate(`/products/${product.id}`)
     }
@@ -17,7 +19,7 @@ export const Product = ({product}:{product:product}) => {
             </div>
             <div className="actions">
                 <button className='mock' onClick={goToDetail}>Details</button>
-                <button className='mock'>Buy</button>
+                <button className='mock' onClick={()=> addToCart(product)}>Buy</button>
             </div>
         </div>
     </>

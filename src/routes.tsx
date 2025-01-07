@@ -5,6 +5,7 @@ import { Home } from './views/home/home'
 import { ProductDetail } from './views/productDetail/productDetail'
 import { Contact } from './views/contact/contact'
 import { Login } from './views/login/login'
+import { Cart } from './views/cart/cart';
 
 export const AppRouter = () => {
     return <>
@@ -16,6 +17,7 @@ export const AppRouter = () => {
                     {/* <Route element={<ProductList />} path={`/products`} /> */}
                     <Route element={<ProductDetail />} path={`/products/:id`} />
                     <Route element={<Contact />} path={`/contact`} />
+                    <Route element={<Cart />} path={`/cart`} />
                 </Route>
                 {/* REDIRECCIONAR A ALGUNA ROUTA POR DEFAULT */}
                 <Route path="*" element={<Navigate to={`/home`} replace />} />
