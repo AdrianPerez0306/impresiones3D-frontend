@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import { Layout } from './components/layout/layout'
 import { Home } from './views/home/home'
 import { ProductDetail } from './views/productDetail/productDetail'
-import { Contact } from './views/contact/contact'
 import { Login } from './views/login/login'
+import { QuienSoy } from './views/quienSoy/quienSoy';
 
 export const AppRouter = () => {
     return <>
@@ -15,7 +15,7 @@ export const AppRouter = () => {
                         <Route element={<Home />} path={`/home`} />
                         {/* <Route element={<ProductList />} path={`/products`} /> */}
                         <Route element={<ProductDetail />} path={`/products/:id`} />
-                        <Route element={<Contact />} path={`/contact`} />
+                        <Route element={<QuienSoy />} path={`/quienSoy`} />
                     </Route>
                     {/* REDIRECCIONAR A ALGUNA ROUTA POR DEFAULT */}
                     <Route path="*" element={<Navigate to={`/home`} replace />} />
