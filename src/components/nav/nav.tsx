@@ -3,25 +3,6 @@ import './nav.css'
 
 export const Nav = () => {
     return (
-<<<<<<< HEAD
-        <nav>
-            <div className='links'>
-                <NavLink to={`/home`}>
-                    <p>Productos</p>
-                </NavLink>
-                <NavLink to={`/contact`}>
-                    <p>Quien Soy</p>
-                </NavLink>
-                <NavLink to={`/contact`}>
-                    <p>Contacto</p>
-                </NavLink>
-                <NavLink to={`/cart`}>
-                    <p>Carrito</p>
-                </NavLink>
-                <NavLink to={`/login`}>
-                    <p>login</p>
-                </NavLink>
-=======
         <nav className='nav'>
             <div className='padre'>
                 <div className='container'>
@@ -33,7 +14,7 @@ export const Nav = () => {
                             <p>Quien Soy</p>
                         </NavLink>
 
-                        <NavLink to={`/contact`}>
+                        <NavLink to={`/cart`}>
                             <p>Carrito</p>
                         </NavLink>
                         <NavLink to={`/login`}>
@@ -41,7 +22,6 @@ export const Nav = () => {
                         </NavLink>
                     </div>
                 </div>
->>>>>>> dev
             </div>
         </nav>
     )
