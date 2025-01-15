@@ -10,7 +10,7 @@ export const Nav = () => {
                         <NavLink to={`/home`}>
                             <p>Productos</p>
                         </NavLink>
-                        <NavLink to={`/quienSoy`}>
+                        <NavLink to={`/contact`}>
                             <p>Quien Soy</p>
                         </NavLink>
 
