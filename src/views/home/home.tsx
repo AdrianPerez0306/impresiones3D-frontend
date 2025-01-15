@@ -5,8 +5,8 @@ import { products } from "../../models/module";
 import './home.css';
 
 export const Home = () => {
-    const listProducts = products.map((product) =>
-        <Product product={product}></Product>
+    const listProducts = products.map((product, index) =>
+        <Product key={index} product={product}></Product>
     )
 
     return <>
@@ -16,7 +16,5 @@ export const Home = () => {
                 {listProducts}
             </ToastProvider>
         </div>
-
-
     </>
 };
