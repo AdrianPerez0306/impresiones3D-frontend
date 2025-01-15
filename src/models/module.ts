@@ -8,7 +8,7 @@ Vanguardismo, innovacion y pulcritud son
 principios de esta marca para la elaboracion
 de nuestros productos` 
 
-export type product = {
+export interface InterfaceProduct {
     id:number,
     title:string,
     img:string,
@@ -16,7 +16,7 @@ export type product = {
     price:number
 }
 
-const product_1:product = {
+const product_1:InterfaceProduct = {
     'id': 1,
     'title':'TRI - legde',
     'img':'productoA.png',
@@ -24,7 +24,7 @@ const product_1:product = {
     'price': 100
 }
 
-const product_2:product = {
+const product_2:InterfaceProduct = {
     'id': 2,
     'title':'Producto B',
     'img':'productoA.png',
@@ -32,7 +32,7 @@ const product_2:product = {
     'price': 2325
 }
 
-const product_3:product = {
+const product_3:InterfaceProduct = {
     'id': 3,
     'title':'Producto C',
     'img':'productoA.png',
