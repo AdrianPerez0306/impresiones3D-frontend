@@ -1,18 +1,30 @@
 
 import { useNavigate } from 'react-router-dom';
 import './product.css'
-import { product } from '../../models/module';
-import { useCart } from '../../hooks/useCart';
+import { InterfaceProduct } from '../../models/module';
 import { useToast } from '../../hooks/useToast';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../../redux/states/cart';
 
-export const Product = ({product}:{product:product}) => {
+export const Product = ({product}:{product:InterfaceProduct}) => {
     const navigate = useNavigate()
-    const { addToCart } = useCart()
     const toast = useToast()
-    
+    const dispatcher =  useDispatch()
+
     function goToDetail(){
         navigate(`/products/${product.id}`)
     }
+
+    function handleClick(){
+        dispatcher(
+            addItem({
+                itemId:product.id,
+                itemQuantity:1
+            })
+        )
+        toast?.open("MOCK","success")
+    }
+
     return <>
         <div className="product">
             <img src={`${product.img}`} alt="IMG" />
@@ -24,9 +36,8 @@ export const Product = ({product}:{product:product}) => {
             </div>
 
             <div className="actions">
-                <button className='button' onClick={goToDetail}>Comprar</button>
-                <button className='button'  onClick={()=> {addToCart(product), toast?.open("MOCK","success")}}>MOCK COMPRAR</button>                
-
+                <button className='button' onClick={goToDetail}>Comprar</button>              
+                <button className='button' onClick={handleClick}>COMPRAR REDUX</button>  
             </div>
         </div>
     </>
