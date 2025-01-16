@@ -10,7 +10,7 @@ import { dumpCart } from '../../redux/states/cart';
 // import { products } from '../../models/module';
 
 export const Cart = () => {
-    const cartState = useSelector((store: RootState) => store.cart);
+    const cartState = useSelector((store: RootState) => store.cart)
     const [cart, setCart] = useState<InterfaceProduct[]>([])
     const dispatcher =  useDispatch()
 

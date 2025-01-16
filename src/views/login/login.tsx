@@ -1,25 +1,33 @@
 import { NavLink } from 'react-router-dom'
 import './login.css'
 import { FormEvent, useState } from 'react'
-
-interface Credential {userName : string, pass: string}
-const mockCredential: Credential = {userName: 'admin', pass: 'mandarina'}
+import { loginService } from '../../service/login.service'
+import { User } from '../../models/User'
+import { useDispatch } from 'react-redux'
+import { updateUser } from '../../redux/states/user'
 
 export const Login = () => {
 
-    let isValid = true
+    // let isValid = true
+    const [isValid, setIsValid] = useState(true)
+    const [user, setUser] = useState({Id:1, username: '', password: ''} as User)
+    const dispatcher =  useDispatch()
 
-    const [user, setUser] = useState({userName: '', pass: ''})
-
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => { //Hay que pasarle el e FromEvent saraza si no no lanzo warning
-        e.preventDefault(); // Evita el refresco de la página porque me molesta
-        isValid = checkValueUser()
-        alert(`Autenticación correcta: ${isValid} valor del name =>  ${user.userName} valor del pass => ${user.pass}`)
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => { 
+        e.preventDefault()
+        try{
+            const data = await loginService.identityValidation(user)
+            setIsValid(data.data)
+            dispatcher(updateUser(data.data))
+        }
+        catch(error: unknown){
+            console.log(error) //TRABAJAR MUCHO MUCHO ESTO
+        }
     }
 
-    const checkValueUser = () => {
-        return user.userName === mockCredential.userName && user.pass === mockCredential.pass
-    }
+    // const checkValueUser = () => {
+    //     return user.username === mockCredential.username && user.password === mockCredential.password
+    // }
 
     return(
         <>
@@ -33,18 +41,18 @@ export const Login = () => {
                             type="text" 
                             id="username" 
                             placeholder="Ingresa tu usuario" 
-                            value={user.userName} 
-                            onChange={(ev) => setUser({...user, userName: ev.target.value})}
+                            value={user.username} 
+                            onChange={(ev) => setUser({...user, username: ev.target.value})}
                             required/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="password">Contraseña</label>
+                            <label htmlFor="passwordword">Contraseña</label>
                             <input
-                            type="password"
-                            id="password"
+                            type="passwordword"
+                            id="passwordword"
                             placeholder="Ingresa tu contraseña"
-                            value={user.pass}
-                            onChange={(ev) => setUser({...user, pass : ev.target.value})}
+                            value={user.password}
+                            onChange={(ev) => setUser({...user, password : ev.target.value})}
                             required/>
                         </div>
                         <button type='submit' className="login-button">
