@@ -13,18 +13,18 @@ export const Product = ({ product }: { product: InterfaceProduct }) => {
     const dispatcher = useDispatch()
 
     function goToDetail() {
-        navigate(`/products/${product.id}`)
+        navigate(`/productos/${product.id}`)
     }
-
-    function handleClick() {
-        dispatcher(
-            addItem({
-                itemId: product.id,
-                itemQuantity: 1
-            })
-        )
-        toast?.open("MOCK", "success")
-    }
+    // hay qe acomodarlo en el detalle
+    // function handleClick() {
+    //     dispatcher(
+    //         addItem({
+    //             itemId: product.id,
+    //             itemQuantity: 1
+    //         })
+    //     )
+    //     toast?.open("MOCK", "success")
+    // }
 
     return <>
         <div className="product">
@@ -37,7 +37,7 @@ export const Product = ({ product }: { product: InterfaceProduct }) => {
             </div>
 
             <div className="actions">
-                <button className='button' onClick={handleClick}>COMPRAR REDUX</button>
+                <button className='button' onClick={goToDetail}>COMPRAR</button>
             </div>
         </div>
     </>

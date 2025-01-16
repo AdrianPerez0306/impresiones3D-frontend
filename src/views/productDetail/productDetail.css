@@ -1,0 +1,72 @@
+.containerDetalleProducto {
+    /* margin: 0 auto; */
+    width: 80vw;
+    display: grid;
+    grid-template-columns: 0.3fr 0.25fr;
+    grid-template-rows: 0.5fr 0.5fr 0.25fr 0.15fr 0.15fr;
+    gap: 0.3rem;
+    grid-template-areas: 
+    "img1 img2"
+    "img1 img3"
+    "descripcion descripcion"
+    "colores botonera"
+    "cantidad botonera";
+    /* background-color: aqua; */
+
+    justify-content: center;
+    margin-bottom: 1rem;
+
+    &  div {
+        border: 2px solid black;
+        overflow: hidden;
+    }
+}
+
+.img1 {
+    grid-area: img1;
+    width: auto;
+    height: auto;
+}
+
+.img2 {
+    width: auto;
+    height: auto;
+    grid-area: img2;
+}
+
+.img3 {
+    grid-area: img3;
+}
+
+.descripcion {
+    grid-area: descripcion;
+}
+
+@media (max-width: 768px) {
+    .containerDetalleProducto {
+        grid-template-columns: 0.5fr 0.55fr;
+        grid-template-rows: 0.9fr 0.9fr 0.5fr 0.4fr 0.4fr;
+       
+    }
+}
+
+.colores {
+    grid-area: colores;
+}
+
+.cantidad {
+    grid-area: cantidad;
+}
+
+.botonera {
+    grid-area: botonera;
+    border: 2px solid black;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
+.imagen1, .imagen2, .imagen3 {
+    width: 100%;
+    height: 100%;
+    object-fit:fill; 
+}

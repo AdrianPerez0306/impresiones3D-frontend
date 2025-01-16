@@ -1,6 +1,5 @@
 footer{
-    /* height: 4rem; */
-    height: 8rem;
+    height: 6rem;
     width: 100vw;
     display: flex;
     flex-direction: column;
