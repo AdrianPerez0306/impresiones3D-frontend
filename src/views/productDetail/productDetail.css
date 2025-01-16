@@ -42,7 +42,7 @@
     grid-area: descripcion;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .containerDetalleProducto {
         grid-template-columns: 0.5fr 0.55fr;
         grid-template-rows: 0.9fr 0.9fr 0.5fr 0.4fr 0.4fr;
