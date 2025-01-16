@@ -13,14 +13,14 @@ export const AppRouter = () => {
             <Routes>
                     <Route element={<Login/>} path={'login'}/>
                     <Route element={<Layout />}>
-                        <Route element={<Home />} path={`/home`} />
+                        <Route element={<Home />} path={`/productos`} />
                         {/* <Route element={<ProductList />} path={`/products`} /> */}
-                        <Route element={<ProductDetail />} path={`/products/:id`} />
-                        <Route element={<QuienSoy />} path={`/contact`} />
-                        <Route element={<Cart />} path={`/cart`}/>
+                        <Route element={<ProductDetail />} path={`/productos/:id`} />
+                        <Route element={<QuienSoy />} path={`/quienSoy`} />
+                        <Route element={<Cart />} path={`/carrito`}/>
                     </Route>
                     {/* REDIRECCIONAR A ALGUNA ROUTA POR DEFAULT */}
-                    <Route path="*" element={<Navigate to={`/home`} replace />} />
+                    <Route path="*" element={<Navigate to={`/productos`} replace />} />
             </Routes>
         </Router>
     </>

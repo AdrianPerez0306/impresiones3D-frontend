@@ -5,24 +5,25 @@ import { InterfaceProduct } from '../../models/module';
 import { useToast } from '../../hooks/useToast';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../redux/states/cart';
+import { Search } from '../search/search';
 
-export const Product = ({product}:{product:InterfaceProduct}) => {
+export const Product = ({ product }: { product: InterfaceProduct }) => {
     const navigate = useNavigate()
     const toast = useToast()
-    const dispatcher =  useDispatch()
+    const dispatcher = useDispatch()
 
-    function goToDetail(){
+    function goToDetail() {
         navigate(`/products/${product.id}`)
     }
 
-    function handleClick(){
+    function handleClick() {
         dispatcher(
             addItem({
-                itemId:product.id,
-                itemQuantity:1
+                itemId: product.id,
+                itemQuantity: 1
             })
         )
-        toast?.open("MOCK","success")
+        toast?.open("MOCK", "success")
     }
 
     return <>
@@ -36,8 +37,7 @@ export const Product = ({product}:{product:InterfaceProduct}) => {
             </div>
 
             <div className="actions">
-                <button className='button' onClick={goToDetail}>Comprar</button>              
-                <button className='button' onClick={handleClick}>COMPRAR REDUX</button>  
+                <button className='button' onClick={handleClick}>COMPRAR REDUX</button>
             </div>
         </div>
     </>
