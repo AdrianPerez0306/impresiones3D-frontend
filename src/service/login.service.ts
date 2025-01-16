@@ -1,11 +1,11 @@
 import axios from "axios";
-import { User, UserJSON } from "../models/User";
+import { User } from "../models/User";
 
 class LoginService {
     constructor(){}
 
     async identityValidation(user: User){
-        return await axios.post<UserJSON>('mock_URL', user)
+        return await axios.put<boolean>('http://localhost:8080/login', user)
     }
 }
 

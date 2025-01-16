@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const userEmpty = {userName:'', pass:''}
+const userEmpty = {estado:false}
 
 export const userSlice = createSlice({
     name: 'user',
@@ -9,8 +9,8 @@ export const userSlice = createSlice({
         createUser: (state, action) => {
             return action.payload
         },
-        updateUser: (state, action) => {
-            return {...state, ...action.payload}
+        updateUser: (state, action:PayloadAction<boolean>) => {
+            state.estado = action.payload
         },
         resetUser: () =>{
             return userEmpty
