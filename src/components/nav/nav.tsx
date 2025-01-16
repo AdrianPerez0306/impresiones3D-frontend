@@ -10,7 +10,7 @@ export const Nav = () => {
                         <NavLink to={`/home`}>
                             <p>Productos</p>
                         </NavLink>
-                        <NavLink to={`/quienSoy`}>
+                        <NavLink to={`/contact`}>
                             <p>Quien Soy</p>
                         </NavLink>
 
@@ -20,6 +20,11 @@ export const Nav = () => {
                             </svg>
 
                         </NavLink>
+
+                        <NavLink to={`/cart`}>
+                            <p>Carrito</p>
+                        </NavLink>
+                        
                         <NavLink to={`/login`}>
                             <p>Login</p>
                         </NavLink>
