@@ -1,7 +1,8 @@
 import "./dondeEstoy.css";
 
 
-export const DondeEstoy = () => {
+export const DondeEstoy = ({ titulo }: { titulo: string }) => {
+    
 
 
 
@@ -10,7 +11,7 @@ export const DondeEstoy = () => {
         <>
             <div className="dondeEstoy">
             <div className="site">
-                <b>Donde estoy</b>
+                <b>{titulo}</b>
             </div>
             </div>
         </>
