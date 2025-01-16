@@ -40,9 +40,8 @@ export const Cart = () => {
     }, [])
 
     return <>
-        <div className="">
+        <div className="carrito">
             <h2>CART</h2>
-        </div>
         {JSON.stringify(cartState)}
         {cart.length === 0 ?
             <p>CARRITO VACIO</p>:
@@ -59,6 +58,7 @@ export const Cart = () => {
         
         
         <button onClick={handleClick}>VACIAR</button>
+        </div>
     </>
 };
 

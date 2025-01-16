@@ -42,7 +42,6 @@ export const Layout = () => {
             <Outlet></Outlet>
             <Footer></Footer>
 
-            <p>{titulo}</p>
         </div>
     </>
 };
