@@ -2,6 +2,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { products, InterfaceProduct } from "../../models/module";
 import "./productDetail.css";
+import ButtonGreen from "../../components/buttonGreen/buttonGreen";
+import ButtonRed from "../../components/buttonRed/buttonRed";
 
 
 export const ProductDetail = () => {
@@ -25,8 +27,24 @@ export const ProductDetail = () => {
         getProject();
     }, []);
 
+    function agregarVolver(): () => void {
+        return () => {
+            // Logic to add the product to the cart or perform any action
+            console.log("Product added to cart");
+            // Navigate to another page or perform any other action
+            navigate(`/home`);
+        };
+    }
+
+    function volverProductos(): () => void {
+        return () => {
+            navigate(`/home`);
+        };
+    }
+
     return <>
 
+        
         <div className="containerDetalleProducto">
             <div className="img1">
                 <img className="imagen1" src="../src/assets/productoA.png" />
@@ -40,9 +58,16 @@ export const ProductDetail = () => {
             <div className="descripcion">descripcion</div>
             <div className="colores">colores</div>
             <div className="cantidad">cantidad</div>
-            <button className="botonera" onClick={() => navigate(`/home`)}>agregar al carrito y seguir comprando</button>
-        </div>
 
+        </div>
+        <div className="guardarCancelar">
+            <div>
+        <ButtonRed label="Volver" onClick={volverProductos()}></ButtonRed>
+        </div>
+        <div>
+        <ButtonGreen label="Agregar y seguir comprando" onClick={agregarVolver()}></ButtonGreen>
+        </div>
+        </div>
     </>
 };
 

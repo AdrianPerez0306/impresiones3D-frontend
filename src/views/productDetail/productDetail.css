@@ -1,24 +1,29 @@
 .containerDetalleProducto {
     /* margin: 0 auto; */
-    width: 80vw;
+    width: auto;
     display: grid;
-    grid-template-columns: 0.3fr 0.25fr;
-    grid-template-rows: 0.5fr 0.5fr 0.25fr 0.15fr 0.15fr;
+    grid-template-columns: 0.7fr 0.6fr;
+    grid-template-rows: 0.8fr 0.8fr 0.4fr 0.3fr 0.3fr;
     gap: 0.3rem;
+    padding: 1rem;
     grid-template-areas: 
     "img1 img2"
     "img1 img3"
     "descripcion descripcion"
     "colores botonera"
     "cantidad botonera";
-    /* background-color: aqua; */
-
+    
     justify-content: center;
     margin-bottom: 1rem;
-
+    border-radius: 1rem;
+    /* background: linear-gradient(to left, #fbc901, #fb4b01); */
+    background-color: transparent;
+    opacity: 1;
     &  div {
         border: 2px solid black;
         overflow: hidden;
+        border-radius: 1rem;
+        
     }
 }
 
@@ -58,15 +63,25 @@
     grid-area: cantidad;
 }
 
-.botonera {
-    grid-area: botonera;
-    border: 2px solid black;
-    width: 100%;
-    height: 100%;
-    background-color: red;
-}
+
 .imagen1, .imagen2, .imagen3 {
     width: 100%;
     height: 100%;
     object-fit:fill; 
+}
+
+.guardarCancelar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 25rem;
+
+    & div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 15rem;
+    }
 }

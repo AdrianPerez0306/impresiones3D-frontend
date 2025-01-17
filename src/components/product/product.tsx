@@ -6,6 +6,7 @@ import { useToast } from '../../hooks/useToast';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../redux/states/cart';
 import { Search } from '../search/search';
+import ButtonGreen from '../buttonGreen/buttonGreen';
 
 export const Product = ({ product }: { product: InterfaceProduct }) => {
     const navigate = useNavigate()
@@ -35,10 +36,7 @@ export const Product = ({ product }: { product: InterfaceProduct }) => {
                 <p className='price'>{`$ ${product.price}`}</p>
                 <p className="info">{`${product.info}`}</p>
             </div>
-
-            <div className="actions">
-                <button className='button' onClick={goToDetail}>COMPRAR</button>
-            </div>
+                <ButtonGreen label='Comprar' onClick={goToDetail}></ButtonGreen>
         </div>
     </>
 };
