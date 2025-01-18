@@ -167,7 +167,7 @@ label input:checked~span {
     align-items: center;
     gap: 1.5rem;
     background: var(--colorGradietne);
-    /* border: 2px solid black; */
+    border: 2px solid black;
     padding: 0.5rem;
 
     & p {
