@@ -44,7 +44,7 @@ export const ProductDetail = () => {
 
     return <>
 
-        
+
         <div className="containerDetalleProducto">
             <div className="img1">
                 <img className="imagen1" src="../src/assets/productoA.png" />
@@ -55,18 +55,32 @@ export const ProductDetail = () => {
             <div className="img3">
                 <img className="imagen3" src="../src/assets/productoA.png" />
             </div>
-            <div className="descripcion">descripcion</div>
-            <div className="colores">colores</div>
-            <div className="cantidad">cantidad</div>
+            <div className="descripcion">Descripcion</div>
+                <div className="colores">
+                    <p>Selecciona un color</p>
+                    <div className="ratios">
+                            <input className="rojo" type="radio" name="opcion" value="opcion3" />
+                            <input className="nego" type="radio" name="opcion" value="opcion3" />
+                            <input className="azul" type="radio" name="opcion" value="opcion3" />
+                    </div>
+                </div>
+            <div className="cantidad">
+                <p>Cantidad</p>
+                <div className="contador">
+                    <button>+</button>
+                    <input className="cantidad" type="number" defaultValue={1} />
+                    <button>-</button>
+                </div>
+            </div>
+            </div>
 
-        </div>
         <div className="guardarCancelar">
             <div>
-        <ButtonRed label="Volver" onClick={volverProductos()}></ButtonRed>
-        </div>
-        <div>
-        <ButtonGreen label="Agregar y seguir comprando" onClick={agregarVolver()}></ButtonGreen>
-        </div>
+                <ButtonRed label="Volver" onClick={volverProductos()}></ButtonRed>
+            </div>
+            <div>
+                <ButtonGreen label="Agregar y seguir comprando" onClick={agregarVolver()}></ButtonGreen>
+            </div>
         </div>
     </>
 };
