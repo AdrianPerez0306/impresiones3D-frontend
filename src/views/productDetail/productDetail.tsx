@@ -59,16 +59,26 @@ export const ProductDetail = () => {
                 <div className="colores">
                     <p>Selecciona un color</p>
                     <div className="ratios">
+
+                        <label>
                             <input className="rojo" type="radio" name="opcion" value="opcion3" />
-                            <input className="nego" type="radio" name="opcion" value="opcion3" />
+                            <span className="rojo"></span>                        
+                        </label>
+                        <label>
+                            <input  className="negro" type="radio" name="opcion" value="opcion3" />
+                            <span className="negro"></span>                        
+                        </label>
+                        <label>
                             <input className="azul" type="radio" name="opcion" value="opcion3" />
+                            <span className="azul"></span>                        
+                        </label>
                     </div>
                 </div>
             <div className="cantidad">
                 <p>Cantidad</p>
                 <div className="contador">
                     <button>+</button>
-                    <input  type="text" defaultValue={1} />
+                    <p className="cantidadNumerica">1</p>
                     <button>-</button>
                 </div>
             </div>

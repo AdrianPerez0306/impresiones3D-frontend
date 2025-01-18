@@ -3,26 +3,27 @@
     width: auto;
     display: grid;
     grid-template-columns: 0.7fr 0.6fr;
-    grid-template-rows: 0.8fr 0.8fr 0.5fr 0.3fr ;
+    grid-template-rows: 0.8fr 0.8fr 0.5fr 0.3fr;
     gap: 0.3rem;
     padding: 1rem;
-    grid-template-areas: 
-    "img1 img2"
-    "img1 img3"
-    "descripcion descripcion"
-    "colores cantidad";
-    
+    grid-template-areas:
+        "img1 img2"
+        "img1 img3"
+        "descripcion descripcion"
+        "colores cantidad";
+
     justify-content: center;
     margin-bottom: 1rem;
     border-radius: 1rem;
     /* background: linear-gradient(to left, #fbc901, #fb4b01); */
     background-color: transparent;
     opacity: 1;
-    &  div {
+
+    & div {
         /* border: 2px solid black; */
         overflow: hidden;
         border-radius: 1rem;
-        
+
     }
 }
 
@@ -50,14 +51,18 @@
     font-size: 1.4rem;
     background: var(--colorGradietne);
     border: 2px solid black;
-    
+
 }
 
 @media (max-width: 1024px) {
     .containerDetalleProducto {
         grid-template-columns: 0.5fr 0.55fr;
         grid-template-rows: 0.9fr 0.9fr 0.5fr 1fr;
-        
+
+    }
+
+    .guardarCancelar {
+        flex-wrap: wrap;
     }
 }
 
@@ -70,22 +75,23 @@
 }
 
 
-.imagen1, .imagen2, .imagen3 {
+.imagen1,
+.imagen2,
+.imagen3 {
     width: 100%;
     height: 100%;
-    object-fit:fill; 
+    object-fit: fill;
 }
 
-.guardarCancelar{
+.guardarCancelar {
     display: flex;
-    /* flex-wrap: wrap; */
     flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 18rem;
-    gap: 1rem;
+    gap: 2rem;
     margin-bottom: 3rem;
-    
+
     & div {
         width: 18rem;
     }
@@ -94,7 +100,7 @@
 
 
 /* ratios */
-.colores{
+.colores {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -102,54 +108,89 @@
     gap: 0.5rem;
     background: var(--colorGradietne);
     border: 2px solid black;
-    
-    & p{
+
+    & p {
         font-size: 1.4rem;
     }
 }
 
-.ratios{
+.ratios {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
 }
 
-input[type="radio"]{
-    width: 2rem;
-    height: 2rem;
+input {
+    display: none;
 }
 
-.cantidad{
+span {
+    display: inline-block;
+    position: relative;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.7s;
+}
+
+.rojo {
+    background: red;
+}
+
+.negro {
+    background: black;
+}
+
+.azul {
+    background: blue;
+}
+
+label {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+label input:checked~span {
+    box-shadow: 0px 0px 0px 3px white;
+    border-radius: 50%;
+}
+
+
+
+/* contador */
+.cantidad {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
     background: var(--colorGradietne);
-    border: 2px solid black;
+    /* border: 2px solid black; */
     padding: 0.5rem;
-    
-    & p{
+
+    & p {
         font-size: 1.4rem;
     }
 }
 
-.contador{
+.contador {
+    width: 12rem;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     gap: 1rem;
 
 
-    & button{
-        width: 4rem;
+    & button {
+        width: auto;
         /* height: 4rem; */
         font-size: 3.4rem;
     }
 
-    & input{
+    & input {
         width: 10rem;
         /* height: 10rem; */
         font-size: 1.4rem;
@@ -157,6 +198,10 @@ input[type="radio"]{
     }
 }
 
-.cantidad{
+.cantidad {
     background-color: transparent;
+}
+
+.rojo {
+    background: red;
 }
