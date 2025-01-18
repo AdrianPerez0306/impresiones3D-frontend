@@ -68,7 +68,7 @@ export const ProductDetail = () => {
                 <p>Cantidad</p>
                 <div className="contador">
                     <button>+</button>
-                    <input className="cantidad" type="number" defaultValue={1} />
+                    <input  type="text" defaultValue={1} />
                     <button>-</button>
                 </div>
             </div>

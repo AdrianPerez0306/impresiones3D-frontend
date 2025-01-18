@@ -3,7 +3,7 @@
     width: auto;
     display: grid;
     grid-template-columns: 0.7fr 0.6fr;
-    grid-template-rows: 0.8fr 0.8fr 0.4fr 0.3fr ;
+    grid-template-rows: 0.8fr 0.8fr 0.5fr 0.3fr ;
     gap: 0.3rem;
     padding: 1rem;
     grid-template-areas: 
@@ -48,14 +48,16 @@
     padding: 1rem;
     grid-area: descripcion;
     font-size: 1.4rem;
-
+    background: var(--colorGradietne);
+    border: 2px solid black;
+    
 }
 
 @media (max-width: 1024px) {
     .containerDetalleProducto {
         grid-template-columns: 0.5fr 0.55fr;
-        grid-template-rows: 0.9fr 0.9fr 0.5fr 0.4fr 0.4fr;
-       
+        grid-template-rows: 0.9fr 0.9fr 0.5fr 1fr;
+        
     }
 }
 
@@ -83,7 +85,7 @@
     width: 18rem;
     gap: 1rem;
     margin-bottom: 3rem;
-
+    
     & div {
         width: 18rem;
     }
@@ -98,7 +100,9 @@
     text-align: center;
     justify-content: space-around;
     gap: 0.5rem;
-
+    background: var(--colorGradietne);
+    border: 2px solid black;
+    
     & p{
         font-size: 1.4rem;
     }
@@ -122,7 +126,10 @@ input[type="radio"]{
     justify-content: center;
     align-items: center;
     gap: 1rem;
-
+    background: var(--colorGradietne);
+    border: 2px solid black;
+    padding: 0.5rem;
+    
     & p{
         font-size: 1.4rem;
     }
@@ -134,6 +141,7 @@ input[type="radio"]{
     justify-content: center;
     align-items: center;
     gap: 1rem;
+
 
     & button{
         width: 4rem;
@@ -147,4 +155,8 @@ input[type="radio"]{
         font-size: 1.4rem;
         text-align: center;
     }
+}
+
+.cantidad{
+    background-color: transparent;
 }
