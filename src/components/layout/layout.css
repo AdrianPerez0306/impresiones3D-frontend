@@ -5,4 +5,5 @@
     min-height: 100vh;
     justify-content: space-between;
     gap: 1rem;
+    align-items: center;
 }

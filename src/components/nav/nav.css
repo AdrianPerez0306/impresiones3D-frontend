@@ -1,7 +1,7 @@
 
 .links {
     height: 3.8rem;
-    width: 99%;
+    width: 99vw;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -15,3 +15,6 @@
 
 }
 
+a:hover {
+    color: yellow;
+}
