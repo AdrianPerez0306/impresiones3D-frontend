@@ -2,6 +2,7 @@ header{
     height: 6rem;
     padding: 1rem;
     background: var(--colorGradietne);
+    width: 100vw;
 }
 
 .content{
