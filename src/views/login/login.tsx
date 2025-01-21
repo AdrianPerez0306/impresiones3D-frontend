@@ -3,14 +3,16 @@ import './login.css'
 import { FormEvent, useState } from 'react'
 import { loginService } from '../../service/login.service'
 import { User } from '../../models/User'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { updateUser } from '../../redux/states/user'
+import { RootState } from '../../redux/store'
 
 export const Login = () => {
 
     // let isValid = true
-    const [isValid, setIsValid] = useState(true)
+    const [isValid, setIsValid] = useState('true')
     const [user, setUser] = useState({Id:1, username: '', password: ''} as User)
+    const userState = useSelector((store: RootState) => store.user)
     const dispatcher =  useDispatch()
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => { 
@@ -19,15 +21,16 @@ export const Login = () => {
             const data = await loginService.identityValidation(user)
             setIsValid(data.data)
             dispatcher(updateUser(data.data))
+            //navego al home
         }
         catch(error: unknown){
             console.log(error) //TRABAJAR MUCHO MUCHO ESTO
         }
     }
 
-    // const checkValueUser = () => {
-    //     return user.username === mockCredential.username && user.password === mockCredential.password
-    // }
+    const logout = () => {
+        dispatcher(updateUser('false'))
+    }
 
     return(
         <>
@@ -55,9 +58,11 @@ export const Login = () => {
                             onChange={(ev) => setUser({...user, password : ev.target.value})}
                             required/>
                         </div>
-                        <button type='submit' className="login-button">
+                        {(userState.estado === 'false' || userState.estado === false) ? <button type='submit' className="login-button">
                             Entrar
-                        </button>
+                        </button> : <button type='button' className="login-button" onClick={logout}>
+                            Salir
+                        </button>}
                     </form>
                     <NavLink to='/home'>
                         <button className="login-button-volver">

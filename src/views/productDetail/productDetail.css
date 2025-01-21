@@ -98,7 +98,6 @@
 }
 
 
-
 /* ratios */
 .colores {
     display: flex;
@@ -121,9 +120,9 @@
     align-items: center;
 }
 
-input {
+/* input {
     display: none;
-}
+} */
 
 span {
     display: inline-block;
