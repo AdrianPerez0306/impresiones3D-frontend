@@ -121,9 +121,9 @@
     align-items: center;
 }
 
-input {
+/* input {
     display: none;
-}
+} */
 
 span {
     display: inline-block;

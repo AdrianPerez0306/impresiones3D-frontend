@@ -1,5 +1,5 @@
 header{
-    height: 6rem;
+    height: 2.5rem;
     padding: 1rem;
     background: var(--colorGradietne);
     width: 100vw;
@@ -12,12 +12,19 @@ header{
     align-items: center;
     justify-content: space-around;
     
-    & .logo{
-        width: 10vw;
-        height: 5rem;
-    }
     & .titulo{
-        width: 80vw;
-        height: 4.5rem;
+        width: 50rem;
+        height: 1.5rem;
+        opacity: 0;
+        animation: fadeInOut 6s infinite;
+    }
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
     }
 }
