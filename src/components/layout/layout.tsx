@@ -36,11 +36,13 @@ export const Layout = () => {
         <div className="layout">
             <Header></Header>
             <Nav></Nav>
-            {pat === '/productos' && <Search></Search>}
-            
-            <DondeEstoy titulo={titulo}></DondeEstoy>
+            {/* 
             <Outlet></Outlet>
+            {pat === '/productos' && <Search></Search>}
+            <DondeEstoy titulo={titulo}></DondeEstoy>
             <Footer></Footer>
+            
+             */}
 
         </div>
     </>

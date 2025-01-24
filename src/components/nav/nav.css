@@ -1,20 +1,93 @@
-
+nav{
+    width: 100vw;
+    height: 65vh;
+    background: var(--colorGradietne);
+    display: flex;
+    flex-direction: column;
+}
 .links {
-    height: 3.8rem;
-    width: 99vw;
+    height: 3rem;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 
-    & a {
+}
+
+.enlaces, .containerNombre, .carrito{
+    width: 33vw;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem;
+    & a{
         text-decoration: none;
-        color: #000;
-        font-weight: bold;
+        color: black;
+
     }
+    
+}
+
+.containerNombre{
+    justify-content: center;
+}
+
+.carrito{
+    justify-content: flex-end;
+}
+
+.nombreEmprendimiento{
+    width: 15rem;
+    height: 1rem;
 
 }
 
 a:hover {
     color: yellow;
+}
+
+.izquierda , .derecha{
+    & img{
+        width: 15rem;
+        height: 15rem;
+    }
+}
+
+.animacionImagenes{
+    display: grid;
+    width: 100vw;
+    height: 100%;
+    grid-template-columns: 0.5fr 1fr 1fr 0.5fr;
+    grid-template-rows: 1fr;
+    justify-content: center;
+    align-items: center;
+    /* gap: 1rem; */
+    grid-template-areas: "vacioIzquierda izquierda derecha vacioDerecha";
+
+    & div{
+        border: 1px solid yellow;
+    }
+}
+
+.vacioIzquierda{
+    grid-area: vacioIzquierda;
+    height: 100%;
+}
+.izquierda{
+    grid-area: izquierda;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.derecha{
+    grid-area: derecha;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.vacioDerecha{
+    grid-area: vacioDerecha;
+    height: 100%;
 }
