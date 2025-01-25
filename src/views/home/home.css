@@ -1,5 +1,5 @@
 .productsList {
-    width: 100vw;
+    width: 100%;
     height: auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
