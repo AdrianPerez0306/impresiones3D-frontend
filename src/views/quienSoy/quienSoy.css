@@ -1,27 +1,28 @@
 .aboutMe {
-    width: 100vw;
+    width: 90%;
+    height: 20rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: auto;
-    /* height: 50vh; */
-
     border-radius: 1rem;
-    margin: 4rem auto;
+    margin: 4rem;
+    background: var(--colorGradietne);
 }
 
 .contenedor {
-    width: 90%;
-    background: var(--colorGradietne);
+    background-color: grey;
+    width: 99%;
+    height: 94%;
     border-radius: 1rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
-    height: auto;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
+
 
 h2 {
     font-size: 3rem;
@@ -34,26 +35,16 @@ p {
 
 }
 
-.contenido {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 2rem;
-    height: 95%;
-    width: 99%;
-    border-radius: 1rem;
-    background-color: #a2a1a0;
-    justify-content: space-around;
-    align-items: center;
-}
+
 
 
 .imagen{
-    min-width: 20%;
+    min-width: 15%;
     & img{
+        /* height: 15rem; */
+        /* padding: 1rem; */
         border-radius: 1rem;
     }
-    /* background-color: red; */
    
 }
 .texto{
