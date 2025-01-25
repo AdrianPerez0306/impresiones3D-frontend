@@ -121,8 +121,8 @@ a:hover {
         width: 100vw;
     
         & img{
-            width: 13rem;
-            height: 11rem;
+            width: 25vw;
+            height: 15vh;
             /* padding: 1rem; */
         }
     }
