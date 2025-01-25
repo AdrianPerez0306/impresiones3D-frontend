@@ -8,7 +8,7 @@ import { Search } from "../search/search";
 import { useEffect, useState } from "react";
 
 export const Layout = () => {
-    
+
     const [titulo, setTitulo] = useState<string>('');
     const { pathname: pat } = useLocation();
     const pathNames: { [key: string]: string } = {
@@ -20,10 +20,10 @@ export const Layout = () => {
         // Add more paths as needed
     };
 
-    const convertirPat = () =>{
+    const convertirPat = () => {
         for (const key in pathNames) {
             if (pat.includes(key)) {
-                 setTitulo(pathNames[key]);
+                setTitulo(pathNames[key]);
             }
         }
     }
@@ -38,9 +38,9 @@ export const Layout = () => {
             <Nav></Nav>
             {pat === '/productos' && <Search></Search>}
             <DondeEstoy titulo={titulo}></DondeEstoy>
-            {/* 
             <Outlet></Outlet>
             <Footer></Footer>
+            {/* 
             
              */}
 

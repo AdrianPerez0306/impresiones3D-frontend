@@ -1,10 +1,11 @@
-nav{
+nav {
     width: 100vw;
     height: 65vh;
     background: var(--colorGradietne);
     display: flex;
     flex-direction: column;
 }
+
 .links {
     height: 3rem;
     display: flex;
@@ -15,29 +16,33 @@ nav{
 
 }
 
-.enlaces, .containerNombre, .carrito{
+.enlaces,
+.containerNombre,
+.carrito {
     width: 33vw;
     display: flex;
     flex-direction: row;
     gap: 1rem;
     padding: 0.5rem;
     align-items: center;
-    & a{
+
+    & a {
         text-decoration: none;
         color: black;
 
     }
-    
+
 }
 
-.containerNombre{
+.containerNombre {
     justify-content: center;
 }
 
-.carrito{
+.carrito {
     justify-content: flex-end;
     margin-right: 3rem;
-    & svg{
+
+    & svg {
         margin: 0 auto;
     }
 }
@@ -46,7 +51,7 @@ nav{
     fill: yellow;
 }
 
-.nombreEmprendimiento{
+.nombreEmprendimiento {
     width: 15rem;
     height: 1rem;
 
@@ -57,7 +62,7 @@ a:hover {
 }
 
 
-.animacionImagenes{
+.animacionImagenes {
     display: flex;
     flex-direction: row;
     width: 100vw;
@@ -65,78 +70,87 @@ a:hover {
     justify-content: center;
     align-items: center;
 
-    & div{
+    & div {
         border: 1px solid yellow;
     }
 }
 
-.vacioIzquierda, .vacioDerecha{
+.vacioIzquierda,
+.vacioDerecha {
     height: 100%;
     width: 15vw;
 }
-.izquierda, .derecha{
+
+.izquierda,
+.derecha {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 35vw;
 
-    & img{
+    & img {
         width: 15rem;
         height: 15rem;
     }
 }
 
-.burger{
+.burger {
     display: none;
 }
 
 
 @media (max-width: 940px) {
-    .enlaces{
+    .enlaces {
         display: none;
     }
 
-    .burger{
+    .burger {
         display: flex;
+        /* margin-right: 1rem; */
     }
 
     .burger:hover svg {
         fill: red;
     }
 
-    .animacionImagenes{
+    .animacionImagenes {
         flex-direction: column;
 
     }
 
-    .vacioIzquierda, .vacioDerecha{
+    .vacioIzquierda,
+    .vacioDerecha {
         width: 100vw;
         height: 10vh;
     }
-    .izquierda, .derecha{
+
+    .izquierda,
+    .derecha {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100vw;
-    
-        & img{
+
+        & img {
             width: 25vw;
             height: 15vh;
-            /* padding: 1rem; */
         }
     }
 
 
 
-    .links{
+    .links {
         justify-content: space-around;
         gap: 0.5rem;
     }
 
-    .carrito{
+    .carrito {
         margin: 0;
         width: 3rem;
-        
+
+    }
+    .containerNombre{
+        width: auto;
     }
 }
