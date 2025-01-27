@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import './login.css'
 import { FormEvent, useState } from 'react'
 import { loginService } from '../../service/login.service'
@@ -9,27 +9,33 @@ import { RootState } from '../../redux/store'
 
 export const Login = () => {
 
-    // let isValid = true
-    const [isValid, setIsValid] = useState(true)
+    const [isValid, setIsValid] = useState<boolean | null>(null)
     const [user, setUser] = useState({Id:1, username: '', password: ''} as User)
     const userState = useSelector((store: RootState) => store.user)
     const dispatcher =  useDispatch()
-
+    const navigate = useNavigate()
+    
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => { 
         e.preventDefault()
         try{
             const data = await loginService.identityValidation(user)
             setIsValid(data.data)
             dispatcher(updateUser(data.data))
-            //navego al home
+            navHome()
         }
         catch(error: unknown){
             console.log(error) //TRABAJAR MUCHO MUCHO ESTO
         }
     }
 
+    const navHome = () => {
+        console.log('en la fun nav ', userState)
+        if(userState.estado){ navigate("/home");}
+    }
+
     const logout = () => {
-        dispatcher(updateUser('false'))
+        setIsValid(false)
+        dispatcher(updateUser(false))
     }
 
     return(
@@ -58,18 +64,19 @@ export const Login = () => {
                             onChange={(ev) => setUser({...user, password : ev.target.value})}
                             required/>
                         </div>
-                        {(userState.estado === 'false' || userState.estado === false) ? <button type='submit' className="login-button">
+                        {(userState.estado === 'false' || userState.estado === false) && <button type='submit' className="login-button">
                             Entrar
-                        </button> : <button type='button' className="login-button" onClick={logout}>
+                        </button> }
+                    </form>
+                    {!(userState.estado === 'false' || userState.estado === false) && <button type='button' className="login-button" onClick={logout}>
                             Salir
                         </button>}
-                    </form>
                     <NavLink to='/home'>
                         <button className="login-button-volver">
                             Volver
                         </button>
                     </NavLink>
-                    {!isValid && <span>Credenciales invalidas</span>}
+                    {(!isValid && isValid != null) && <span className='notificacion-credeciales'>Credenciales invalidas</span>}
                 </div>
             </div>
         </>

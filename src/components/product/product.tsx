@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import './product.css'
 import { InterfaceProduct } from '../../models/module';
 import ButtonGreen from '../buttonGreen/buttonGreen';
+import { ArticuloInterface } from '../../models/Articulo';
 
-export const Product = ({ product }: { product: InterfaceProduct }) => {
+export const Product = ({ product }: { product: ArticuloInterface }) => {
     const navigate = useNavigate()
     // const toast = useToast()
     // const dispatcher = useDispatch()
@@ -25,12 +26,12 @@ export const Product = ({ product }: { product: InterfaceProduct }) => {
 
     return <>
         <div className="product">
-            <img src={`${product.img}`} alt="IMG" />
+            <img src={`${product.imagen_1}`} alt="IMG" />
 
             <div className="content">
-                <h5>{`${product.title}`}</h5>
-                <p className='price'>{`$ ${product.price}`}</p>
-                <p className="info">{`${product.info}`}</p>
+                <h5>{`${product.titulo}`}</h5>
+                <p className='price'>{`$ ${product.precio_lista}`}</p>
+                <p className="info">{`${product.detalle}`}</p>
             </div>
                 <ButtonGreen label='Comprar' onClick={goToDetail}></ButtonGreen>
         </div>
