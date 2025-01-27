@@ -4,34 +4,27 @@ import { products, InterfaceProduct } from "../../models/module";
 import "./productDetail.css";
 import ButtonGreen from "../../components/buttonGreen/buttonGreen";
 import ButtonRed from "../../components/buttonRed/buttonRed";
+import { ArticuloInterface } from "../../models/Articulo";
+import { productService } from "../../service/product.service";
 
 
 export const ProductDetail = () => {
     const routeParameter = useParams()
-    const [product, setProject] = useState<InterfaceProduct>()
+    const [product, setProduct] = useState<ArticuloInterface>()
     const navigate = useNavigate()
 
-    function getProject(): void {
-        // Como no hay backend solo lo busca en la lista de <modules.ts>
-        const productAux = products.find(product =>
-            product.id == Number(routeParameter.id)
-        )
-        setProject(productAux)
+    const getArticulo = async() => {
+        const res = await productService.getProduct(Number(routeParameter.id))
+        setProduct(res)
     }
 
-    // function goBack(){
-    //     navigate(`/home`)
-    // }
-
     useEffect(() => {
-        getProject();
+        getArticulo();
     }, []);
 
     function agregarVolver(): () => void {
         return () => {
-            // Logic to add the product to the cart or perform any action
             console.log("Product added to cart");
-            // Navigate to another page or perform any other action
             navigate(`/home`);
         };
     }
@@ -43,24 +36,20 @@ export const ProductDetail = () => {
     }
 
     return <>
-
-
         <div className="containerDetalleProducto">
             <div className="img1">
-                <img className="imagen1" src="../src/assets/productoA.png" />
+                <img className="imagen1" src={product?.imagen_1} />
             </div>
             <div className="img2">
-                <img className="imagen2" src="../src/assets/productoA.png" />
+                <img className="imagen2" src={product?.imagen_2} />
             </div>
             <div className="img3">
-                <img className="imagen3" src="../src/assets/productoA.png" />
+                <img className="imagen3" src={product?.imagen_3} />
             </div>
-            <div className="descripcion">Descripcion</div>
+            <div className="descripcion"><p>{product?.detalle}</p></div>
                 <div className="colores">
                     <p>Selecciona un color</p>
                     <div className="ratios">
-
-                      
                     </div>
                 </div>
             <div className="cantidad">
