@@ -10,11 +10,9 @@ export const Home = () => {
     )
 
     return <>
-        <div className="products">
-            <ToastProvider>
+        <div className="productsList">
                 {listProducts}
                 {listProducts}
-            </ToastProvider>
         </div>
     </>
 };

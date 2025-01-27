@@ -60,18 +60,7 @@ export const ProductDetail = () => {
                     <p>Selecciona un color</p>
                     <div className="ratios">
 
-                        <label>
-                            <input className="rojo" type="radio" name="opcion" value="opcion3" />
-                            <span className="rojo"></span>                        
-                        </label>
-                        <label>
-                            <input  className="negro" type="radio" name="opcion" value="opcion3" />
-                            <span className="negro"></span>                        
-                        </label>
-                        <label>
-                            <input className="azul" type="radio" name="opcion" value="opcion3" />
-                            <span className="azul"></span>                        
-                        </label>
+                      
                     </div>
                 </div>
             <div className="cantidad">
