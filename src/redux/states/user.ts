@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-const userEmpty = {estado:'false'}
+const userEmpty = {estado:false}
 
 export const userSlice = createSlice({
     name: 'user',
@@ -9,9 +9,9 @@ export const userSlice = createSlice({
         createUser: (state, action) => {
             return action.payload
         },
-        updateUser: (state, action:PayloadAction<string>) => {
-            localStorage.setItem('admin', action.payload)
-            console.log('aaaa ', action.payload)
+        updateUser: (state, action:PayloadAction<boolean>) => {
+            localStorage.setItem('admin', JSON.stringify(action.payload))
+            console.log('valor en redux', action.payload)
             state.estado = action.payload
         },
         resetUser: () =>{

@@ -10,7 +10,7 @@ import { RootState } from '../../redux/store'
 export const Login = () => {
 
     // let isValid = true
-    const [isValid, setIsValid] = useState('true')
+    const [isValid, setIsValid] = useState(true)
     const [user, setUser] = useState({Id:1, username: '', password: ''} as User)
     const userState = useSelector((store: RootState) => store.user)
     const dispatcher =  useDispatch()

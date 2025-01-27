@@ -5,11 +5,11 @@ class LoginService {
     constructor(){}
 
     async identityValidation(user: User){
-        return await axios.put<string>('http://localhost:8080/login', user)
+        return await axios.put<boolean>('http://localhost:8080/login', user)
     }
 
     async logout(){
-        return await axios.get<string>('http://localhost:8080/logout')
+        return await axios.get<boolean>('http://localhost:8080/logout')
     }
 }
 
