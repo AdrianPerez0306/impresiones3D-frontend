@@ -1,9 +1,9 @@
-import { Color } from "./Color"
+import { IColor } from "./Color"
 
 export type ArticuloInterface = {
     id: number
     categorias: Array<string>
-    colores: Array<Color>
+    colores: Array<IColor>
     titulo: string
     detalle: string
     imagen_1: string
@@ -21,7 +21,7 @@ export class Articulo {
 
     id: number
     categorias: Array<string>
-    colores: Array<Color>
+    colores: Array<IColor>
     titulo: string
     detalle: string
     imagen_1: string
@@ -37,7 +37,7 @@ export class Articulo {
     constructor(
         id: number, 
         categorias: Array<string>, 
-        colores: Array<Color>, 
+        colores: Array<IColor>, 
         titulo: string, 
         detalle: string, 
         imagen_1: string,
