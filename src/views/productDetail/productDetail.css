@@ -62,11 +62,13 @@
 
 /* ratios */
 .colores {
+    grid-area: colores;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     text-align: center;
     gap: 1rem;
-    justify-content: flex-start;
+    padding: 2rem;
     background: var(--colorGradietne);
     border: 2px solid black;
 
@@ -74,14 +76,38 @@
         font-size: 1.4rem;
     }
 }
+.selectColor {
+    width: 12rem; /* Tamaño del select */
+    height: 2.5rem;
+    border-top-left-radius: 1rem;
+    background-color: black;
+    border: 2px solid black;
+    margin: 0 auto;
+    padding: 0.3rem;
+    color: white; 
+    font-size: 1.2rem;
+    appearance: none;
+}
+
+.selectColor option {
+    background-color: black;
+    color: white;
+    font-size: 1rem;
+    min-width: 12rem;  /* Intenta mantener el mismo tamaño */
+    text-align: center;
+}
 
 
-@media (max-width: 1024px) {
+
+@media (max-width: 768px) {
     .containerDetalleProducto {
-        grid-template-columns: 0.5fr 0.55fr;
-        grid-template-rows: 0.9fr 0.9fr 0.5fr 1fr;
-
+        grid-template-columns: 0.5fr 0.5fr;
+        grid-template-rows: 0.9fr 0.6fr 0.6fr ;
+        grid-template-areas:    "img img"
+                                "descripcion descripcion"
+                                "colores colores";
     }
+    
 
     .guardarCancelar {
         flex-wrap: wrap;

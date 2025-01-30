@@ -37,11 +37,16 @@ export const ProductDetail = () => {
     };
 
     useEffect(() => {
-        fetchData()
-        obtenerColores();
-        obtenerImagenes();
-    }, []);
-
+        fetchData();
+    }, []); 
+    
+    useEffect(() => {
+        if (product) {
+            obtenerColores();
+            obtenerImagenes();
+        }
+    }, [product]);
+    
 
     function agregarVolver(): () => void {
         return () => {
@@ -67,7 +72,7 @@ export const ProductDetail = () => {
             </div>
             <div className="colores">
                 <h4>Selecciona un color</h4>
-                <select name="selectColors" id="selectColors" >
+                <select name="selectColors" className="selectColor" >
                     {coloresList.map((color, index) => (
                         <option key={index} value={color.nombre}>
                             {color.nombre}
