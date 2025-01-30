@@ -18,9 +18,9 @@ export const Product = ({ product }: { product: ArticuloInterface }) => {
             <div className="content">
                 <h5>{`${product.titulo}`}</h5>
                 <p className='price'>{`$ ${product.precio_lista}`}</p>
-                <p className="info">{`${product.detalle}`}</p>
+                <p className="info">{`Medidas ${product.dimension_mm}`}</p>
             </div>
-                <ButtonGreen label='Comprar' onClick={goToDetail}></ButtonGreen>
+                <ButtonGreen label='Añadir' onClick={goToDetail}></ButtonGreen>
         </div>
     </>
 };
