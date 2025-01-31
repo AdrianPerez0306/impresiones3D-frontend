@@ -1,48 +1,89 @@
 .containerDetalleProducto {
-    width: auto;
     display: grid;
-    grid-template-columns: 0.8fr 0.6fr;
-    grid-template-rows: 0.9fr 0.9fr;
-    gap: 0.3rem;
-    padding: 1rem;
+    grid-template-columns: 0.7fr 0.5fr;
+    grid-template-rows: 1fr 1fr 0.3fr;
     grid-template-areas:
-        "img colores"
-        "img descripcion";
-
-    justify-content: center;
-    margin-bottom: 1rem;
-    border-radius: 1rem;
-    /* background: linear-gradient(to left, #fbc901, #fb4b01); */
-    background-color: transparent;
-    opacity: 1;
-
-    & div {
-        overflow: hidden;
-        border-radius: 1rem;
-    }
+    "img colores"
+    "img descripcion"
+    "control .";
+     justify-content: center;
+    
+    gap: 0.3rem;
+    margin-bottom: 2rem;
 }
 
 .descripcion {
+    grid-area: descripcion;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     padding: 1rem;
-    grid-area: descripcion;
     font-size: 1.4rem;
     background: var(--colorGradietne);
     border: 2px solid black;
 
 }
 
+.colores {
+    grid-area: colores;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+    /* gap: 1rem; */
+    padding: 2rem;
+    background: var(--colorGradietne);
+    border: 2px solid black;
+    
+    & p {
+        font-size: 1.4rem;
+    }
+}
+.selectColor {
+    width: 12rem;
+    height: 2.5rem;
+    border-top-left-radius: 1rem;
+    background-color: black;
+    border: 2px solid black;
+    margin: 0 auto;
+    padding: 0.2rem;
+    color: white; 
+    font-size: 1.2rem;
+}
+
+.selectColor option {
+    background-color: black;
+    color: white;
+    font-size: 1rem;
+    min-width: 12rem;
+    text-align: center;
+}
 .img1 {
     grid-area: img;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
 
 .imagen1 {
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: cover; /* Asegura que la imagen ocupe todo el espacio sin deformarse */
+}
+
+.control{
+    grid-area: control;
+    background-color: blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 1rem;
 }
 
 .guardarCancelar {
@@ -61,51 +102,17 @@
 
 
 /* ratios */
-.colores {
-    grid-area: colores;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    text-align: center;
-    gap: 1rem;
-    padding: 2rem;
-    background: var(--colorGradietne);
-    border: 2px solid black;
-
-    & p {
-        font-size: 1.4rem;
-    }
-}
-.selectColor {
-    width: 12rem; /* Tamaño del select */
-    height: 2.5rem;
-    border-top-left-radius: 1rem;
-    background-color: black;
-    border: 2px solid black;
-    margin: 0 auto;
-    padding: 0.3rem;
-    color: white; 
-    font-size: 1.2rem;
-    appearance: none;
-}
-
-.selectColor option {
-    background-color: black;
-    color: white;
-    font-size: 1rem;
-    min-width: 12rem;  /* Intenta mantener el mismo tamaño */
-    text-align: center;
-}
 
 
 
 @media (max-width: 768px) {
     .containerDetalleProducto {
         grid-template-columns: 0.5fr 0.5fr;
-        grid-template-rows: 0.9fr 0.6fr 0.6fr ;
+        grid-template-rows: 0.9fr 0.2fr 0.6fr 0.8fr;
         grid-template-areas:    "img img"
-                                "descripcion descripcion"
-                                "colores colores";
+                                "control control"
+                                "colores colores"
+                                "descripcion descripcion";
     }
     
 

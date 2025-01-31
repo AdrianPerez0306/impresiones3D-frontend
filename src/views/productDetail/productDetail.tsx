@@ -44,7 +44,7 @@ export const ProductDetail = () => {
         if (indexImage < imagenesList.length - 1) {
             setimagenView(imagenesList[indexImage + 1]);
             setIndexImage(indexImage + 1);
-        }else{
+        } else {
             setimagenView(imagenesList[0]);
             setIndexImage(0);
         }
@@ -54,7 +54,7 @@ export const ProductDetail = () => {
         if (indexImage > 0) {
             setimagenView(imagenesList[indexImage - 1]);
             setIndexImage(indexImage - 1);
-        }else{
+        } else {
             setimagenView(imagenesList[imagenesList.length - 1]);
             setIndexImage(imagenesList.length - 1);
         }
@@ -62,15 +62,15 @@ export const ProductDetail = () => {
 
     useEffect(() => {
         fetchData();
-    }, []); 
-    
+    }, []);
+
     useEffect(() => {
         if (product) {
             obtenerColores();
             obtenerImagenes();
         }
     }, [product]);
-    
+
 
     function agregarVolver(): () => void {
         return () => {
@@ -104,10 +104,11 @@ export const ProductDetail = () => {
                     ))}
                 </select>
             </div>
+            <div className="control">
+                <button onClick={previousImage}> <p>Anterior</p> </button>
+                <button onClick={nextImage}> <p>Siguiente</p></button>
+            </div>
         </div>
-                <button onClick={nextImage}>next</button>
-                <button onClick={previousImage}>prev</button>
-
         <div className="guardarCancelar">
             <div>
                 <ButtonRed label="Volver" onClick={volverProductos()}></ButtonRed>
