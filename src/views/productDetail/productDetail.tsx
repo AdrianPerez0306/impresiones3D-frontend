@@ -13,6 +13,8 @@ export const ProductDetail = () => {
     const [product, setProduct] = useState<Articulo>()
     const [coloresList, setColoresList] = useState<IColor[]>([])
     const [imagenesList, setImagenesList] = useState<string[]>([])
+    const [imagenView, setimagenView] = useState<string>()
+    const [indexImage, setIndexImage] = useState<number>(0)
     const navigate = useNavigate()
 
     const fetchData = async () => {
@@ -33,6 +35,28 @@ export const ProductDetail = () => {
         if (product) {
             const img = [product.imagen_1, product.imagen_2, product.imagen_3, product.imagen_4, product.imagen_5];
             setImagenesList(img.filter((imagen) => imagen));
+            setimagenView(img[0]);
+            setIndexImage(imagenesList.length);
+        }
+    };
+
+    const nextImage = () => {
+        if (indexImage < imagenesList.length - 1) {
+            setimagenView(imagenesList[indexImage + 1]);
+            setIndexImage(indexImage + 1);
+        }else{
+            setimagenView(imagenesList[0]);
+            setIndexImage(0);
+        }
+    };
+
+    const previousImage = () => {
+        if (indexImage > 0) {
+            setimagenView(imagenesList[indexImage - 1]);
+            setIndexImage(indexImage - 1);
+        }else{
+            setimagenView(imagenesList[imagenesList.length - 1]);
+            setIndexImage(imagenesList.length - 1);
         }
     };
 
@@ -64,7 +88,7 @@ export const ProductDetail = () => {
     return <>
         <div className="containerDetalleProducto">
             <div className="img1">
-                <img className="imagen1" src={product?.imagen_1} />
+                <img className="imagen1" src={imagenView} />
             </div>
             <div className="descripcion">
                 <h5>Descripcion</h5>
@@ -81,6 +105,8 @@ export const ProductDetail = () => {
                 </select>
             </div>
         </div>
+                <button onClick={nextImage}>next</button>
+                <button onClick={previousImage}>prev</button>
 
         <div className="guardarCancelar">
             <div>
