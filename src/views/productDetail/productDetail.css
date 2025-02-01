@@ -1,86 +1,89 @@
 .containerDetalleProducto {
-    /* margin: 0 auto; */
-    width: auto;
     display: grid;
-    grid-template-columns: 0.7fr 0.6fr;
-    grid-template-rows: 0.8fr 0.8fr 0.5fr 0.3fr;
-    gap: 0.3rem;
-    padding: 1rem;
+    grid-template-columns: 0.7fr 0.5fr;
+    grid-template-rows: 1fr 1fr 0.3fr;
     grid-template-areas:
-        "img1 img2"
-        "img1 img3"
-        "descripcion descripcion"
-        "colores cantidad";
-
-    justify-content: center;
-    margin-bottom: 1rem;
-    border-radius: 1rem;
-    /* background: linear-gradient(to left, #fbc901, #fb4b01); */
-    background-color: transparent;
-    opacity: 1;
-
-    & div {
-        /* border: 2px solid black; */
-        overflow: hidden;
-        border-radius: 1rem;
-
-    }
-}
-
-.img1 {
-    grid-area: img1;
-    width: auto;
-    height: auto;
-}
-
-.img2 {
-    width: auto;
-    height: auto;
-    grid-area: img2;
-}
-
-.img3 {
-    grid-area: img3;
+    "img colores"
+    "img descripcion"
+    "control .";
+     justify-content: center;
+    
+    gap: 0.3rem;
+    margin-bottom: 2rem;
 }
 
 .descripcion {
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
     grid-area: descripcion;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem;
     font-size: 1.4rem;
     background: var(--colorGradietne);
     border: 2px solid black;
 
 }
 
-@media (max-width: 1024px) {
-    .containerDetalleProducto {
-        grid-template-columns: 0.5fr 0.55fr;
-        grid-template-rows: 0.9fr 0.9fr 0.5fr 1fr;
-
-    }
-
-    .guardarCancelar {
-        flex-wrap: wrap;
-    }
-}
-
 .colores {
     grid-area: colores;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+    /* gap: 1rem; */
+    padding: 2rem;
+    background: var(--colorGradietne);
+    border: 2px solid black;
+    
+    & p {
+        font-size: 1.4rem;
+    }
+}
+.selectColor {
+    width: 12rem;
+    height: 2.5rem;
+    border-top-left-radius: 1rem;
+    background-color: black;
+    border: 2px solid black;
+    margin: 0 auto;
+    padding: 0.2rem;
+    color: white; 
+    font-size: 1.2rem;
 }
 
-.cantidad {
-    grid-area: cantidad;
+.selectColor option {
+    background-color: black;
+    color: white;
+    font-size: 1rem;
+    min-width: 12rem;
+    text-align: center;
 }
-
-
-.imagen1,
-.imagen2,
-.imagen3 {
+.img1 {
+    grid-area: img;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
     width: 100%;
     height: 100%;
-    object-fit: fill;
+}
+
+.imagen1 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen ocupe todo el espacio sin deformarse */
+}
+
+.control{
+    grid-area: control;
+    background-color: blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 1rem;
 }
 
 .guardarCancelar {
@@ -99,108 +102,21 @@
 
 
 /* ratios */
-.colores {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: space-around;
-    gap: 0.5rem;
-    background: var(--colorGradietne);
-    border: 2px solid black;
 
-    & p {
-        font-size: 1.4rem;
+
+
+@media (max-width: 768px) {
+    .containerDetalleProducto {
+        grid-template-columns: 0.5fr 0.5fr;
+        grid-template-rows: 0.9fr 0.2fr 0.6fr 0.8fr;
+        grid-template-areas:    "img img"
+                                "control control"
+                                "colores colores"
+                                "descripcion descripcion";
     }
-}
+    
 
-.ratios {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-}
-
-/* input {
-    display: none;
-} */
-
-span {
-    display: inline-block;
-    position: relative;
-    height: 2rem;
-    width: 2rem;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.7s;
-}
-
-.rojo {
-    background: red;
-}
-
-.negro {
-    background: black;
-}
-
-.azul {
-    background: blue;
-}
-
-label {
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-label input:checked~span {
-    box-shadow: 0px 0px 0px 3px white;
-    border-radius: 50%;
-}
-
-
-
-/* contador */
-.cantidad {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    background: var(--colorGradietne);
-    border: 2px solid black;
-    padding: 0.5rem;
-
-    & p {
-        font-size: 1.4rem;
+    .guardarCancelar {
+        flex-wrap: wrap;
     }
-}
-
-.contador {
-    width: 12rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    gap: 1rem;
-
-
-    & button {
-        width: auto;
-        /* height: 4rem; */
-        font-size: 3.4rem;
-    }
-
-    & input {
-        width: 10rem;
-        /* height: 10rem; */
-        font-size: 1.4rem;
-        text-align: center;
-    }
-}
-
-.cantidad {
-    background-color: transparent;
-}
-
-.rojo {
-    background: red;
 }

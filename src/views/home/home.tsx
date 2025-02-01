@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Product } from "../../components/product/product";
-import { ToastProvider } from "../../context/toast.context";
 import { Articulo } from "../../models/Articulo";
 import './home.css';
 import { useSelector } from "react-redux";

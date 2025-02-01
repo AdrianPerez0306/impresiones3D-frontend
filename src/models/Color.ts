@@ -1,4 +1,5 @@
-export enum Color {
-    rojo,
-    azul
+export interface IColor {
+    id: number;
+    nombre: string;
+    hex_value: string;
 }
