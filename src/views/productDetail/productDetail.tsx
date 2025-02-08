@@ -70,6 +70,7 @@ export const ProductDetail = () => {
                 <div className="img1">
                     {imagenView && (
                         <img className={`imagen1 ${fade ? "fade-out" : ""}`} src={imagenView} alt="Producto" />
+                        // siempre se aplica la clase imagen1, si fade es true se aplica la clase fade-out
                     )}
                 </div>
 
