@@ -33,7 +33,17 @@ export const ProductDetail = () => {
         };
 
         fetchData();
-    }, []); 
+    }, []);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const newIndex = (indexImage + 1) % imagenesList.length;
+            setIndexImage(newIndex);
+            setImagenView(imagenesList[newIndex]);
+        }, 3000); 
+
+        return () => clearInterval(interval);
+    }, [indexImage, imagenesList]);
 
     const nextImage = () => {
         const newIndex = (indexImage + 1) % imagenesList.length;
