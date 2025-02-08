@@ -23,7 +23,7 @@ export const ProductDetail = () => {
                 setProduct(res);
                 setColoresList(res.colores);
 
-                const img = [res.imagen_1, res.imagen_2, res.imagen_3, res.imagen_4, res.imagen_5].filter(image => image !== null );
+                const img = [res.imagen_1, res.imagen_2, res.imagen_3, res.imagen_4, res.imagen_5].filter(image => image !== null);
                 setImagenesList(img);
                 setImagenView(img[0]);
                 setIndexImage(0);
@@ -40,7 +40,7 @@ export const ProductDetail = () => {
             const newIndex = (indexImage + 1) % imagenesList.length;
             setIndexImage(newIndex);
             setImagenView(imagenesList[newIndex]);
-        }, 3000); 
+        }, 3000);
 
         return () => clearInterval(interval);
     }, [indexImage, imagenesList]);
@@ -59,14 +59,23 @@ export const ProductDetail = () => {
 
     return (
         <>
+
             <div className="containerDetalleProducto">
+
                 <div className="img1">
                     <img className="imagen1" src={imagenView} alt="Producto" />
                 </div>
+
+                <div className="controlers">
+                    <button onClick={previousImage} className="anterior"><p>Anterior</p></button>
+                    <button onClick={nextImage} className="siguiente"><p>Siguiente</p></button>
+                </div>
+
                 <div className="descripcion">
                     <h5>Descripción</h5>
                     <p>{product?.detalle}</p>
                 </div>
+                
                 <div className="colores">
                     <h4>Selecciona un color</h4>
                     <select name="selectColors" className="selectColor">
@@ -77,9 +86,10 @@ export const ProductDetail = () => {
                         ))}
                     </select>
                 </div>
-                <div className="control">
-                    <button onClick={previousImage}><p>Anterior</p></button>
-                    <button onClick={nextImage}><p>Siguiente</p></button>
+                
+                <div className="medidas">
+                        <p>Selecciona tamaño</p>
+                        <h5>checks de tamaños</h5>
                 </div>
             </div>
             <div className="guardarCancelar">
