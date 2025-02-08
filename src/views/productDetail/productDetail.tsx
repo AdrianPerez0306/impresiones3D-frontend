@@ -12,10 +12,29 @@ export const ProductDetail = () => {
     const [product, setProduct] = useState<Articulo | null>(null);
     const [coloresList, setColoresList] = useState<IColor[]>([]);
     const [imagenesList, setImagenesList] = useState<string[]>([]);
-    const [imagenView, setImagenView] = useState<string | undefined>();
+    const [imagenView, setImagenView] = useState(imagenesList[0]);
     const [indexImage, setIndexImage] = useState<number>(0);
     const navigate = useNavigate();
 
+    const selectNewImagen = (index: number, images: string[], next = true) => {
+        const condition = next ? index < images.length - 1 : index > 0;
+        const nextIndex = next ? condition ? index + 1 : 0
+            : condition ? index - 1 : images.length - 1;
+            setIndexImage(nextIndex);
+            setImagenView(imagenesList[nextIndex]);
+    }
+
+    const previousImage = () => {
+        selectNewImagen(indexImage, imagenesList, false);
+        
+    };
+    
+    const nextImage = () => {
+        selectNewImagen(indexImage, imagenesList, true);
+       
+       
+    };
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -45,18 +64,6 @@ export const ProductDetail = () => {
         return () => clearInterval(interval);
     }, [indexImage, imagenesList]);
 
-    const nextImage = () => {
-        const newIndex = (indexImage + 1) % imagenesList.length;
-        setIndexImage(newIndex);
-        setImagenView(imagenesList[newIndex]);
-    };
-
-    const previousImage = () => {
-        const newIndex = (indexImage - 1 + imagenesList.length) % imagenesList.length;
-        setIndexImage(newIndex);
-        setImagenView(imagenesList[newIndex]);
-    };
-
     return (
         <>
 
@@ -67,15 +74,15 @@ export const ProductDetail = () => {
                 </div>
 
                 <div className="controlers">
-                    <button onClick={previousImage} className="anterior"><p>Anterior</p></button>
-                    <button onClick={nextImage} className="siguiente"><p>Siguiente</p></button>
+                    <button onClick={previousImage} className="anterior">{'<'}</button>
+                    <button onClick={nextImage} className="siguiente">{'>'}</button>
                 </div>
 
                 <div className="descripcion">
                     <h5>Descripción</h5>
                     <p>{product?.detalle}</p>
                 </div>
-                
+
                 <div className="colores">
                     <h4>Selecciona un color</h4>
                     <select name="selectColors" className="selectColor">
@@ -86,10 +93,10 @@ export const ProductDetail = () => {
                         ))}
                     </select>
                 </div>
-                
+
                 <div className="medidas">
-                        <p>Selecciona tamaño</p>
-                        <h5>checks de tamaños</h5>
+                    <p>Selecciona tamaño</p>
+                    <h5>checks de tamaños</h5>
                 </div>
             </div>
             <div className="guardarCancelar">
