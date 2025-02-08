@@ -24,7 +24,14 @@
     width: 100%;
     height: 100%;
     object-fit: fill;
+    opacity: 1;  /* Asegura que la imagen comienza visible */
+    transition: opacity 0.3s ease-in-out;
 }
+
+.fade-out {
+    opacity: 0; /* Reduce la opacidad antes de cambiar la imagen */
+}
+
 
 .controlers{
     width: 100%;

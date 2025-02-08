@@ -12,29 +12,25 @@ export const ProductDetail = () => {
     const [product, setProduct] = useState<Articulo | null>(null);
     const [coloresList, setColoresList] = useState<IColor[]>([]);
     const [imagenesList, setImagenesList] = useState<string[]>([]);
-    const [imagenView, setImagenView] = useState(imagenesList[0]);
+    const [imagenView, setImagenView] = useState<string | null>(null);
     const [indexImage, setIndexImage] = useState<number>(0);
+    const [fade, setFade] = useState(false);
     const navigate = useNavigate();
 
     const selectNewImagen = (index: number, images: string[], next = true) => {
-        const condition = next ? index < images.length - 1 : index > 0;
-        const nextIndex = next ? condition ? index + 1 : 0
-            : condition ? index - 1 : images.length - 1;
+        setFade(true);
+        setTimeout(() => {
+            const condition = next ? index < images.length - 1 : index > 0;
+            const nextIndex = next ? (condition ? index + 1 : 0) : (condition ? index - 1 : images.length - 1);
             setIndexImage(nextIndex);
-            setImagenView(imagenesList[nextIndex]);
-    }
+            setImagenView(images[nextIndex]);
+            setFade(false);
+        }, 300);
+    };
 
-    const previousImage = () => {
-        selectNewImagen(indexImage, imagenesList, false);
-        
-    };
-    
-    const nextImage = () => {
-        selectNewImagen(indexImage, imagenesList, true);
-       
-       
-    };
-    
+    const previousImage = () => selectNewImagen(indexImage, imagenesList, false);
+    const nextImage = () => selectNewImagen(indexImage, imagenesList, true);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -56,21 +52,25 @@ export const ProductDetail = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            const newIndex = (indexImage + 1) % imagenesList.length;
-            setIndexImage(newIndex);
-            setImagenView(imagenesList[newIndex]);
+            setFade(true);
+            setTimeout(() => {
+                const newIndex = (indexImage + 1) % imagenesList.length;
+                setIndexImage(newIndex);
+                setImagenView(imagenesList[newIndex]);
+                setFade(false);
+            }, 300);
         }, 3000);
 
         return () => clearInterval(interval);
-    }, [indexImage, imagenesList]);
+    }, [imagenesList, indexImage]);
 
     return (
         <>
-
             <div className="containerDetalleProducto">
-
                 <div className="img1">
-                    <img className="imagen1" src={imagenView} alt="Producto" />
+                    {imagenView && (
+                        <img className={`imagen1 ${fade ? "fade-out" : ""}`} src={imagenView} alt="Producto" />
+                    )}
                 </div>
 
                 <div className="controlers">
