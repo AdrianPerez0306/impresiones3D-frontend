@@ -1,48 +1,58 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ArticuloUser } from "../../models/ArticuloUser";
 
 
-type cartPayload = {
-    itemId:number,
-    itemQuantity:number
-}
+// Cargar el carrito desde sessionStorage
+const loadCartFromSessionStorage = (): ArticuloUser[] => {
+  const savedCart = sessionStorage.getItem("cart");
+  return savedCart ? JSON.parse(savedCart) : [];
+};
 
-type Cart = {
-    addedIds:Array<number>,
-    quantityById:{[key:number]:number}
-}
+// Guardar el carrito en sessionStorage
+const saveCartToSessionStorage = (cart: ArticuloUser[]) => {
+  sessionStorage.setItem("cart", JSON.stringify(cart));
+};
 
-const emptyCart:Cart = {
-    addedIds:[],
-    quantityById:{}
-}
+// Estado inicial del carrito
+const initialState: ArticuloUser[] = loadCartFromSessionStorage();
 
 export const cartSlice = createSlice({
-    name: 'cart',
-    initialState: emptyCart,
-    reducers:{
-        addItem: (state, action:PayloadAction<cartPayload>) => {
-            //Si NO existe => Se crea con su cantidad. Si existe, sumo cantidad
-            const {itemId, itemQuantity} = action.payload
-            const existItem:Boolean = state.addedIds.includes(itemId)
-            if(existItem){
-                state.quantityById[itemId] += itemQuantity
-            }else{
-                state.addedIds = state.addedIds.concat([itemId])
-                state.quantityById[itemId] = itemQuantity
-            }
-        },
-        // removeItem: (state, action:PayloadAction<cartPayload>) => {
-        //     //Si NO existe => ERROR. Si existe, lo borro
-        //     const { itemId } = action.payload
-        //     if(!state[itemId]){
-        //         throw Error("Item not in the cart")
-        //     }
-        //     delete state[itemId]
-        // },
-        dumpCart: () =>{
-            return emptyCart
-        }
-    }
-})
+  name: "cart",
+  initialState,
+  reducers: {
+    addToCart: (state, action: PayloadAction<ArticuloUser>) => {
+      const item = action.payload;
+      const existingItem = state.find(
+        (cartItem: ArticuloUser) =>
+          cartItem.titulo === item.titulo &&
+          cartItem.color === item.color &&
+          cartItem.dimension_mm === item.dimension_mm
+      );
 
-export const { addItem, dumpCart} = cartSlice.actions 
+      if (existingItem) {
+        existingItem.cantidad += 1;
+      } else {
+        state.push(item);
+      }
+
+      saveCartToSessionStorage(state); // Guardar en sessionStorage
+    },
+
+    removeFromCart: (state, action: PayloadAction<{ titulo: string; color: string; dimension_mm: string }>) => {
+      const { titulo, color, dimension_mm } = action.payload;
+      const newState = state.filter(
+        (item) => !(item.titulo === titulo && item.color === color && item.dimension_mm === dimension_mm)
+      );
+
+      saveCartToSessionStorage(newState); // Guardar en sessionStorage
+      return newState;
+    },
+    
+    clearCart: () => {
+      saveCartToSessionStorage([]); // Vaciar sessionStorage
+      return [];
+    }
+  }
+});
+
+export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;

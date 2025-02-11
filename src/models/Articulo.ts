@@ -1,3 +1,4 @@
+import { ArticuloUser } from "./ArticuloUser"
 import { IColor } from "./Color"
 
 export type ArticuloInterface = {
@@ -15,9 +16,10 @@ export type ArticuloInterface = {
     descuento: number
     dimension_mm: string //Pensar si es una array de number
     disponible: boolean
+
 }
 
-export class Articulo {
+export class Articulo implements ArticuloInterface {
 
     id: number
     categorias: Array<string>
@@ -64,4 +66,5 @@ export class Articulo {
         this.dimension_mm = dimension_mm
         this.disponible = disponible
     }
+
 }

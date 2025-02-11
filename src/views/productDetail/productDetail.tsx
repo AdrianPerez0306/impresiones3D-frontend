@@ -1,11 +1,15 @@
-import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "./productDetail.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import ButtonGreen from "../../components/buttonGreen/buttonGreen";
 import ButtonRed from "../../components/buttonRed/buttonRed";
 import { Articulo } from "../../models/Articulo";
-import { productService } from "../../service/product.service";
 import { IColor } from "../../models/Color";
+import { addToCart } from "../../redux/states/cart";
+import { RootState } from "../../redux/store";
+import { productService } from "../../service/product.service";
+import "./productDetail.css";
+import { ArticuloUser } from "../../models/ArticuloUser";
 
 export const ProductDetail = () => {
     const { id } = useParams();
@@ -16,6 +20,7 @@ export const ProductDetail = () => {
     const [indexImage, setIndexImage] = useState<number>(0);
     const [fade, setFade] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const selectNewImagen = (index: number, images: string[], next = true) => {
         setFade(true);
@@ -30,6 +35,26 @@ export const ProductDetail = () => {
 
     const previousImage = () => selectNewImagen(indexImage, imagenesList, false);
     const nextImage = () => selectNewImagen(indexImage, imagenesList, true);
+
+    const agregarAlChango = () => {
+        if (product) {
+            // Convierte a un objeto serializable
+            const itemSerializable = {
+                titulo: product.titulo,
+                imagen_1: product.imagen_1,
+                precio_lista: product.precio_lista,
+                color: product.color,
+                dimension_mm: product.dimension_mm,
+                cantidad : 1
+
+            };
+            
+            dispatch(addToCart(itemSerializable));  // Pasa el objeto serializado
+        } else {
+            console.error("No se pudo añadir el artículo al carrito: ArticuloUser es undefined");
+        }
+    };
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -102,7 +127,7 @@ export const ProductDetail = () => {
             </div>
             <div className="guardarCancelar">
                 <ButtonRed label="Volver" onClick={() => navigate("/home")} />
-                <ButtonGreen label="Agregar y seguir comprando" onClick={() => navigate("/home")} />
+                <ButtonGreen label="Añadir" onClick={agregarAlChango} />
             </div>
         </>
     );

@@ -4,7 +4,6 @@ import './cart.css'
 import { RootState } from '../../redux/store';
 import { useEffect, useState } from 'react';
 import { InterfaceProduct, products } from '../../models/module';
-import { dumpCart } from '../../redux/states/cart';
 
 //ESTE IMPORT SE VA VUANDO TENGAMOS BACK 
 // import { products } from '../../models/module';
@@ -14,29 +13,8 @@ export const Cart = () => {
     const [cart, setCart] = useState<InterfaceProduct[]>([])
     const dispatcher =  useDispatch()
 
-    function mockVisual(){
-        const newCart:typeof cart = [] 
-        cartState.addedIds.forEach((id:number)=>{
-            const prod = products.find((product:InterfaceProduct)=>
-                product.id === id
-            )
-            if(prod != undefined) newCart.push(prod)
-        })
-        setCart(newCart)
-    }
-
-    async function fetchCartItems(){
-        //AXIOS
-        mockVisual()
-    }
-    
-    function handleClick(){
-        dispatcher(dumpCart())
-        setCart([])
-    }
 
     useEffect(() => {
-        fetchCartItems()
     }, [])
 
     return <>
@@ -57,7 +35,6 @@ export const Cart = () => {
         }
         
         
-        <button onClick={handleClick}>VACIAR</button>
         </div>
     </>
 };
