@@ -16,7 +16,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 30rem;
+    height: 35rem;
     
 }
 
@@ -146,7 +146,10 @@
 @media (max-width: 768px) {
     .containerDetalleProducto {
         width: 90%;
-        height: 45rem;
+    }
+
+    .img1 {
+        height: 20rem;
     }
 
     .guardarCancelar {
