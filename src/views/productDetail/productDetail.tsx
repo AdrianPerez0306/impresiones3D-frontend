@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import ButtonGreen from "../../components/buttonGreen/buttonGreen";
 import ButtonRed from "../../components/buttonRed/buttonRed";
 import { Articulo } from "../../models/Articulo";
 import { IColor } from "../../models/Color";
 import { addToCart } from "../../redux/states/cart";
-import { RootState } from "../../redux/store";
 import { productService } from "../../service/product.service";
 import "./productDetail.css";
-import { ArticuloUser } from "../../models/ArticuloUser";
 
 export const ProductDetail = () => {
     const { id } = useParams();
@@ -41,15 +39,16 @@ export const ProductDetail = () => {
             // Convierte a un objeto serializable
             const itemSerializable = {
                 titulo: product.titulo,
-                imagen_1: product.imagen_1,
+                imagen: product.imagen_1,
                 precio_lista: product.precio_lista,
-                color: product.color,
+                color: product.colores[0].nombre,
                 dimension_mm: product.dimension_mm,
                 cantidad : 1
 
             };
             
             dispatch(addToCart(itemSerializable));  // Pasa el objeto serializado
+            navigate("/home");
         } else {
             console.error("No se pudo añadir el artículo al carrito: ArticuloUser es undefined");
         }

@@ -1,4 +1,3 @@
-import { ArticuloUser } from "./ArticuloUser"
 import { IColor } from "./Color"
 
 export type ArticuloInterface = {

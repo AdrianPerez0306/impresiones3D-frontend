@@ -20,6 +20,7 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+
     addToCart: (state, action: PayloadAction<ArticuloUser>) => {
       const item = action.payload;
       const existingItem = state.find(
@@ -35,7 +36,7 @@ export const cartSlice = createSlice({
         state.push(item);
       }
 
-      saveCartToSessionStorage(state); // Guardar en sessionStorage
+      saveCartToSessionStorage(state); 
     },
 
     removeFromCart: (state, action: PayloadAction<{ titulo: string; color: string; dimension_mm: string }>) => {

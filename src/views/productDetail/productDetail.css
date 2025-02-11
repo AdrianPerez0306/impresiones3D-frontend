@@ -146,6 +146,7 @@
 @media (max-width: 768px) {
     .containerDetalleProducto {
         width: 90%;
+        height: 45rem;
     }
 
     .guardarCancelar {
