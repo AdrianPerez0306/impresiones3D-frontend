@@ -1,14 +1,14 @@
+.cartTable {
+    border-collapse:collapse;
+    width: 100%;
+}
+
 .cartContainer {
     width: 80%;
     height: auto;
     padding: 5px;
     margin:  3rem 0 3rem 0;
     
-}
-
-.cartTable {
-    border-collapse:collapse;
-    width: 100%;
 }
 
 th, td {
@@ -44,9 +44,13 @@ th, td {
     display: block; 
 }
 
-.standar{
-    width: 14rem;
+.contador{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
 }
+
 .eliminar{
     width: 14rem;
 }
@@ -57,23 +61,5 @@ th, td {
 }
 
 
-.contador{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-}
 
-@media (max-width: 768px) {
-   .cartContainer {
-        width: 95%;
-        font-size: 0.8rem;
-    }
-    .imgCart{
-        width: 5rem;
-        height: 5rem;
-        /* object-fit: fill; */
-    }
-
-}
 
