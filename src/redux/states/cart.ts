@@ -48,6 +48,7 @@ export const cartSlice = createSlice({
       saveCartToSessionStorage(newState); // Guardar en sessionStorage
       return newState;
     },
+
     
     clearCart: () => {
       saveCartToSessionStorage([]); // Vaciar sessionStorage

@@ -4,8 +4,8 @@ import { Layout } from './components/layout/layout'
 import { Home } from './views/home/home'
 import { ProductDetail } from './views/productDetail/productDetail'
 import { Login } from './views/login/login'
-import { Cart } from './views/cart/cart';
 import { QuienSoy } from './views/quienSoy/quienSoy';
+import CartComponent from './views/cart/cart';
 
 export const AppRouter = () => {
     return <>
@@ -17,7 +17,7 @@ export const AppRouter = () => {
                         {/* <Route element={<ProductList />} path={`/products`} /> */}
                         <Route element={<ProductDetail />} path={`/productos/:id`} />
                         <Route element={<QuienSoy />} path={`/quienSoy`} />
-                        <Route element={<Cart />} path={`/carrito`}/>
+                        <Route element={<CartComponent />} path={`/carrito`}/>
                     </Route>
                     {/* REDIRECCIONAR A ALGUNA ROUTA POR DEFAULT */}
                     <Route path="*" element={<Navigate to={`/productos`} replace />} />

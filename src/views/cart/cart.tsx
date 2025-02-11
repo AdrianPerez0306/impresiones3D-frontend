@@ -1,42 +1,59 @@
-// import { aboutMe } from '../../models/module';
-import { useDispatch, useSelector } from 'react-redux';
-import './cart.css'
-import { RootState } from '../../redux/store';
-import { useEffect, useState } from 'react';
-import { InterfaceProduct, products } from '../../models/module';
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store"; // Ajusta según tu configuración
+import "./cart.css"; // Archivo de estilos
 
-//ESTE IMPORT SE VA VUANDO TENGAMOS BACK 
-// import { products } from '../../models/module';
+const CartComponent = () => {
+    const articuloUser = useSelector((state: RootState) => state.cart);
 
-export const Cart = () => {
-    const cartState = useSelector((store: RootState) => store.cart)
-    const [cart, setCart] = useState<InterfaceProduct[]>([])
-    const dispatcher =  useDispatch()
-
-
-    useEffect(() => {
-    }, [])
-
-    return <>
-        <div className="carrito">
-            <h2>CART</h2>
-        {JSON.stringify(cartState)}
-        {cart.length === 0 ?
-            <p>CARRITO VACIO</p>:
-            <ul>
-            {cart.map(product=>
-                <>
-                    <li>Id: {product.id}.</li>
-                    <li>Titulo: {product.title}.</li>
-                    <li>Precio: {product.price}</li>
-                </>
+    return (
+        <div className="cartContainer">
+            {articuloUser.length === 0 ? (
+                <p>El carrito está vacío</p>
+            ) : (
+                <div>
+                    <table className="cartTable">
+                        <thead >
+                            <tr  className="cartTableHeader">
+                                <th>Articulo</th>
+                                <th>Color</th>
+                                <th>Dimensión</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {articuloUser.map((item, index) => (
+                                <tr key={index}>
+                                    <td className="imgCart">
+                                        <div className="articulo">
+                                        <p>{item.titulo}</p>
+                                        <img src={item.imagen} alt={item.titulo}/>
+                                        </div>
+                                    </td>
+                                    <td className="standar">{item.color}</td>
+                                    <td className="standar">{item.dimension_mm}</td>
+                                    <td >${item.precio_lista}</td>
+                                    <td>
+                                        <div className="contador">
+                                            <button>-</button>
+                                            {item.cantidad}
+                                            <button>+</button>
+                                        </div>
+                                    </td>
+                                    <td className="eliminar" >x</td>
+                                </tr>
+                            ))}
+                            <tr >
+                                <td className="precio" colSpan={5}>Precio Final</td>
+                                <td className="precio">.....</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             )}
-            </ul>
-        }
-        
-        
         </div>
-    </>
+    );
 };
 
-
+export default CartComponent;
