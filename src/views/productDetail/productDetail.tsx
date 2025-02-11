@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Articulo } from "../../models/Articulo";
 import { addToCart } from "../../redux/states/cart";
 import { productService } from "../../service/product.service";
-import "./productDetail.css";
 import { Carrusel } from "../../components/carrusel/carrusel";
 
 export const ProductDetail = () => {
