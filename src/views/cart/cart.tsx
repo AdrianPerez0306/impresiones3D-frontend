@@ -15,9 +15,9 @@ const CartComponent = () => {
                         <thead >
                             <tr className="cartTableHeader">
                                 <th>Articulo</th>
-                                <th>Precio</th>
                                 <th>Cantidad</th>
                                 <th>Eliminar</th>
+                                <th>Precio</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,26 +25,28 @@ const CartComponent = () => {
                                 <tr key={index}>
                                     <td className="imgCart">
                                         <div className="articulo">
-                                            <p>{item.titulo}</p>
+                                            {item.titulo}
                                             <img src={item.imagen} alt={item.titulo} />
-                                            <p>{item.color}</p>
-                                            <p>{item.dimension_mm}</p>
+                                            {item.color}
+                                            {item.dimension_mm}
                                         </div>
                                     </td>
-                                    <td >${item.precio_lista}</td>
-                                    <td>
+                                    <td className="cantidad">
                                         <div className="contador">
                                             <button>-</button>
                                             {item.cantidad}
                                             <button>+</button>
                                         </div>
                                     </td>
-                                    <td className="eliminar" >x</td>
+                                    <td className="eliminar" >
+                                        <button>Eliminar</button>
+                                    </td>
+                                    <td className="precio">${item.precio_lista}</td>
                                 </tr>
                             ))}
                             <tr >
-                                <td className="precio" colSpan={3}>Precio Final</td>
-                                <td className="precio">.....</td>
+                                <td className="precioFinal" colSpan={3}>Precio Final</td>
+                                <td className="precioFinal">.....</td>
                             </tr>
                         </tbody>
                     </table>
