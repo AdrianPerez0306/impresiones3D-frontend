@@ -7,7 +7,6 @@ import { useState } from "react";
 const CartComponent = () => {
     const articuloUser = useSelector((state: RootState) => state.cart);
     const dispatch = useDispatch();
-    const [cantidad, setCantidad] = useState(1);
     const [precioTotal, setprecioTotal] = useState();
     
     
@@ -22,6 +21,8 @@ const CartComponent = () => {
         dispatch(updateCantidad({ index, cantidad: articuloUser[index].cantidad - 1 }));
         
     }
+
+    
     
 
     return (
@@ -45,10 +46,10 @@ const CartComponent = () => {
                                     <tr key={index}>
                                         <td className="imgCart">
                                             <div className="articulo">
-                                                {item.titulo}
-                                                <img src={item.imagen} alt={item.titulo} />
-                                                {item.color}
-                                                {item.dimension_mm}
+                                                <div>{item.titulo}</div>
+                                                <div><img src={item.imagen} alt={item.titulo} /></div>
+                                                <div>{item.color}</div>
+                                                <div>{item.dimension_mm}</div>
                                             </div>
                                         </td>
                                         <td className="cantidad">

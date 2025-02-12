@@ -49,7 +49,7 @@ export const ToastProvider: React.FC<{ children: ReactNode }> = ({ children }) =
                 {toasts && toasts.map(
                     (toast) => {
                         return (
-                            <Toast message={toast.message} option={toast.type} close={()=>closeToast(toast.id)} />
+                            <Toast key={toast.id} message={toast.message} option={toast.type} close={()=>closeToast(toast.id)} />
                         )
                     }
                 )}

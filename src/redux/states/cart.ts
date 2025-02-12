@@ -52,6 +52,7 @@ export const cartSlice = createSlice({
       const { index, cantidad } = action.payload;
       if (state[index]) {
           state[index].cantidad = Math.max(1, cantidad); // Evita cantidades menores a 1
+          saveCartToSessionStorage(state); // Guardar en sessionStorage
       }
     },
 

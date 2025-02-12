@@ -11,8 +11,8 @@
     max-height: fit-content;
     font-size: large;
     visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 0.5s ease-in-out;
+    opacity: 1;
+    /* transition: visibility 0s, opacity 0.5s ease-in-out; */
 }
 
 .toast.show {

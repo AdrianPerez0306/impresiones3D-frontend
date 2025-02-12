@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { Carrusel } from "../../components/carrusel/carrusel";
+import { useToast } from "../../hooks/useToast";
 import { Articulo } from "../../models/Articulo";
 import { addToCart } from "../../redux/states/cart";
 import { productService } from "../../service/product.service";
-import { Carrusel } from "../../components/carrusel/carrusel";
+
 
 export const ProductDetail = () => {
     const { id } = useParams();
     const [product, setProduct] = useState<Articulo | null>(null);
    
+    const toast = useToast();
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-  
+    
 
     const agregarAlChango = () => {
         if (product) {
@@ -28,8 +32,14 @@ export const ProductDetail = () => {
 
             };
             
-            dispatch(addToCart(itemSerializable));  // Pasa el objeto serializado
-            navigate("/home");
+            toast.open("Artículo añadido al carrito",  "success" );
+            setTimeout(() => {
+                dispatch(addToCart(itemSerializable));  // Pasa el objeto serializado
+                navigate("/home");
+
+            }, 1000);
+
+
         } else {
             console.error("No se pudo añadir el artículo al carrito: ArticuloUser es undefined");
         }
@@ -55,6 +65,8 @@ export const ProductDetail = () => {
             {product && (
                 <Carrusel articulo={product} agregarAlChango={agregarAlChango} />
             )}
+
+            
 
         </>
     );
