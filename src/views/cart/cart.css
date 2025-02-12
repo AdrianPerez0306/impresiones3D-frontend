@@ -1,3 +1,137 @@
-.carrito{
-    /* height: 30rem; */
+th,
+td {
+    text-align: center;
+    border: 2px solid grey;
+}
+
+.cartContainer {
+    width: 75%;
+    height: auto;
+    padding: 5px;
+    margin: 3rem 0 3rem 0;
+
+}
+
+.cartTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.cartTableHeader {
+    height: 10rem;
+    font-size: 1.2rem;
+}
+
+
+
+.imgCart {
+    /* height: 15rem; */
+    width: 25rem;
+}
+
+.imgCart img {
+    width: 100%;
+    height: 14rem;
+    object-fit: cover;
+    display: block;
+}
+
+.articulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.cantidad {
+    width: 25rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+
+.contador {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.eliminar {
+    /* width: 20rem; */
+}
+
+.precio {
+    font-size: 1.3rem;
+    font-weight: bold;
+    width: 15rem;
+}
+
+
+.precioFinal {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 2rem 0 2rem 0;
+    height: 10rem;
+}
+
+.confirmacion{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 2rem 0 2rem 0;
+}
+
+
+@media screen and (max-width: 720px) {
+    .cartContainer {
+        width: 98%;
+        padding: 1px;
+    }
+
+    .cartTableHeader{
+        height: 4rem;
+        font-size: 0.8rem;
+    }
+    
+    .imgCart {
+        width: 5rem;
+    }
+
+    .imgCart img {
+        height: 6rem;
+    }
+
+    .articulo {
+        padding: 0;
+        font-size: 0.7rem;
+    }
+
+    .cantidad {
+        width: 40rem;
+        font-size: 0.7rem;
+    }
+
+    .eliminar {
+        width: max-content;
+    }
+
+    .precio {
+        font-size: 0.7rem;
+        width: 15rem;
+    }
+
+    .precioFinal {
+        font-size: 1rem;
+        margin: 1rem 0 1rem 0;
+        height: 4rem;
+    }
+
 }

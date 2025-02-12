@@ -1,14 +1,14 @@
 import axios from "axios";
-import { Articulo, ArticuloInterface } from "../models/Articulo"
+import { Articulo } from "../models/Articulo";
 
 class ProductService {
     constructor(){}
 
-    async getAllProduct() : Promise<ArticuloInterface[]>{
+    async getAllProduct() : Promise<Articulo[]>{
         return (await axios.get<Articulo[]>('http://localhost:8080/articulos')).data 
     }
 
-    async getProduct(id : number) : Promise<ArticuloInterface>{
+    async getProduct(id : number) : Promise<Articulo>{
         return (await axios.get<Articulo>(`http://localhost:8080/articulos/${id}`)).data
     }
 }

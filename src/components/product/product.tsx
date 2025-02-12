@@ -20,7 +20,7 @@ export const Product = ({ product }: { product: ArticuloInterface }) => {
                 <p className='price'>{`$ ${product.precio_lista}`}</p>
                 <p className="info">{`Medidas ${product.dimension_mm}`}</p>
             </div>
-                <ButtonGreen label='Añadir' onClick={goToDetail}></ButtonGreen>
+                <ButtonGreen label='Ver' onClick={goToDetail}></ButtonGreen>
         </div>
     </>
 };
