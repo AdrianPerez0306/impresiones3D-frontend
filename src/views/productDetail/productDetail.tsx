@@ -64,6 +64,7 @@ export const ProductDetail = () => {
         <>
             {product && (
                 <Carrusel articulo={product} agregarAlChango={agregarAlChango} />
+                
             )}
 
             
