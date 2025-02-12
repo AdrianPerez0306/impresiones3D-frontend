@@ -1,4 +1,5 @@
-th, td {
+th,
+td {
     text-align: center;
     border: 2px solid grey;
 }
@@ -7,12 +8,12 @@ th, td {
     width: 75%;
     height: auto;
     padding: 5px;
-    margin:  3rem 0 3rem 0;
-    
+    margin: 3rem 0 3rem 0;
+
 }
 
 .cartTable {
-    border-collapse:collapse;
+    border-collapse: collapse;
     width: 100%;
 }
 
@@ -31,11 +32,11 @@ th, td {
 .imgCart img {
     width: 100%;
     height: 14rem;
-    object-fit: cover; 
-    display: block; 
+    object-fit: cover;
+    display: block;
 }
 
-.articulo{
+.articulo {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -46,73 +47,91 @@ th, td {
     font-size: 1.3rem;
 }
 
-/* .precio{
-    width: 20%;
-} */
-
-.cantidad{
+.cantidad {
     width: 25rem;
     font-weight: bold;
     font-size: 1.5rem;
 }
 
 
-.contador{
+.contador {
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 100%;
 }
 
-/* .eliminar{
-    width: 20%;
-    } */
-    
-    .precio{
+.eliminar {
+    /* width: 20rem; */
+}
+
+.precio {
     font-size: 1.3rem;
     font-weight: bold;
+    width: 15rem;
 }
 
-.eliminar{
-    width: 20rem;
-}
 
-.precioFinal{
+.precioFinal {
     font-size: 2rem;
     font-weight: bold;
     margin: 2rem 0 2rem 0;
     height: 10rem;
 }
 
-
-@media screen and (max-width: 768px) {
-    .cartContainer {
-        font-size: 0.8rem;
-        width: 100%;
-    }
-    .articulo {
-        gap: 1rem;
-        width: 7rem;
-    }
-    .imgCart {
-        width: 100%;
-        height: 100%;
-    }
-    .imgCart img {
-        width: 100%;
-        height: 100%;
-    }
-    .contador {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    .eliminar {
-        width: 100%;
-    }
-    .precio {
-        height: 100%;
-        font-size: 1.5rem;
-    }
-    
+.confirmacion{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 2rem 0 2rem 0;
 }
 
+
+@media screen and (max-width: 720px) {
+    .cartContainer {
+        width: 98%;
+        padding: 1px;
+    }
+
+    .cartTableHeader{
+        height: 4rem;
+        font-size: 0.8rem;
+    }
+    
+    .imgCart {
+        width: 5rem;
+    }
+
+    .imgCart img {
+        height: 6rem;
+    }
+
+    .articulo {
+        padding: 0;
+        font-size: 0.7rem;
+    }
+
+    .cantidad {
+        width: 40rem;
+        font-size: 0.7rem;
+    }
+
+    .eliminar {
+        width: max-content;
+    }
+
+    .precio {
+        font-size: 0.7rem;
+        width: 15rem;
+    }
+
+    .precioFinal {
+        font-size: 1rem;
+        margin: 1rem 0 1rem 0;
+        height: 4rem;
+    }
+
+}
