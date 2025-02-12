@@ -39,14 +39,20 @@ export const cartSlice = createSlice({
       saveCartToSessionStorage(state); 
     },
 
-    removeFromCart: (state, action: PayloadAction<{ titulo: string; color: string; dimension_mm: string }>) => {
-      const { titulo, color, dimension_mm } = action.payload;
-      const newState = state.filter(
-        (item) => !(item.titulo === titulo && item.color === color && item.dimension_mm === dimension_mm)
-      );
-
+    removeFromCart: (state, action: PayloadAction<number>) => {
+      const index = action.payload;
+      const newState = state.filter((_, idx) => idx !== index); // Eliminar por índice
+  
       saveCartToSessionStorage(newState); // Guardar en sessionStorage
       return newState;
+  }
+  ,
+  
+    updateCantidad: (state, action: PayloadAction<{ index: number, cantidad: number }>) => {
+      const { index, cantidad } = action.payload;
+      if (state[index]) {
+          state[index].cantidad = Math.max(1, cantidad); // Evita cantidades menores a 1
+      }
     },
 
     
@@ -57,4 +63,4 @@ export const cartSlice = createSlice({
   }
 });
 
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart, updateCantidad } = cartSlice.actions;

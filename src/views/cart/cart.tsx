@@ -1,9 +1,27 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store"; // Ajusta según tu configuración
 import "./cart.css"; // Archivo de estilos
+import { removeFromCart, updateCantidad } from "../../redux/states/cart";
+import { useState } from "react";
 
 const CartComponent = () => {
     const articuloUser = useSelector((state: RootState) => state.cart);
+    const dispatch = useDispatch();
+    const [cantidad, setCantidad] = useState(1);
+    const [precioTotal, setprecioTotal] = useState();
+    
+    
+    const eliminarArticulo = (index: number) => {
+        dispatch(removeFromCart(index));
+    };
+    
+    const sumar = (index: number) => {
+        dispatch(updateCantidad({ index, cantidad: articuloUser[index].cantidad + 1 }));
+    };
+    const restar = (index: number) => {
+        dispatch(updateCantidad({ index, cantidad: articuloUser[index].cantidad - 1 }));
+        
+    }
     
 
     return (
@@ -35,13 +53,13 @@ const CartComponent = () => {
                                         </td>
                                         <td className="cantidad">
                                             <div className="contador">
-                                                <button>-</button>
+                                                <button onClick={() =>restar(index)}>-</button>
                                                 {item.cantidad}
-                                                <button>+</button>
+                                                <button onClick={() =>sumar(index)}>+</button>
                                             </div>
                                         </td>
                                         <td className="eliminar">
-                                            <button>X</button>
+                                            <button onClick={ ()=> eliminarArticulo(index)}>X</button>
                                         </td>
                                         <td className="precio">${item.precio_lista}</td>
                                     </tr>
