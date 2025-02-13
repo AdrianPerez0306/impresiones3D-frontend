@@ -28,8 +28,8 @@ export const ProductDetail = () => {
                 titulo: product.titulo,
                 imagen: product.imagenes[0],
                 precio_lista: product.precio_lista,
-                color: product.colores[0].nombre || "Blanco",
-                dimension_mm: "asdasd" ,
+                color: product.colores[0].nombre,
+                dimension_mm: product.dimension_mm[0],
                 cantidad : 1
             };
             console.log("Articulo serializable:", itemSerializable);

@@ -9,7 +9,9 @@ class ProductService {
     }
 
     async getProduct(id : number) : Promise<ArticuloDetalle>{
-        return (await axios.get<ArticuloDetalle>(`http://localhost:8080/articulos/${id}`)).data
+        const res = await axios.get<ArticuloDetalle>(`http://localhost:8080/articulos/${id}`)
+        const item = res.data
+        return item
     }
 }
 
