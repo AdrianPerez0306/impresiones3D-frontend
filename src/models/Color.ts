@@ -20,3 +20,4 @@ export class IDimension {
         this.profundidad_mm = profundidad_mm
     }
 }
+
