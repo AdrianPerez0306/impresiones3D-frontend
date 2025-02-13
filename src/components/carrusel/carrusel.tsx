@@ -1,18 +1,18 @@
-import { IColor } from "../../models/Color";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ButtonGreen from "../../components/buttonGreen/buttonGreen";
 import ButtonRed from "../../components/buttonRed/buttonRed";
-import { useEffect, useState } from "react";
-import { Articulo } from "../../models/Articulo";
-import { useNavigate } from "react-router-dom";
+import { ArticuloDetalle } from "../../models/Articulo";
+import { IColor } from "../../models/Color";
 import "./carrusel.css";
 
 interface CarruselProps {
-    articulo: Articulo;
+    articulo: ArticuloDetalle;
     agregarAlChango: () => void;
 }
 
 export const Carrusel = ({ articulo, agregarAlChango }: CarruselProps) => {
-    const [product, setProduct] = useState<Articulo | null>(null);
+    const [product, setProduct] = useState<ArticuloDetalle | null>(null);
     const [coloresList, setColoresList] = useState<IColor[]>(articulo.colores);
     const [imagenesList, setImagenesList] = useState<string[]>([]);
     const [imagenView, setImagenView] = useState<string | null>(null);
@@ -23,9 +23,8 @@ export const Carrusel = ({ articulo, agregarAlChango }: CarruselProps) => {
     useEffect(() => {
         setProduct(articulo);
         setColoresList(articulo.colores);
-        const img = [articulo.imagen_1, articulo.imagen_2, articulo.imagen_3, articulo.imagen_4, articulo.imagen_5].filter(image => image !== null);
-        setImagenesList(img);
-        setImagenView(img[0]);
+        setImagenesList(articulo.imagenes);
+        setImagenView(articulo.imagenes[0]);
 
     }, []);
 
