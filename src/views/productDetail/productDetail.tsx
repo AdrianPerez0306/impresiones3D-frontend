@@ -3,14 +3,14 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { Carrusel } from "../../components/carrusel/carrusel";
 import { useToast } from "../../hooks/useToast";
-import { Articulo } from "../../models/Articulo";
+import { ArticuloDetalle } from "../../models/Articulo";
 import { addToCart } from "../../redux/states/cart";
 import { productService } from "../../service/product.service";
 
 
 export const ProductDetail = () => {
     const { id } = useParams();
-    const [product, setProduct] = useState<Articulo | null>(null);
+    const [product, setProduct] = useState<ArticuloDetalle | null>(null);
    
     const toast = useToast();
 
@@ -20,17 +20,19 @@ export const ProductDetail = () => {
     
 
     const agregarAlChango = () => {
+
         if (product) {
+            console.log("dimensiones ", product.dimension_mm);
             // Convierte a un objeto serializable
             const itemSerializable = {
                 titulo: product.titulo,
-                imagen: product.imagen_1,
+                imagen: product.imagenes[0],
                 precio_lista: product.precio_lista,
-                color: product.colores[0].nombre,
-                dimension_mm: product.dimension_mm,
+                color: product.colores[0].nombre || "Blanco",
+                dimension_mm: "asdasd" ,
                 cantidad : 1
-
             };
+            console.log("Articulo serializable:", itemSerializable);
             
             toast.open("Artículo añadido al carrito",  "success" );
             setTimeout(() => {
@@ -50,6 +52,7 @@ export const ProductDetail = () => {
         try {
             const res = await productService.getProduct(Number(id));
             setProduct(res);
+            console.log("Producto obtenido:", res);
         } catch (error) {
             console.error("No se pudo obtener el producto:", error);
         }

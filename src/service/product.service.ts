@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Articulo } from "../models/Articulo";
+import { Articulo, ArticuloDetalle } from "../models/Articulo";
 
 class ProductService {
     constructor(){}
@@ -8,8 +8,8 @@ class ProductService {
         return (await axios.get<Articulo[]>('http://localhost:8080/articulos')).data 
     }
 
-    async getProduct(id : number) : Promise<Articulo>{
-        return (await axios.get<Articulo>(`http://localhost:8080/articulos/${id}`)).data
+    async getProduct(id : number) : Promise<ArticuloDetalle>{
+        return (await axios.get<ArticuloDetalle>(`http://localhost:8080/articulos/${id}`)).data
     }
 }
 

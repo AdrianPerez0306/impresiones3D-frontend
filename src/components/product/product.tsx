@@ -13,12 +13,11 @@ export const Product = ({ product }: { product: ArticuloInterface }) => {
 
     return <>
         <div className="product">
-            <img src={`${product.imagen_1}`} alt="IMG" />
+            <img src={`${product.imagen}`} alt="IMG" />
 
             <div className="content">
                 <h5>{`${product.titulo}`}</h5>
                 <p className='price'>{`$ ${product.precio_lista}`}</p>
-                <p className="info">{`Medidas ${product.dimension_mm}`}</p>
             </div>
                 <ButtonGreen label='Ver' onClick={goToDetail}></ButtonGreen>
         </div>
