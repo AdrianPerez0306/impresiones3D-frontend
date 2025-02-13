@@ -1,4 +1,4 @@
-import { ICategorias, IColor, IDimension } from "./Color"
+import { ICategorias, IColor} from "./Color"
 
 export type ArticuloInterface = {
     id: number
@@ -31,6 +31,13 @@ export class Articulo implements ArticuloInterface {
 
 }
 
+
+export interface IDimension {
+    alto_mm: number
+    ancho_mm: number
+    profundidad_mm: number
+
+}
 
 export class ArticuloDetalle {
     id: number
