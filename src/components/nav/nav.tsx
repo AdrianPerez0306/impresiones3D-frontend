@@ -1,7 +1,28 @@
 import { NavLink } from 'react-router-dom'
 import './nav.css'
-
+import { categoriaService } from '../../service/categoria.service'
+import { useEffect, useState } from 'react'
+import { CategoriaType } from '../../models/Categoria'
+import { CategoriaNav } from '../categoriaNav/categoriaNav'
 export const Nav = () => {
+    const [categorias, setCategorias] = useState<CategoriaType[]>([])
+
+    const fetchDataNav = async () => {
+            try{
+                const res = await categoriaService.getCategoriaNav();
+                setCategorias(res)
+                console.log('categorias nav ', categorias)
+            }
+            catch(error: unknown){
+                console.log(error)
+            }
+        }
+
+
+        useEffect(() => {
+                    fetchDataNav()
+                }, [])
+    
     return (
         <nav>
             <div className="links">
@@ -10,7 +31,7 @@ export const Nav = () => {
                         <p>Productos</p>
                     </NavLink>
                     <NavLink to={`/productos`}>
-                        <p>Categorias</p>
+                        <CategoriaNav listCategoria={categorias}></CategoriaNav>
                     </NavLink>
                     <NavLink to={`/quienSoy`}>
                         <p>¿Quien Soy?</p>
