@@ -72,7 +72,7 @@ export class ArticuloDetalle {
 
     obtenerDimensiones(dimensiones: Array<IDimension>): Array<string> {
         return dimensiones.map((d) => {
-            return `${d.alto_mm} ${d.ancho_mm} ${d.profundidad_mm}`
+            return `${d.alto_mm} X ${d.ancho_mm} X ${d.profundidad_mm}`
         })
     }
 
