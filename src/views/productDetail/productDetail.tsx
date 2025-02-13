@@ -22,14 +22,14 @@ export const ProductDetail = () => {
     const agregarAlChango = () => {
 
         if (product) {
-            console.log("dimensiones ", product.dimension_mm);
+            console.log("dimensiones ", product.dimensiones_mm);
             // Convierte a un objeto serializable
             const itemSerializable = {
                 titulo: product.titulo,
                 imagen: product.imagenes[0],
                 precio_lista: product.precio_lista,
                 color: product.colores[0].nombre,
-                dimension_mm: product.dimension_mm[0],
+                dimension_mm: product.dimensiones_mm[0],
                 cantidad : 1
             };
             console.log("Articulo serializable:", itemSerializable);

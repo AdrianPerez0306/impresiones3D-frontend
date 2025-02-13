@@ -1,4 +1,4 @@
-import { ICategorias, IColor} from "./Color"
+import { ICategorias, IColor } from "./Color"
 
 export type ArticuloInterface = {
     id: number
@@ -31,12 +31,10 @@ export class Articulo implements ArticuloInterface {
 
 }
 
-
 export interface IDimension {
     alto_mm: number
     ancho_mm: number
     profundidad_mm: number
-
 }
 
 export class ArticuloDetalle {
@@ -47,7 +45,7 @@ export class ArticuloDetalle {
     descuento: number
     categorias: ICategorias
     colores: Array<IColor>
-    dimension_mm: Array<IDimension>
+    dimensiones_mm: Array<string>
     imagenes: Array<string>
 
     constructor(
@@ -58,7 +56,7 @@ export class ArticuloDetalle {
         descuento: number,
         categorias: ICategorias,
         colores: Array<IColor>,
-        dimension_mm: Array<IDimension>,
+        dimensiones_mm: Array<IDimension>,
         imagenes: Array<string>) {
 
         this.id = id
@@ -68,9 +66,14 @@ export class ArticuloDetalle {
         this.descuento = descuento
         this.categorias = categorias
         this.colores = colores
-        this.dimension_mm = dimension_mm
+        this.dimensiones_mm = this.obtenerDimensiones(dimensiones_mm)
         this.imagenes = imagenes
     }
 
+    obtenerDimensiones(dimensiones: Array<IDimension>): Array<string> {
+        return dimensiones.map((d) => {
+            return `${d.alto_mm} ${d.ancho_mm} ${d.profundidad_mm}`
+        })
+    }
 
 }
