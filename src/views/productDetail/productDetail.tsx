@@ -6,21 +6,19 @@ import { useToast } from "../../hooks/useToast";
 import { ArticuloDetalle } from "../../models/Articulo";
 import { addToCart } from "../../redux/states/cart";
 import { productService } from "../../service/product.service";
-
+import { ProductInfo } from "../../components/productDetail/detail";
+import "./productDetail.css";
 
 export const ProductDetail = () => {
-    const { id } = useParams();
+    const { id } = useParams<{ id: string }>();
     const [product, setProduct] = useState<ArticuloDetalle | null>(null);
-   
+
     const toast = useToast();
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    
-
     const agregarAlChango = () => {
-
         if (product) {
             console.log("dimensiones ", product.dimensiones_mm);
             // Convierte a un objeto serializable
@@ -30,23 +28,19 @@ export const ProductDetail = () => {
                 precio_lista: product.precio_lista,
                 color: product.colores[0].nombre,
                 dimension_mm: product.dimensiones_mm[0],
-                cantidad : 1
+                cantidad: 1
             };
             console.log("Articulo serializable:", itemSerializable);
-            
-            toast.open("Artículo añadido al carrito",  "success" );
+
+            toast.open("Artículo añadido al carrito", "success");
             setTimeout(() => {
                 dispatch(addToCart(itemSerializable));  // Pasa el objeto serializado
                 navigate("/home");
-
             }, 1000);
-
-
         } else {
-            console.error("No se pudo añadir el artículo al carrito: ArticuloUser es undefined");
+            console.error("No se pudo añadir el artículo al carrito: product es null");
         }
     };
-    
 
     const fetchData = async () => {
         try {
@@ -57,21 +51,19 @@ export const ProductDetail = () => {
             console.error("No se pudo obtener el producto:", error);
         }
     };
+
     useEffect(() => {
         fetchData();
-    }, []);
-
-    
+    }, [id]);
 
     return (
         <>
             {product && (
-                <Carrusel articulo={product} agregarAlChango={agregarAlChango} />
-                
+                <div className="contenedorInfoProducto">
+                    <Carrusel imagenes={product.imagenes} />
+                    <ProductInfo articulo={product} agregar={agregarAlChango} />
+                </div>
             )}
-
-            
-
         </>
     );
 };
