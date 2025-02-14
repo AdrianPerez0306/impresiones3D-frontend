@@ -24,7 +24,7 @@
     
 }
 
-.colores {
+.boxInputs{
     width: 100%;
     height: auto;
     display: flex;
@@ -39,22 +39,21 @@
     border: 2px solid black;
 }
 
+.colores {
+    display: flex;
+    flex-direction: wrap;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+
 
 .medidas{
-    width: 100%;
-    height: auto;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-direction: wrap;
+    justify-content: center;
     text-align: center;
-    gap: 1rem;
-    padding: 1rem;
-    background: var(--colorGradietne);
-    border: 2px solid black;
-
-    & p {
-        font-size: 1.4rem;
-    }
 }
 
 .guardarCancelar {
@@ -65,6 +64,17 @@
     width: 18rem;
     gap: 2rem;
     margin: 3rem 0;
+}
+
+.label{
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.input{
+    width: 100%;
+    height: 1.5rem;
+    font-size: 1rem;
+    border: 1px solid black;
 }
 
 @media (max-width: 768px) {

@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import ButtonGreen from "../../components/buttonGreen/buttonGreen";
+import ButtonRed from "../../components/buttonRed/buttonRed";
 import { Carrusel } from "../../components/carrusel/carrusel";
+import { ProductInfo } from "../../components/productDetail/detail";
 import { useToast } from "../../hooks/useToast";
 import { ArticuloDetalle } from "../../models/Articulo";
 import { addToCart } from "../../redux/states/cart";
 import { productService } from "../../service/product.service";
-import { ProductInfo } from "../../components/productDetail/detail";
 import "./productDetail.css";
 
 export const ProductDetail = () => {
     const { id } = useParams<{ id: string }>();
     const [product, setProduct] = useState<ArticuloDetalle | null>(null);
+    const [colorProducto, setColorProducto] = useState<string>("");
+    const [dimensionProducto, setdimensionProducto] = useState<string>("");
 
     const toast = useToast();
 
@@ -26,15 +30,15 @@ export const ProductDetail = () => {
                 titulo: product.titulo,
                 imagen: product.imagenes[0],
                 precio_lista: product.precio_lista,
-                color: product.colores[0].nombre,
-                dimension_mm: product.dimensiones_mm[0],
+                color: colorProducto,
+                dimension_mm: dimensionProducto,
                 cantidad: 1
             };
             console.log("Articulo serializable:", itemSerializable);
 
             toast.open("Artículo añadido al carrito", "success");
             setTimeout(() => {
-                dispatch(addToCart(itemSerializable));  // Pasa el objeto serializado
+                dispatch(addToCart(itemSerializable));  
                 navigate("/home");
             }, 1000);
         } else {
@@ -42,10 +46,20 @@ export const ProductDetail = () => {
         }
     };
 
+    const cambiarAtributo = (valor: string, esColor: boolean) => {
+        if (esColor) {
+            setColorProducto(valor);
+        } else {
+            setdimensionProducto(valor);
+        }
+    }
+
     const fetchData = async () => {
         try {
             const res = await productService.getProduct(Number(id));
             setProduct(res);
+            setColorProducto(res.colores[0].nombre);
+            setdimensionProducto(res.dimensiones_mm[0]);
             console.log("Producto obtenido:", res);
         } catch (error) {
             console.error("No se pudo obtener el producto:", error);
@@ -61,7 +75,11 @@ export const ProductDetail = () => {
             {product && (
                 <div className="contenedorInfoProducto">
                     <Carrusel imagenes={product.imagenes} />
-                    <ProductInfo articulo={product} agregar={agregarAlChango} />
+                    <ProductInfo articulo={product} modificar={cambiarAtributo} />
+                    <div className="guardarCancelar">
+                        <ButtonRed label="Volver" onClick={() => navigate("/home")} />
+                        <ButtonGreen label="Añadir" onClick={agregarAlChango} />
+                    </div>
                 </div>
             )}
         </>
