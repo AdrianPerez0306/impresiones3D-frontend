@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
 
-    width: 50%;
+    width: 30rem;
     gap: 0.3rem;
     margin-bottom: 2rem;
 }
@@ -16,20 +16,20 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 35rem;
+    height: 25rem;
     
 }
 
 .imagen1 {
     width: 100%;
     height: 100%;
-    object-fit: fill;
-    opacity: 1;  /* Asegura que la imagen comienza visible */
+    object-fit: cover;
+    opacity: 1; 
     transition: opacity 0.3s ease-in-out;
 }
 
 .fade-out {
-    opacity: 0; /* Reduce la opacidad antes de cambiar la imagen */
+    opacity: 0; 
 }
 
 
@@ -54,105 +54,14 @@
 
 }
 
-.descripcion {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-
-    padding: 1rem;
-    font-size: 1.4rem;
-    background: var(--colorGradietne);
-    border: 2px solid black;
-
-}
-
-.colores {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    text-align: center;
-    
-    gap: 1rem;
-    padding: 1rem;
-    background: var(--colorGradietne);
-    border: 2px solid black;
-
-    & p {
-        font-size: 1.4rem;
-    }
-}
-
-.selectColor {
-    width: 12rem;
-    height: 2.5rem;
-    border-top-left-radius: 1rem;
-    background-color: black;
-    border: 2px solid black;
-    margin: 0 auto;
-    padding: 0.2rem;
-    color: white;
-    font-size: 1.2rem;
-}
-
-.selectColor option {
-    background-color: black;
-    color: white;
-    font-size: 1rem;
-    min-width: 12rem;
-    text-align: center;
-}
-
-.medidas{
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    text-align: center;
-    gap: 1rem;
-    padding: 1rem;
-    background: var(--colorGradietne);
-    border: 2px solid black;
-
-    & p {
-        font-size: 1.4rem;
-    }
-}
-
-.guardarCancelar {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 18rem;
-    gap: 2rem;
-    margin-bottom: 3rem;
-
-    & div {
-        width: 18rem;
-    }
-}
-
-
-
-
-
-
 @media (max-width: 768px) {
     .containerDetalleProducto {
-        width: 90%;
+        width: 20rem;
     }
 
     .img1 {
-        height: 20rem;
+        height: 18rem;
     }
 
-    .guardarCancelar {
-        flex-wrap: wrap;
-    }
+   
 }
