@@ -17,7 +17,6 @@ export const Layout = () => {
         '/productos/': 'Detalle de Producto',
         '/quienSoy': 'Quien Soy',
         '/carrito': 'Carrito',
-        // Add more paths as needed
     };
 
     const convertirPat = () => {
@@ -28,22 +27,17 @@ export const Layout = () => {
         }
     }
 
-
     useEffect(() => {
         convertirPat();
     }, [pat]);
+
     return <>
         <div className="layout">
             <Header></Header>
             <Nav></Nav>
-            {pat === '/productos' && <Search></Search>}
             <DondeEstoy titulo={titulo}></DondeEstoy>
             <Outlet></Outlet>
             <Footer></Footer>
-            {/* 
-            
-             */}
-
         </div>
     </>
 };

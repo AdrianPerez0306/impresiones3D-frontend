@@ -20,8 +20,8 @@ export class Articulo implements ArticuloInterface {
         titulo: string,
         precio_lista: number,
         descuento: number,
-        imagen: string) {
-
+        imagen: string
+    ) {
         this.id = id
         this.titulo = titulo
         this.imagen = imagen
