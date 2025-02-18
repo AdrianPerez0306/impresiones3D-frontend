@@ -27,6 +27,13 @@ class ProductService {
             item.imagenes
         );
     }
+
+}
+
+export async function getProductsByFilter(filterValue:string) : Promise<Articulo[]>{
+    const promise: Promise<AxiosResponse<Articulo[], any>> = axios.get('http://localhost:8080/articulos/filter', {params:{filter:filterValue}})
+    const products = (await promise).data
+    return products
 }
 
 export const productService = new ProductService();
