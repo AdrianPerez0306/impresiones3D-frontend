@@ -158,7 +158,10 @@ td {
         margin-top: 1rem;
     }
 }
-
+.guardarCancelar{
+    display: flex;
+    width: 100%;
+}
 
 @media screen and (max-width: 940px) {
     .cartContainer {

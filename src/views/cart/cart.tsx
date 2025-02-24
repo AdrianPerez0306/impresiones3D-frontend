@@ -3,6 +3,8 @@ import { RootState } from "../../redux/store"; // Ajusta según tu configuració
 import "./cart.css"; // Archivo de estilos
 import { removeFromCart, updateCantidad } from "../../redux/states/cart";
 import { useEffect, useState } from "react";
+import ButtonRed from "../../components/buttonRed/buttonRed";
+import ButtonGreen from "../../components/buttonGreen/buttonGreen";
 
 const CartComponent = () => {
     const articuloUser = useSelector((state: RootState) => state.cart);
@@ -31,6 +33,22 @@ const CartComponent = () => {
         });
         setprecioTotal(total);
     }, [articuloUser]);
+
+    const vaciarCarro = () => {
+        articuloUser.forEach((_, index) => {
+            dispatch(removeFromCart(index));
+        });
+    };
+
+    const comprar = () => {
+        if (mail.trim() === "") {
+            alert("Por favor, introduce un e-Mail válido.");
+            return;
+        }
+
+        alert(`Compra realizada con éxito. Nos contactaremos a la brevedad al correo: ${mail}`);
+        vaciarCarro();
+    };
 
     return (
         <div className="cartContainer">
@@ -80,16 +98,21 @@ const CartComponent = () => {
                                     <td className="precioFinal">${precioTotal}</td>
                                 </tr>
                                 <tr>
-                                    <td className="datosMail"colSpan={4}>
+                                    <td className="datosMail" colSpan={4}>
                                         <p>Introduce un e-Mail y nos contactaremos a la brevedad</p>
                                         <input className="inputMail" type="email" placeholder="Introduce tu e-Mail" />
                                     </td>
                                 </tr>
-                               
+
                             </tbody>
                         </table>
                     </div>
 
+
+                    <div className="guardarCancelar">
+                        <ButtonRed label="Volver" onClick={vaciarCarro} />
+                        <ButtonGreen label="Añadir" onClick={comprar} />
+                    </div>
 
                 </>
             )}
