@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store"; // Ajusta según tu configuración
 import "./cart.css"; // Archivo de estilos
-import { removeFromCart, updateCantidad } from "../../redux/states/cart";
+import { clearCart, removeFromCart, updateCantidad } from "../../redux/states/cart";
 import { useEffect, useState } from "react";
 import ButtonRed from "../../components/buttonRed/buttonRed";
 import ButtonGreen from "../../components/buttonGreen/buttonGreen";
@@ -35,9 +35,7 @@ const CartComponent = () => {
     }, [articuloUser]);
 
     const vaciarCarro = () => {
-        articuloUser.forEach((_, index) => {
-            dispatch(removeFromCart(index));
-        });
+            dispatch(clearCart());
     };
 
     const comprar = () => {
