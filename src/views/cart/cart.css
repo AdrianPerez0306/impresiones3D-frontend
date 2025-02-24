@@ -1,11 +1,45 @@
+.vacio {
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+    background: linear-gradient(to top, #fbc901, #fb4b01);
+    padding: 3rem;
+    border-radius: 1rem;
+    border: 2px solid black;
+    margin: 0 auto;
+
+
+    & p {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin: 2rem 0 2rem 0;
+    }
+
+    & a {
+        text-decoration: none;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: black;
+        background-color: orangered;
+        border: 2px solid black;
+        border-radius: 0.5rem;
+        padding: 1rem;
+    }
+}
+
+
+
 th,
 td {
     text-align: center;
-    border: 2px solid grey;
+    border: 3px solid black;
 }
 
 .cartContainer {
-    width: 75%;
     height: auto;
     padding: 5px;
     margin: 3rem 0 3rem 0;
@@ -15,25 +49,22 @@ td {
 .cartTable {
     border-collapse: collapse;
     width: 100%;
+    background: linear-gradient(to top, #fbc901, #fb4b01);
 }
 
 .cartTableHeader {
     height: 10rem;
-    font-size: 1.2rem;
+    font-size: 1.7rem;
+    padding: 1rem;
 }
 
-
-
-.imgCart {
-    /* height: 15rem; */
-    width: 25rem;
-}
 
 .imgCart img {
-    width: 100%;
-    height: 14rem;
+    width: 15rem;
+    height: 12rem;
     object-fit: cover;
     display: block;
+    border-radius: 1rem;
 }
 
 .articulo {
@@ -44,7 +75,8 @@ td {
     gap: 1rem;
     padding: 1rem;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    /* width: min-content; */
 }
 
 .cantidad {
@@ -58,17 +90,44 @@ td {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+}
+
+.contadorRestar,
+.contadorSumar {
+    border-radius: 2rem;
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0 auto
+}
+
+.contadorRestar {
+    background-color: red;
+}
+
+.contadorSumar {
+    background-color: green;
 }
 
 .eliminar {
-    /* width: 20rem; */
+    width: 12rem;
+}
+
+.eliminarProducto {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    background-color: red;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .precio {
-    font-size: 1.3rem;
+    width: 12rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    width: 15rem;
 }
 
 
@@ -79,59 +138,116 @@ td {
     height: 10rem;
 }
 
-.confirmacion{
+
+.datosMail{
+    height: 8rem;
+    gap: 1rem;
+
+    & p {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    & input {
+        width: 30rem;
+        height: 3rem;
+        font-size: 1.2rem;
+        padding: 1rem;
+        border: 1px solid black;
+        border-radius: 1rem;
+        margin-top: 1rem;
+    }
+}
+.guardarCancelar{
     display: flex;
-    flex-wrap: wrap;
     width: 100%;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    margin: 2rem 0 2rem 0;
 }
 
-
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 940px) {
     .cartContainer {
-        width: 98%;
         padding: 1px;
     }
 
-    .cartTableHeader{
-        height: 4rem;
-        font-size: 0.8rem;
+    .cartTableHeader {
+        height: 5rem;
+        font-size: 1rem;
     }
-    
+
     .imgCart {
-        width: 5rem;
+        width: 8rem;
+        height: 8rem;
+
     }
 
     .imgCart img {
-        height: 6rem;
+        width: 7.5rem;
+        height: 7rem;
     }
 
     .articulo {
-        padding: 0;
-        font-size: 0.7rem;
+        padding: 0.1rem;
+        font-size: 0.9rem;
+        width: 8rem;
+        margin: 0 auto
     }
 
     .cantidad {
-        width: 40rem;
-        font-size: 0.7rem;
+        width: 5rem;
+        font-size: 1rem;
+        height: 100%;
+        justify-content: space-around;
+    }
+
+    .contador {
+        flex-direction: column-reverse;
+        height: 12rem;
+
+    }
+
+    .contadorRestar,
+    .contadorSumar {
+        border-radius: 2rem;
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
     }
 
     .eliminar {
-        width: max-content;
+        width: 5rem;
+    }
+
+    .eliminarProducto {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
     }
 
     .precio {
-        font-size: 0.7rem;
-        width: 15rem;
+        font-size: 0.8rem;
+        width: 12rem;
     }
 
     .precioFinal {
         font-size: 1rem;
         margin: 1rem 0 1rem 0;
-        height: 4rem;
+        height: 5rem;
     }
 
+    .datosMail {
+        width: 100%;
+        /* display: none; */
+
+        & p {
+            font-size: 0.8rem;
+        }
+        & .inputMail {
+            width: 20rem;
+            height: 2rem;
+            font-size: 0.7rem;
+            padding: 1rem;
+    
+        }
+    }
+
+    
 }

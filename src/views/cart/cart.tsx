@@ -1,34 +1,60 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store"; // Ajusta según tu configuración
 import "./cart.css"; // Archivo de estilos
-import { removeFromCart, updateCantidad } from "../../redux/states/cart";
-import { useState } from "react";
+import { clearCart, removeFromCart, updateCantidad } from "../../redux/states/cart";
+import { useEffect, useState } from "react";
+import ButtonRed from "../../components/buttonRed/buttonRed";
+import ButtonGreen from "../../components/buttonGreen/buttonGreen";
 
 const CartComponent = () => {
     const articuloUser = useSelector((state: RootState) => state.cart);
     const dispatch = useDispatch();
-    const [precioTotal, setprecioTotal] = useState();
-    
-    
+    const [precioTotal, setprecioTotal] = useState(0);
+    const [mail, setMail] = useState("");
+
+
     const eliminarArticulo = (index: number) => {
         dispatch(removeFromCart(index));
     };
-    
+
     const sumar = (index: number) => {
         dispatch(updateCantidad({ index, cantidad: articuloUser[index].cantidad + 1 }));
     };
     const restar = (index: number) => {
         dispatch(updateCantidad({ index, cantidad: articuloUser[index].cantidad - 1 }));
-        
+
     }
 
-    
-    
+
+    useEffect(() => {
+        var total = 0;
+        articuloUser.forEach((item) => {
+            total += item.precio_lista * item.cantidad;
+        });
+        setprecioTotal(total);
+    }, [articuloUser]);
+
+    const vaciarCarro = () => {
+            dispatch(clearCart());
+    };
+
+    const comprar = () => {
+        if (mail.trim() === "") {
+            alert("Por favor, introduce un e-Mail válido.");
+            return;
+        }
+
+        alert(`Compra realizada con éxito. Nos contactaremos a la brevedad al correo: ${mail}`);
+        vaciarCarro();
+    };
 
     return (
         <div className="cartContainer">
             {articuloUser.length === 0 ? (
-                <p>El carrito está vacío</p>
+                <div className="vacio">
+                    <p>El carrito se encuentra vacío, te invito a navegar la pagina y agregar aquellos articulos de tu interes.</p>
+                    <a href="/productos">Ver Productos</a>
+                </div>
             ) : (
                 <>
                     <div>
@@ -37,8 +63,8 @@ const CartComponent = () => {
                                 <tr className="cartTableHeader">
                                     <th>Articulo</th>
                                     <th>Cantidad</th>
-                                    <th>Eliminar</th>
                                     <th>Precio</th>
+                                    <th>Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,29 +80,38 @@ const CartComponent = () => {
                                         </td>
                                         <td className="cantidad">
                                             <div className="contador">
-                                                <button onClick={() =>restar(index)}>-</button>
+                                                <button className="contadorRestar" onClick={() => restar(index)}>-</button>
                                                 {item.cantidad}
-                                                <button onClick={() =>sumar(index)}>+</button>
+                                                <button className="contadorSumar" onClick={() => sumar(index)}>+</button>
                                             </div>
                                         </td>
-                                        <td className="eliminar">
-                                            <button onClick={ ()=> eliminarArticulo(index)}>X</button>
-                                        </td>
                                         <td className="precio">${item.precio_lista}</td>
+                                        <td className="eliminar">
+                                            <button className="eliminarProducto" onClick={() => eliminarArticulo(index)}>X</button>
+                                        </td>
                                     </tr>
                                 ))}
                                 <tr>
                                     <td className="precioFinal" colSpan={3}>Precio Final</td>
-                                    <td className="precioFinal">.....</td>
+                                    <td className="precioFinal">${precioTotal}</td>
                                 </tr>
+                                <tr>
+                                    <td className="datosMail" colSpan={4}>
+                                        <p>Introduce un e-Mail y nos contactaremos a la brevedad</p>
+                                        <input className="inputMail" type="email" placeholder="Introduce tu e-Mail" />
+                                    </td>
+                                </tr>
+
                             </tbody>
                         </table>
                     </div>
 
-                    <div className="confirmacion">
-                        <h3>Introduce un numero de celular y nos contactaremos a la brevedad</h3>
-                        <input type="number" />
+
+                    <div className="guardarCancelar">
+                        <ButtonRed label="Volver" onClick={vaciarCarro} />
+                        <ButtonGreen label="Añadir" onClick={comprar} />
                     </div>
+
                 </>
             )}
         </div>
