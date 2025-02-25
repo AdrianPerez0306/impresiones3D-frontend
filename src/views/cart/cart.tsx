@@ -7,12 +7,15 @@ import ButtonRed from "../../components/buttonRed/buttonRed";
 import ButtonGreen from "../../components/buttonGreen/buttonGreen";
 import { CarritoVacio } from "../../components/carritoVacio/carritoVacio";
 import { mailService } from "../../service/mail.service";
+import { useNavigate } from "react-router-dom";
 
 const CartComponent = () => {
     const articuloUser = useSelector((state: RootState) => state.cart);
     const dispatch = useDispatch();
     const [precioTotal, setprecioTotal] = useState(0);
     const [mail, setMail] = useState("");
+
+    const navigate = useNavigate();
 
 
     const eliminarArticulo = (index: number) => {
@@ -47,6 +50,9 @@ const CartComponent = () => {
     const comprar = () => {
         if (isValid(mail)) {
             mailService.sendMail(mail, articuloUser, precioTotal);
+            vaciarCarro();
+            // navigate("/productos");
+
 
         }
         else{
@@ -55,7 +61,6 @@ const CartComponent = () => {
         }
         return;
 
-        // vaciarCarro();
     };
 
     return (
