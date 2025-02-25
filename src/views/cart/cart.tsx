@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import ButtonRed from "../../components/buttonRed/buttonRed";
 import ButtonGreen from "../../components/buttonGreen/buttonGreen";
 import { CarritoVacio } from "../../components/carritoVacio/carritoVacio";
+import { mailService } from "../../service/mail.service";
 
 const CartComponent = () => {
     const articuloUser = useSelector((state: RootState) => state.cart);
@@ -26,6 +27,10 @@ const CartComponent = () => {
 
     }
 
+    const isValid = (email: string) => {
+        return /^[a-zA-Z0-9]{2,}@[^\s@]+\.com$/.test(email);
+    }
+
 
     useEffect(() => {
         var total = 0;
@@ -40,13 +45,17 @@ const CartComponent = () => {
     };
 
     const comprar = () => {
-        if (mail.trim() === "") {
-            alert("Por favor, introduce un e-Mail válido.");
-            return;
-        }
+        if (isValid(mail)) {
+            mailService.sendMail(mail, articuloUser, precioTotal);
 
-        alert(`Compra realizada con éxito. Nos contactaremos a la brevedad al correo: ${mail}`);
-        vaciarCarro();
+        }
+        else{
+            alert("Por favor, introduce un e-Mail válido.");
+
+        }
+        return;
+
+        // vaciarCarro();
     };
 
     return (
@@ -95,11 +104,16 @@ const CartComponent = () => {
                             </tr>
                             <tr>
                                 <td className="datosMail" colSpan={4}>
-                                    <form >
-                                        <p>Introduce un e-Mail y nos contactaremos a la brevedad</p>
-                                        <input className="inputMail" type="email" placeholder="Introduce tu e-Mail" />
-                                    </form>
+                                    <p>Introduce un e-Mail y nos contactaremos a la brevedad</p>
+                                    <input
+                                        className="inputMail"
+                                        type="email"
+                                        placeholder="Introduce tu e-Mail"
+                                        onChange={(e) => setMail(e.target.value)}
+                                        value={mail} 
+                                    />
                                 </td>
+
                             </tr>
 
                         </tbody>
