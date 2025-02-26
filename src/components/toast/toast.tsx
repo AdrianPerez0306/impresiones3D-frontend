@@ -8,7 +8,7 @@ type ToastProperties = {
     close: ()=>void,
 } 
 
-export function Toast({message, option, close}: ToastProperties){
+export function Toast({message, option}: ToastProperties){
 
     return (
         <div className={`toast ${option} show`} id="toast">

@@ -13,6 +13,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { Button } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { useToast } from "../../hooks/useToast";
 
 const CartComponent = () => {
     const articuloUser = useSelector((state: RootState) => state.cart);
@@ -20,12 +21,12 @@ const CartComponent = () => {
     const [precioTotal, setprecioTotal] = useState(0);
     const [mail, setMail] = useState("");
 
-    const navigate = useNavigate();
-
+    const toast = useToast();
 
     const eliminarArticulo = (index: number) => {
-        
         dispatch(removeFromCart(index));
+        toast.open("Artículo eliminado del carrito", "error");
+
     };
 
     const sumar = (index: number) => {
@@ -49,24 +50,21 @@ const CartComponent = () => {
         setprecioTotal(total);
     }, [articuloUser]);
 
-    const vaciarCarro = () => {
-        dispatch(clearCart());
+    const vaciarCarro = (compro = false) => {
+        dispatch(clearCart()); 
+        toast.open(compro ? "Pedido realizado con éxito verifica tu Mail" : "Se vació el carrito", compro ? "success" : "error");
     };
+    
 
     const comprar = () => {
         if (isValid(mail)) {
             mailService.sendMail(mail, articuloUser, precioTotal);
-            vaciarCarro();
-            // navigate("/productos");
-
-
+            vaciarCarro(true);
         }
         else {
-            alert("Por favor, introduce un e-Mail válido.");
-
+            toast.open("Mail inválido", "error");
         }
         return;
-
     };
 
     return (
@@ -100,13 +98,13 @@ const CartComponent = () => {
                                     <td>
                                         <div className="contador">
 
-                                            <Button  onClick={() => restar(index)}>
+                                            <Button onClick={() => restar(index)}>
                                                 <RemoveCircleOutlineIcon style={{ color: 'red', fontSize: '2rem' }} ></RemoveCircleOutlineIcon>
                                             </Button>
 
                                             <p>{item.cantidad}</p>
                                             <Button onClick={() => sumar(index)}>
-                                                <AddCircleOutlineIcon style={{ color: 'green', fontSize:"2rem" }} ></AddCircleOutlineIcon>
+                                                <AddCircleOutlineIcon style={{ color: 'green', fontSize: "2rem" }} ></AddCircleOutlineIcon>
                                             </Button>
                                         </div>
                                     </td>
@@ -115,10 +113,10 @@ const CartComponent = () => {
                                     </td>
                                     <td >
                                         <div className="eliminar">
-                                           <Button onClick={() => eliminarArticulo(index)}>
-                                           <DeleteForeverIcon style={{color: 'red', fontSize:'3rem'}}></DeleteForeverIcon>
-                                           </Button>
-                                           
+                                            <Button onClick={() => eliminarArticulo(index)}>
+                                                <DeleteForeverIcon style={{ color: 'red', fontSize: '3rem' }}></DeleteForeverIcon>
+                                            </Button>
+
 
                                         </div>
                                     </td>
@@ -149,7 +147,8 @@ const CartComponent = () => {
 
 
                     <div className="guardarCancelar">
-                        <ButtonRed label="Vaciar" onClick={vaciarCarro} />
+                        <ButtonRed label="Vaciar" onClick={() => vaciarCarro(false)} />
+
                         <ButtonGreen label="Continuar" onClick={comprar} />
                     </div>
 
