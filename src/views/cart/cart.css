@@ -5,6 +5,11 @@ td {
     border: 1px solid yellow;
 }
 
+div p{
+    font-size: 1rem;
+    font-weight: bold;
+}
+
 .cartContainer {
     height: auto;
     padding: 1rem;
@@ -28,16 +33,14 @@ td {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    font-weight: bold;
-    font-size: 1.2rem;
+    gap: 0.5rem;
+    padding: 0.5rem;
     width: 28vw;
 
     & img{
         width: 14rem;
-        height: 12rem;
-        object-fit: cover;
+        height: 13rem;
+        object-fit: fit;
         border-radius: 1rem;
     }
     /* width: min-content; */
@@ -86,18 +89,18 @@ td {
 
 .precio {
     width: 12vw;
-    font-size: 1.5rem;
-    font-weight: bold;
 }
 
 .precioFinal {
-    font-size: 2rem;
-    font-weight: bold;
     margin: 2rem 0 2rem 0;
     height: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    & p {
+        font-size: 1.3rem;
+    }
 }
 
 
@@ -122,18 +125,19 @@ td {
     }
 }
 
-.errorMensaje {
-    color: red;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 1rem 0 1rem 0;
-}
 .guardarCancelar{
     display: flex;
     width: 100%;
 }
 
+
+
 @media screen and (max-width: 860px) {
+
+    div p {
+        font-size: 0.8rem;
+    }
+
     .cartContainer {
         padding: 0.5rem;
     }
@@ -159,10 +163,7 @@ td {
         flex-direction: column-reverse;
         height: 12rem;
         width: 20vw;
-        & p {
-            font-size: 1rem;
-
-        }
+       
     }
 
     .contadorRestar,
@@ -174,27 +175,27 @@ td {
     }
 
     .eliminar {
-        width: 18vw;
+        width: 20vw;
     }
 
     .eliminarProducto {
         width: 2rem;
         height: 2rem;
-        font-size: 1rem;
     }
 
     .precio {
-        font-size: 0.8rem;
         width: 18vw;
     }
 
     .precioFinal {
-        font-size: 1rem;
         height: 1rem;
         display: flex;
         justify-content: center;
         align-items: center;
 
+        & p {
+            font-size: 1rem;
+        }
     }
 
     .datosMail {

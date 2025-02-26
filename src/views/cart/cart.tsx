@@ -114,7 +114,7 @@ const CartComponent = () => {
                             <tr>
                                 <td colSpan={4}>
                                     <div className="datosMail">
-                                        <p>Introduce un e-Mail y nos contactaremos a la brevedad</p>
+                                        <p>Introduce tu e-Mail y nos contactaremos para continuar la compra</p>
                                         <input
                                             className="inputMail"
                                             type="email"
