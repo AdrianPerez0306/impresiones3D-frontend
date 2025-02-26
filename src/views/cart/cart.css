@@ -27,7 +27,6 @@ div p{
     padding: 1rem;
 }
 
-
 .articulo {
     display: flex;
     flex-direction: column;
@@ -35,60 +34,30 @@ div p{
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem;
-    width: 28vw;
+    width: 20rem;
 
     & img{
-        width: 14rem;
-        height: 13rem;
+        width: 12rem;
+        height: 10rem;
         object-fit: fit;
         border-radius: 1rem;
+        border: 1px solid yellow;
     }
-    /* width: min-content; */
 }
-
-
 
 .contador {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 22vw;
-}
-
-.contadorRestar,
-.contadorSumar {
-    border-radius: 2rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 1.3rem;
-    font-weight: bold;
-    margin: 0 auto
-}
-
-.contadorRestar {
-    background-color: red;
-}
-
-.contadorSumar {
-    background-color: green;
+    width: 15rem;
 }
 
 .eliminar {
-    width: 12vw;
-}
-
-.eliminarProducto {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 1rem;
-    background-color: red;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
+    width: 8rem;
 }
 
 .precio {
-    width: 12vw;
+    width: 8rem;
 }
 
 .precioFinal {
@@ -128,11 +97,14 @@ div p{
 .guardarCancelar{
     display: flex;
     width: 100%;
+    & button {
+        width: 7rem;
+        height: 3rem;
+    }
 }
 
 
-
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 960px) {
 
     div p {
         font-size: 0.8rem;
@@ -164,14 +136,6 @@ div p{
         height: 12rem;
         width: 20vw;
        
-    }
-
-    .contadorRestar,
-    .contadorSumar {
-        border-radius: 2rem;
-        width: 2rem;
-        height: 2rem;
-        font-size: 1rem;
     }
 
     .eliminar {
@@ -210,7 +174,5 @@ div p{
             padding: 1rem;
     
         }
-    }
-
-    
+    }   
 }

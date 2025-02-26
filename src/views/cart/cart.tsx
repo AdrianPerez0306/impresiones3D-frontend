@@ -9,6 +9,11 @@ import { CarritoVacio } from "../../components/carritoVacio/carritoVacio";
 import { mailService } from "../../service/mail.service";
 import { useNavigate } from "react-router-dom";
 
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import { Button } from "@mui/material";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+
 const CartComponent = () => {
     const articuloUser = useSelector((state: RootState) => state.cart);
     const dispatch = useDispatch();
@@ -19,6 +24,7 @@ const CartComponent = () => {
 
 
     const eliminarArticulo = (index: number) => {
+        
         dispatch(removeFromCart(index));
     };
 
@@ -70,6 +76,7 @@ const CartComponent = () => {
 
             ) : (
                 <>
+
                     <table className="cartTable">
                         <thead>
                             <tr className="cartTableHeader">
@@ -92,9 +99,15 @@ const CartComponent = () => {
                                     </td>
                                     <td>
                                         <div className="contador">
-                                            <button className="contadorRestar" onClick={() => restar(index)}>-</button>
+
+                                            <Button  onClick={() => restar(index)}>
+                                                <RemoveCircleOutlineIcon style={{ color: 'red', fontSize: '2rem' }} ></RemoveCircleOutlineIcon>
+                                            </Button>
+
                                             <p>{item.cantidad}</p>
-                                            <button className="contadorSumar" onClick={() => sumar(index)}>+</button>
+                                            <Button onClick={() => sumar(index)}>
+                                                <AddCircleOutlineIcon style={{ color: 'green', fontSize:"2rem" }} ></AddCircleOutlineIcon>
+                                            </Button>
                                         </div>
                                     </td>
                                     <td>
@@ -102,7 +115,11 @@ const CartComponent = () => {
                                     </td>
                                     <td >
                                         <div className="eliminar">
-                                            <button className="eliminarProducto" onClick={() => eliminarArticulo(index)}>X</button>
+                                           <Button onClick={() => eliminarArticulo(index)}>
+                                           <DeleteForeverIcon style={{color: 'red', fontSize:'3rem'}}></DeleteForeverIcon>
+                                           </Button>
+                                           
+
                                         </div>
                                     </td>
                                 </tr>
@@ -132,8 +149,8 @@ const CartComponent = () => {
 
 
                     <div className="guardarCancelar">
-                        <ButtonRed label="Volver" onClick={vaciarCarro} />
-                        <ButtonGreen label="Añadir" onClick={comprar} />
+                        <ButtonRed label="Vaciar" onClick={vaciarCarro} />
+                        <ButtonGreen label="Continuar" onClick={comprar} />
                     </div>
 
                 </>
