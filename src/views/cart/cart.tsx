@@ -55,7 +55,7 @@ const CartComponent = () => {
 
 
         }
-        else{
+        else {
             alert("Por favor, introduce un e-Mail válido.");
 
         }
@@ -84,39 +84,45 @@ const CartComponent = () => {
                                 <tr key={index}>
                                     <td >
                                         <div className="articulo">
-                                            <div>{item.titulo}</div>
+                                            <div><p>{item.titulo}</p></div>
                                             <div><img src={item.imagen} alt={item.titulo} /></div>
-                                            <div>{item.color}</div>
-                                            <div>{item.dimension_mm}</div>
+                                            <div><p>{item.color}</p></div>
+                                            <div><p>{item.dimension_mm}</p></div>
                                         </div>
                                     </td>
-                                    <td className="cantidad">
+                                    <td>
                                         <div className="contador">
                                             <button className="contadorRestar" onClick={() => restar(index)}>-</button>
-                                            {item.cantidad}
+                                            <p>{item.cantidad}</p>
                                             <button className="contadorSumar" onClick={() => sumar(index)}>+</button>
                                         </div>
                                     </td>
-                                    <td className="precio">${item.precio_lista}</td>
-                                    <td className="eliminar">
-                                        <button className="eliminarProducto" onClick={() => eliminarArticulo(index)}>X</button>
+                                    <td>
+                                        <div className="precio"><p>${item.precio_lista}</p></div>
+                                    </td>
+                                    <td >
+                                        <div className="eliminar">
+                                            <button className="eliminarProducto" onClick={() => eliminarArticulo(index)}>X</button>
+                                        </div>
                                     </td>
                                 </tr>
                             ))}
                             <tr>
-                                <td className="precioFinal" colSpan={3}>Precio Final</td>
-                                <td className="precioFinal">${precioTotal}</td>
+                                <td colSpan={3}><div className="precioFinal"><p>PrecioFinalPrecio Final</p></div></td>
+                                <td ><div className="precioFinal"><p>${precioTotal}</p></div></td>
                             </tr>
                             <tr>
-                                <td className="datosMail" colSpan={4}>
-                                    <p>Introduce un e-Mail y nos contactaremos a la brevedad</p>
-                                    <input
-                                        className="inputMail"
-                                        type="email"
-                                        placeholder="Introduce tu e-Mail"
-                                        onChange={(e) => setMail(e.target.value)}
-                                        value={mail} 
-                                    />
+                                <td colSpan={4}>
+                                    <div className="datosMail">
+                                        <p>Introduce un e-Mail y nos contactaremos a la brevedad</p>
+                                        <input
+                                            className="inputMail"
+                                            type="email"
+                                            placeholder="Introduce tu e-Mail"
+                                            onChange={(e) => setMail(e.target.value)}
+                                            value={mail}
+                                        />
+                                    </div>
                                 </td>
 
                             </tr>
