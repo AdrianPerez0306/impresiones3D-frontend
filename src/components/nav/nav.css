@@ -1,49 +1,70 @@
 nav {
     width: 100%;
-    height: 65vh;
+    height: 45vh;
     background: var(--colorGradietne);
     display: flex;
     flex-direction: column;
 }
 
 .links {
-    height: 3rem;
+    height: 5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: nowrap;
 
 }
-
-.enlaces,
-.containerNombre,
-.carrito {
-    width: 33%;
+.enlaces{
     display: flex;
     flex-direction: row;
-    gap: 1rem;
-    padding: 0.5rem;
+    width: 33%;
+    gap: 0.5rem;
+    justify-content: space-around;
     align-items: center;
 
-    & a {
+    & div, p, a{
+        width: auto;
+        font-size: 1rem;
+        text-wrap: nowrap;
         text-decoration: none;
         color: black;
 
     }
-
+    
 }
 
+
+
+
 .containerNombre {
+    width: auto;
     justify-content: center;
 }
 
-.carrito {
-    justify-content: flex-end;
-    margin-right: 3rem;
+.nombreEmprendimiento {
+    width: 15rem;
+    height: 2rem;
+    /* position: relative; */
 
-    & svg {
-        margin: 0 auto;
+}
+
+.carrito {
+    width: 33%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+
+    & div{
+        width: auto;
+    }
+}
+
+.chango{
+    margin-right: 1rem;
+    & svg{
+        width: 2.5rem;
+        height: 2.5rem;
     }
 }
 
@@ -51,11 +72,7 @@ nav {
     fill: yellow;
 }
 
-.nombreEmprendimiento {
-    width: 15rem;
-    height: 1rem;
 
-}
 
 a:hover {
     color: yellow;
@@ -92,6 +109,7 @@ a:hover {
     & img {
         width: 15rem;
         height: 15rem;
+        rotate: 90deg;
     }
 }
 
@@ -101,44 +119,58 @@ a:hover {
 
 
 @media (max-width: 940px) {
+
+    .links {
+        border: 1px solid yellow;
+        margin-bottom: 3rem;
+    }
     .enlaces {
         display: none;
     }
 
     .burger {
         display: flex;
-        /* margin-right: 1rem; */
+        justify-content: flex-start;
+        margin-right: 1rem;
     }
-
+    
     .burger:hover svg {
-        fill: red;
+        fill: yellow;
     }
-
-    .animacionImagenes {
-        flex-direction: column;
-
+    
+    .vacioIzquierda {
+        width: 20vw;
+        height: 15rem;
+        position: relative;
     }
-
-    .vacioIzquierda,
+    
+    .searchResponsive {
+        position: absolute;
+        top: 9.5vh;  /* Mueve el search a la parte inferior */
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 1rem;
+        width: 80%; /* Aumenta el ancho del div */
+    }
+    
     .vacioDerecha {
-        width: 100vw;
-        height: 10vh;
+        width: 20vw;
+        height: 15rem;
     }
-
+    
     .izquierda,
     .derecha {
         display: flex;
+        height: 15rem;
         justify-content: center;
         align-items: center;
         width: 100vw;
 
         & img {
-            width: 25vw;
+            width: 15vw;
             height: 15vh;
         }
     }
-
-
 
     .links {
         justify-content: space-around;
@@ -148,9 +180,9 @@ a:hover {
     .carrito {
         margin: 0;
         width: 3rem;
-
     }
-    .containerNombre{
+
+    .containerNombre {
         width: auto;
     }
 }
