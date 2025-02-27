@@ -1,6 +1,6 @@
 nav {
     width: 100%;
-    height: 45vh;
+    height: 25rem;
     background: var(--colorGradietne);
     display: flex;
     flex-direction: column;
@@ -32,9 +32,6 @@ nav {
     }
     
 }
-
-
-
 
 .containerNombre {
     width: auto;
@@ -107,8 +104,8 @@ a:hover {
     width: 33%;
 
     & img {
-        width: 15rem;
-        height: 15rem;
+        width: 14rem;
+        height: 12rem;
         rotate: 90deg;
     }
 }
@@ -120,69 +117,77 @@ a:hover {
 
 @media (max-width: 940px) {
 
-    .links {
-        border: 1px solid yellow;
-        margin-bottom: 3rem;
+    nav {
+        height: 100%;
     }
-    .enlaces {
-        display: none;
+    
+    .links{
+        height: 3rem;
+        justify-content: space-around;
+        border: 1px solid yellow;
+        margin-bottom: 4rem;
+        & .burger, .carrito{
+            width: min-content;
+        }
+
+    }
+
+    .enlaces{
+        display: none;    
     }
 
     .burger {
-        display: flex;
-        justify-content: flex-start;
-        margin-right: 1rem;
+        display: inline;
+        width: 5rem;
     }
     
-    .burger:hover svg {
-        fill: yellow;
-    }
     
-    .vacioIzquierda {
-        width: 20vw;
-        height: 15rem;
-        position: relative;
+    .nombreEmprendimiento {
+        width: 13rem;
     }
-    
+
+    .carrito{
+        width: min-content;
+    }
+
     .searchResponsive {
         position: absolute;
-        top: 9.5vh;  /* Mueve el search a la parte inferior */
+        top: 5.5rem;
         left: 50%;
         transform: translateX(-50%);
-        padding: 1rem;
-        width: 80%; /* Aumenta el ancho del div */
+
+        & .inputBusquda{
+            width: 20rem;
+        }
+    }
+    .chango{
+        /* margin-right: 1rem; */
+        & svg{
+            width: 2rem;
+            height: 2rem;
+        }
     }
     
+    .vacioIzquierda,
     .vacioDerecha {
-        width: 20vw;
         height: 15rem;
+        width: 15%;
+        /* display: none; */
     }
     
     .izquierda,
     .derecha {
-        display: flex;
         height: 15rem;
+        width: 35%;
+        display: flex;
         justify-content: center;
         align-items: center;
-        width: 100vw;
-
+    
         & img {
-            width: 15vw;
-            height: 15vh;
+            width: 9rem;
+            height: 6rem;
         }
     }
-
-    .links {
-        justify-content: space-around;
-        gap: 0.5rem;
-    }
-
-    .carrito {
-        margin: 0;
-        width: 3rem;
-    }
-
-    .containerNombre {
-        width: auto;
-    }
+    
+   
 }
