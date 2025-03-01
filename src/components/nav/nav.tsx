@@ -69,7 +69,7 @@ export const Nav = () => {
                         }}></Search>
                     </div>
                     <div className="chango">
-                        <IconButton aria-label="cart" sx={{ transform: 'scale(1.1)' }}>
+                        <IconButton aria-label="cart" >
                             <NavLink to={`/carrito`}>
                                 <StyledBadge anchorOrigin={{
                                     vertical: 'top',
