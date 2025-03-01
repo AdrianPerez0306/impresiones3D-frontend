@@ -35,10 +35,10 @@ export const Layout = () => {
     return (
         <div className="layout">
             <Header />
-            <Nav />
+            <Nav /> {/* categorias / search */}
             <DondeEstoy titulo={titulo} />
             <ToastProvider>
-                <Outlet />
+                <Outlet />{/* home antes -> barra */}
             </ToastProvider>
             <Footer />
         </div>
