@@ -9,11 +9,15 @@ import { Articulo } from '../../models/Articulo';
 import { Button, IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Badge } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { cartSize } from '../../redux/states/cart';
 
 const StyledBadge = Badge;
 
+
 export const Nav = () => {
     const [categorias, setCategorias] = useState<CategoriaType[]>([]);
+    const carritoSize = useSelector(cartSize)
 
     const fetchDataNav = async () => {
         try {
@@ -70,7 +74,7 @@ export const Nav = () => {
                                 <StyledBadge anchorOrigin={{
                                     vertical: 'top',
                                     horizontal: 'right',
-                                }} badgeContent={4} color="error">
+                                }} badgeContent={carritoSize} color="error">
                                     <ShoppingCartIcon sx={{color: 'black'}} />
                                 </StyledBadge>
                             </NavLink>
