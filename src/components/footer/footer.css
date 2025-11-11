@@ -1,0 +1,92 @@
+footer {
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+    background-color: black;
+}
+
+.redesIcon {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    height: 5vh;
+    
+    & p{
+        color: white;
+    }
+}
+
+
+.redes {
+    display: flex;
+    gap: 1rem;
+    
+    & img {
+        filter: invert(100%);
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
+.icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    fill: white;
+}
+
+.infoAdicional{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid grey;
+    height: 10vh;
+    
+    & p{
+        color: white;
+    }
+}
+
+.pagos{
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    /* padding: 1rem; */
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    
+    & p {
+        color: white;
+    }
+    & img, svg{
+        width: 5rem;
+        height: 5rem;
+        fill: white;
+    }
+}
+.tarjetas{
+    display: flex;
+    gap: 3rem;
+}
+.emprendimiento{
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+
+    & p{
+        color: white;
+    }
+
+}
+

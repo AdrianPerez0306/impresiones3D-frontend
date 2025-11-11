@@ -1,0 +1,89 @@
+.infoProducto{
+    width: 45rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--colorGradietne);
+}
+
+
+.data {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 2px solid black;
+
+    
+    padding: 1rem;
+    font-size: 1.4rem;
+    
+}
+
+.boxInputs{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--colorGradietne);
+    font-size: 1.4rem;
+    border: 2px solid black;
+}
+
+.colores {
+    display: flex;
+    flex-direction: wrap;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+
+
+.medidas{
+    display: flex;
+    flex-direction: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+.guardarCancelar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 18rem;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.label{
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.input{
+    width: 100%;
+    height: 1.5rem;
+    font-size: 1rem;
+    border: 1px solid black;
+}
+
+@media (max-width: 768px) {
+
+    .infoProducto{
+        width: 95vw;
+    }
+    .guardarCancelar {
+        flex-wrap: wrap;
+    }
+    
+}

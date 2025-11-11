@@ -1,0 +1,53 @@
+.aboutMe {
+    width: 90%;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    margin: 4rem;
+    background: var(--colorGradietne);
+}
+
+.contenedor {
+    background-color: grey;
+    width: 99%;
+    height: 94%;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+
+h2 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+p {
+    font-size: 1rem;
+    font-weight: bold;
+
+}
+
+
+
+
+.imagen{
+    min-width: 15%;
+    & img{
+        /* height: 15rem; */
+        /* padding: 1rem; */
+        border-radius: 1rem;
+    }
+   
+}
+.texto{
+    width: 70%;
+    /* background-color: blue; */
+}

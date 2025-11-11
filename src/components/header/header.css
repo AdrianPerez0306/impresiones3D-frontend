@@ -1,0 +1,26 @@
+header{
+    height: 2rem;
+    padding: 1rem;
+    background: black;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+ .titulo{
+        opacity: 0;
+        color: white;
+        animation: fadeInOut 6s infinite;
+    }
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}

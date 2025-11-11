@@ -1,0 +1,28 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-trigger {
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    background: grey;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: auto;
+  }
+
+  .dropdown-item {
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .dropdown-item:hover {
+    background: #f0f0f0;
+  }
