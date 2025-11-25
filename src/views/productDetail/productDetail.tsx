@@ -1,66 +1,76 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import ButtonGreen from "../../components/buttonGreen/buttonGreen";
-import ButtonRed from "../../components/buttonRed/buttonRed";
+import { Button } from "../../components/button/button";
 import { Carrusel } from "../../components/carrusel/carrusel";
-import { ProductInfo } from "../../components/productDetail/detail";
 import { useToast } from "../../hooks/useToast";
-import { ArticuloDetalle } from "../../models/Articulo";
-import { addToCart } from "../../redux/states/cart";
-import { productService } from "../../service/product.service";
+import { getProductById } from "../../service/product.service";
 import "./productDetail.css";
+import { CartProduct, ProductDetailType } from "../../models/product";
+import { useCart } from "../../hooks/useCart";
+import { Color } from "../../models/color";
+import { Dimension_mm } from "../../models/dimension_mm";
+import { ProductInfo } from "../../components/productInfo/productInfo";
 
 export const ProductDetail = () => {
     const { id } = useParams<{ id: string }>();
-    const [product, setProduct] = useState<ArticuloDetalle | null>(null);
-    const [colorProducto, setColorProducto] = useState<string>("");
-    const [dimensionProducto, setdimensionProducto] = useState<string>("");
-
+    const [product, setProduct] = useState<ProductDetailType | null>(null);
+    const colorProducto = useRef<Color | undefined>(undefined);
+    const dimensionProducto = useRef<Dimension_mm | undefined>(undefined);
+    const [loading, setLoading] = useState<boolean>(true);
+    const { items, add } = useCart();
     const toast = useToast();
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
-    const agregarAlChango = () => {
-        if (product) {
-            console.log("dimensiones ", product.dimensiones_mm);
-            // Convierte a un objeto serializable
-            const itemSerializable = {
-                titulo: product.titulo,
-                imagen: product.imagenes[0],
-                precio_lista: product.precio_lista,
-                color: colorProducto,
-                dimension_mm: dimensionProducto,
-                cantidad: 1
-            };
-            console.log("Articulo serializable:", itemSerializable);
+    function _fromProductDetailToCartProduct(productDetail: ProductDetailType):CartProduct{
 
-            toast.open("Artículo añadido al carrito", "success");
-            setTimeout(() => {
-                dispatch(addToCart(itemSerializable));  
-                navigate("/home");
-            }, 1000);
-        } else {
-            console.error("No se pudo añadir el artículo al carrito: product es null");
-        }
-    };
-
-    const cambiarAtributo = (valor: string, esColor: boolean) => {
-        if (esColor) {
-            setColorProducto(valor);
-        } else {
-            setdimensionProducto(valor);
+        return {
+            id: productDetail.id,
+            titulo: productDetail.titulo,
+            imagen_1: productDetail.imagen_1,
+            precio_lista: productDetail.precio_lista,
+            orderDetails: [{
+                ammount: 1,
+                dimmension_mm: _fromStringToDimensionMM(_getCartProductHtmlElement('medida').value),
+                color: _fromHtmlDataIdToColor(_getCartProductHtmlElement('color').dataset.id!)
+            }]
         }
     }
 
+    function _getCartProductHtmlElement(inputHtmlName:string):HTMLInputElement{
+        const element = document.querySelector(`input[name="${inputHtmlName}"]:checked`) as HTMLInputElement
+        return (
+            document.querySelector(`input[name="${inputHtmlName}"]:checked`) as HTMLInputElement
+        );
+    }
+
+    function _fromHtmlDataIdToColor(htmlElementDataId:string):Color{
+        return product?.colores.find((color)=>color.id == Number(htmlElementDataId))!
+    }
+
+    function _fromStringToDimensionMM(string:string):Dimension_mm{
+        // ////////////////////////////////////////////////////////
+        //  El string llega de la forma AxBxC, se hace slice con X
+        // ////////////////////////////////////////////////////////
+        const dimensionSubstring: string[] = string.split('x')
+        return {
+            alto_mm: Number(dimensionSubstring[0]),
+            ancho_mm: Number(dimensionSubstring[1]),
+            profundidad_mm: Number(dimensionSubstring[2]),
+        }
+    }
+
+    function addToCart(product: ProductDetailType){
+        add([_fromProductDetailToCartProduct(product)]);
+        toast.open("Producto agregado al carrito", "success")
+    }
+    
     const fetchData = async () => {
         try {
-            const res = await productService.getProduct(Number(id));
-            setProduct(res);
-            setColorProducto(res.colores[0].nombre);
-            setdimensionProducto(res.dimensiones_mm[0]);
-            console.log("Producto obtenido:", res);
+
+            const _productDetails = await getProductById(Number(id));
+            setProduct(_productDetails);
+            setLoading(false)
         } catch (error) {
             console.error("No se pudo obtener el producto:", error);
         }
@@ -72,13 +82,16 @@ export const ProductDetail = () => {
 
     return (
         <>
+            {loading && (
+                <div>Cargando...</div>
+            )}
             {product && (
                 <div className="contenedorInfoProducto">
                     <Carrusel imagenes={product.imagenes} />
-                    <ProductInfo articulo={product} modificar={cambiarAtributo} />
+                    <ProductInfo product={product} />
                     <div className="guardarCancelar">
-                        <ButtonRed label="Volver" onClick={() => navigate("/home")} />
-                        <ButtonGreen label="Añadir" onClick={agregarAlChango} />
+                        <Button color="red" onClick={() => navigate("/home")}>Volver</Button>
+                        <Button color="green" onClick={()=>(addToCart(product))}>Comprar</Button>
                     </div>
                 </div>
             )}

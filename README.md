@@ -33,9 +33,9 @@ El objetivo del proyecto es proporcionar a **Vm.automotivedesign** una plataform
 
 ## Tecnología Utilizada
 
-- **Framework**: React (con hooks y componentes funcionales).
-- **Estado Global**: Context API o Redux para la gestión eficiente del estado.
-- **Estilos**: CSS Modules o MateriaUI para un diseño modular y escalable.
+- **Librerias**: React Typescript. Para evitar errores de compilacion en runtime. .
+- **Estado Global**: Uso de react context API para logica de carrito, toast y categoria seleccionada, evitando prop drilling innecesario. Uso de callbacks y memos para evitar re-renderizados en funciones pasadas como props, y para evitar calculos pesados en re-renderizado de componentes.
+- **Estilos**: Estilos CSS personalizados.
 - **Consumo de APIs**: Axios para integrar datos dinámicos desde el backend.
 - **Ruteo**: React Router DOM para una navegación fluida.
 - **Testing**: Jest y React Testing Library para asegurar la calidad del código.

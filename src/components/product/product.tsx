@@ -1,7 +1,7 @@
 
 import { useNavigate } from 'react-router-dom';
 import './product.css'
-import ButtonGreen from '../buttonGreen/buttonGreen';
+import { Button } from '../button/button';
 import { ArticuloInterface } from '../../models/Articulo';
 
 export const Product = ({ product }: { product: ArticuloInterface }) => {
@@ -19,7 +19,8 @@ export const Product = ({ product }: { product: ArticuloInterface }) => {
                 <h5>{`${product.titulo}`}</h5>
                 <p className='price'>{`$ ${product.precio_lista}`}</p>
             </div>
-                <ButtonGreen label='Ver' onClick={goToDetail}></ButtonGreen>
+                <Button color='blue' onClick={goToDetail}>Comprar</Button>
+
         </div>
     </>
 };

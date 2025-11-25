@@ -1,26 +1,84 @@
-header{
-    height: 2rem;
-    padding: 1rem;
-    background: black;
+header {
+    height: auto;
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
 
 }
 
-
- .titulo{
+div.banner {
+    background: black;
+    width: 100%;
+    & .banner__title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: clamp(var(--space-sm), 1vw, var(--space-md));
         opacity: 0;
         color: white;
         animation: fadeInOut 6s infinite;
+        font-size: clamp(var(--text-xs), 1.5vw, var(--text-xxl));
+    }
+}
+
+nav.header__nav{
+    padding: clamp(var(--space-sm), 1vw, var(--space-md));
+    gap: clamp(var(--space-sm), 1vw, var(--space-md));
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    & .enlaces{
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        & p{
+            /* font-size: var(--text-xl); */
+            font-size: clamp(var(--text-xs), 1.5vw, var(--text-xxl));
+        }
     }
 
+    & .carrito{
+        display: flex;
+        justify-self: flex-end;    
+    }
+
+    & .shortcut-home{
+        max-width: 50%;
+        width: 40%;
+        min-width: 30%;
+        & img{
+            /* max-width: 80%;
+            width: 65%;
+            min-width: 45%; */
+            width: 100%;
+            height: auto;
+
+        }
+    }
+
+    & .burger{
+        display: none;
+    }
+}
+
 @keyframes fadeInOut {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 0;
     }
+
     50% {
         opacity: 1;
+    }
+}
+
+@media (max-width:580px){
+    nav.header__nav{
+        & .enlaces{
+            display: none;
+        }
     }
 }

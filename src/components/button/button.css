@@ -15,8 +15,6 @@
 }
 
 .buttonRed {
-    /* background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%); */
-    /* background-image: var(--color-terciary-gradient); */
     align-items: center;
     background-image: radial-gradient(100% 100% at 100% 0, red 0%, rgb(233, 92, 11) 100%);
     border-radius: 0.3rem;

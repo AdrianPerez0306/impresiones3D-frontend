@@ -2,11 +2,10 @@ import { Outlet, useLocation } from "react-router-dom";
 import './layout.css'
 import { Header } from "../header/header";
 import { Footer } from "../footer/footer";
-import { Nav } from "../nav/nav";
 import { DondeEstoy } from "../dondeEstoy/dondeEstoy";
-import { Search } from "../search/search";
 import { useEffect, useState } from "react";
 import { ToastProvider } from "../../context/toast.context";
+import { SelectedCategoryProdiver } from "../../context/selectedCategory.context";
 
 export const Layout = () => {
 
@@ -35,11 +34,8 @@ export const Layout = () => {
     return (
         <div className="layout">
             <Header />
-            <Nav /> {/* categorias / search */}
             <DondeEstoy titulo={titulo} />
-            <ToastProvider>
-                <Outlet />{/* home antes -> barra */}
-            </ToastProvider>
+            <Outlet />
             <Footer />
         </div>
     );
