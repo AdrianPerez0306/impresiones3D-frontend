@@ -3,5 +3,6 @@
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
+    gap: var(--space-xl);
 }
 

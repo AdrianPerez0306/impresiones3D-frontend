@@ -4,41 +4,44 @@ import { ProductDetailType } from "../../models/product";
 export const ProductInfo = ({ product }: { product: ProductDetailType }) => {
     return (
         <>
-            <div className="infoProducto">
-                <div className="data">
-                    <h5>Nombre del articulo</h5>
-                    <p>{product?.titulo}</p>
-                </div>
-                <div className="data">
-                    <h5>Precio</h5>
-                    <p>${product?.precio_lista}</p>
-                </div>
-                <div className="data">
-                    <h5>Descripción</h5>
-                    <p>{product?.detalle}</p>
+            <div className="product__info">
+
+                <div className="product__title">
+                    <h2 className="text-xxl">{product?.titulo}</h2>
                 </div>
 
-                <div className="boxInputs">
-                    <h5>Selecciona un color</h5>
+                <div className="product__price">
+                    <p className="text-xl">${product?.precio_lista}</p>
+                </div>
+
+                <div className="product__description data__box">
+                    <h5 className="text-lg">Descripción</h5>
+                    <p className="text-base">{product?.detalle}</p>
+                </div>
+
+                <div className="product__options data__box">
+                    <h5 className="text-lg">Selecciona un color</h5>
                     <div className="colores">
                         {product?.colores.sort((a, b) => a.id - b.id).map((color, index) => (
-                            <label className="label" key={color.id}>
+                            <label className="" key={color.id}>
                                 <input
                                     id="color"
                                     className="input"
                                     type="radio"
                                     name="color"
+                                    style={{accentColor: `#${color.hexValue}`}}
                                     value={color.nombre}
                                     defaultChecked={product.colores[0].id === color.id}
-                                    data-id={color.id}
+                                    data-product-id={color.id}
                                 />
-                                <span >{color.nombre}</span>
+                                <span className=''>{color.nombre[0].toUpperCase() + color.nombre.slice(1)}</span>
                             </label>
                         ))}
                     </div>
                 </div>
-                <div className="boxInputs">
-                    <p>Selecciona tamaño</p>
+
+                <div className="product__options data__box">
+                    <h5 className="text-lg">Selecciona tamaño</h5>
                     <div className="medidas">
                         {product?.dimensiones_mm.sort((a, b) =>
                             (a.alto_mm * a.ancho_mm * a.profundidad_mm) -
@@ -58,6 +61,7 @@ export const ProductInfo = ({ product }: { product: ProductDetailType }) => {
                         ))}
                     </div>
                 </div>
+
             </div>
         </>
     );

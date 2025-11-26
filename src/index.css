@@ -1,7 +1,8 @@
 :root {
   font-family: Ubuntu, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
-  --colorGradietne: linear-gradient(to right, #fbc901, #fb4b01);
+
+  
     /* //////////////////////////////////////////////////// */
     /* FONT SIZE BASE */
     /* //////////////////////////////////////////////////// */
@@ -16,8 +17,7 @@
   /* //////////////////////////////////////////////////// */
   /*  ESCALA ESPECIFICA DE CADA TAMANIO(XXL, XL, LG, ETC)*/
   /* //////////////////////////////////////////////////// */
-  --ratio-xxl: 3.5;
-  --text-xxl: calc(var(--text-base-size)*var(--ratio-general)*var(--ratio-xxl));
+  --text-xxl: calc(var(--text-base-size) * var(--ratio-general) * 3.5);
   --ratio-xl: 2.5;
   --text-xl: calc(var(--text-base-size)*var(--ratio-general)*var(--ratio-xl));
   --ratio-lg: 2.1;
@@ -48,62 +48,86 @@
   /* //////////////////////////////////////////////////// */
   /* COLORES ADRIAN */
   /* //////////////////////////////////////////////////// */
-  --color-primary-bright: #ff8a65;
-  --color-primary-mate: #ffab91;
+  --color-primary-bright: #d94f14;
+  --color-primary-mate: #cf6538;
 
-  --color-complementary-1-bright: #5499c7;
-  --color-complementary-1-mate: #a9cce3;
+  --color-complementary-1-bright: #e2c037;
+  --color-complementary-1-mate: #d6be61;
 
   --color-complementary-2-bright: #af7ac5;
   --color-complementary-2-mate: #d7bde2;
 
-  --color-complementary-3-bright: #52be80;
-  --color-complementary-3-mate: #a9dfbf;
+  --color-complementary-3-bright: #b7c4bc;
+  --color-complementary-3-mate: rgb(85, 90, 94);
+
+  --color-light-text: #595961;
+  --color-gradient-primary: linear-gradient(to right, #eaa10f, #ea870f);
+  --color-gradient-secondary: linear-gradient(to right, #c8440c, #e2c037);
+  --color-gradient-terciary: linear-gradient(to right, #573627, #74662d);
 
   /* //////////////////////////////////////////////////// */
   /* VARIABLES PARA CLASES DE UTILIDAD(PADDINGS, MARGINS, GAPS, ETC) */
   /* //////////////////////////////////////////////////// */
-  --space-unit: 1em;
+  --space-unit: 1rem;
+  --space-xxs: calc(0.25 * var(--space-unit));
   --space-xs: calc(0.5 * var(--space-unit));
   --space-sm: calc(0.75 * var(--space-unit));
-  --space-md: calc(1.25 * var(--space-unit));
-  --space-lg: calc(2 * var(--space-unit));
-  --space-xl: calc(3.25 * var(--space-unit));
+  --space-md: calc(1 * var(--space-unit));
+  --space-lg: calc(1.25 * var(--space-unit));
+  --space-xl: calc(2.25 * var(--space-unit));
   --space-xxl: calc(3.50 * var(--space-unit));
 
   /* //////////////////////////////////////////////////// */
   /* VARIABLES PARA IMAGENES*/
   /* //////////////////////////////////////////////////// */
-  --image-xxs: 5rem;
+  --image-xxs: 10rem;
   --image-xs: 15rem;
+  --image-sm: 20rem;
   --image-md: 25rem;
-  --image-lg: 35rem;
-  --image-xl: 45rem;
-  /* Se podria comentar */
+  --image-lg: 30rem;
+  --image-xl: 40rem;
+  --image-xxl: 45rem;
+
+
+  /* //////////////////////////////////////////////////// */
+  /* VARIABLES PARA IMAGENES*/
+  /* //////////////////////////////////////////////////// */
+  --dimension-xxs: 5rem;
+  --dimension-xs: 10rem;
+  --dimension-sm: 15rem;
+  --dimension-md: 20rem;
+  --dimension-lg: 30rem;
+  --dimension-xl: 40rem;
+  --dimension-xxl: 50rem;
 }
 
 h1,
 .text-xxl {
+  font-weight: normal;
   font-size: var(--text-xxl, 2.074em);
 }
 
 h2,
 .text-xl {
+  font-weight: normal;
   font-size: var(--text-xl, 1.728em);
 }
 
 h3,
 .text-lg {
+  font-weight: normal;
   font-size: var(--text-lg, 1.44em);
 }
 
 h4,
 .text-md {
+  font-weight: normal;
   font-size: var(--text-md, 1.2em);
 }
 
 p,
 .text-base {
+  font-weight: normal;
   font-size: var(--text-base-size);
 }
 
@@ -120,18 +144,15 @@ html {
 
 body {
   font-size: var(--text-base-size);
-  background: var(--color-fondo);
+  background: rgb(233, 229, 229);
   font-family: var(--fuente-default);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   overflow-x: hidden;
-  height: 100vh;
-  width: 100vw;
-
-  background: url('../src/assets/fondo2.jpg') no-repeat center center fixed;
-  background-size: cover;
+  height: 100%;
+  width: 100%;
 }
 
 a {

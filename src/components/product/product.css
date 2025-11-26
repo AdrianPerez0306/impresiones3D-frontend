@@ -1,34 +1,85 @@
-.product{
-    width: 19rem;
-    max-height: 22rem;
+.product {
+    width: clamp(90%, 1vw, 22rem);
+    height: clamp(100%, 1vw, 22rem);
     border-radius: 1rem;
-    padding: 1rem;
-    background: linear-gradient(to bottom, #fbc901, #fb4b01);
+    padding: clamp(var(--space-md), 1vw, var(--space-lg));
     
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    
+    background: white;
 }
 
-.product img{
+.product img {
     width: 100%;
     height: auto;
     aspect-ratio: 16/9;
-    border-radius: 1rem 1rem 0 0;
-}   
+    border-radius: 1rem;
+}
 
-.product .content{
+.product .content {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     padding: 0.5rem;
     height: auto;
-    text-align: center;
-    & p{
-        min-width: 100%;
+    align-self: start;
+
+    & .title{
+        font-weight: normal;
     }
+
 }
 
-.price{
-    font-size: 2rem;
-    color: #000;
-    font-weight: bold;
-    text-align: center;
+.price {
+    font-size: var(--text-md);
+    color: var(--color-light-text);
+    font-weight: 300;
+
+    align-self: start;
+}
+
+
+.color__options {
+    display: flex;
+    gap: 1rem;
+
+    position: relative;
+
+    
+    & .color__option--circle {
+        cursor: pointer;
+        width: var(--space-xl);
+        height: var(--space-xl);
+        border-radius: 1rem;
+        position: relative;
+        border: 1px solid rgb(128, 114, 114);
+        &:hover+.color__option--hoverHexValue {
+            display: flex;
+        }
+    }
+
+    & .color__option--hoverHexValue {
+        display: none;
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: var(--space-md);
+        border-radius: 0.5rem;
+        font-size: var(--text-md);
+        white-space: nowrap;
+        /* z-index: 10; */
+        margin-bottom: 0.5rem;
+        /* Espacio entre tooltip y círculo */
+    }
+
+
+}
+
+.color__wrapper {
+    position: relative;
+    display: inline-block;
 }

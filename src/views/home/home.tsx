@@ -2,16 +2,17 @@ import { useEffect, useState } from "react";
 import { Product } from "../../components/product/product";
 import './home.css';
 import { useSelectedCategory } from "../../hooks/useSelectedCategory";
-import { getAll, getProductsByCategory } from "../../service/product.service";
-import { ProductBasicType } from "../../models/product";
+import { getAll, getProductsByCategory, getProductsByTitleFilter } from "../../service/product.service";
+import { ProductCardHome } from "../../models/product";
 
 export const Home = () => {
-    const [products, setProducts] = useState<ProductBasicType[]>([]);
+    const [products, setProducts] = useState<ProductCardHome[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const { category } = useSelectedCategory();
 
     const getAllProducts = async () => {
         try {
+            setLoading(true);
             const _products = await getAll();
             setProducts(_products)
             setLoading(false);
@@ -22,6 +23,7 @@ export const Home = () => {
 
     const loadByCategory = async () => {
         try {
+            setLoading(true);
             const _products = await getProductsByCategory(category!);
             setProducts(_products)
             setLoading(false);
@@ -30,8 +32,30 @@ export const Home = () => {
         }
     }
 
+    function getInputSearchValue(inputHtmlName: string): HTMLInputElement {
+        return (
+            document.querySelector(`input[name="${inputHtmlName}"]`) as HTMLInputElement
+        );
+    }
+
+    const loadByTitleSearch = async () => {
+        try {
+            setLoading(true);
+            const _products = await getProductsByTitleFilter(getInputSearchValue("input__search").value);
+            setProducts(_products)
+            setLoading(false);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
-        if (category) { loadByCategory(); }
+        if (category) {
+            if(category=='search') loadByTitleSearch
+            else loadByCategory()
+        }
+        // if (category && category=='search') { loadByTitleSearch(); }
+        
         else { getAllProducts(); }
     }, [category])
 

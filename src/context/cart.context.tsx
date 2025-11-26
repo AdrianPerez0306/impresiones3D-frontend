@@ -6,6 +6,7 @@ type CartContextType = {
     add: (products: CartProduct[]) => void;
     remove: (productsIds: number[]) => void;
     clear: () => void;
+    updateAmmount: (productId: number, dimension: string, color: string, change: number) => void;
     items: CartProduct[];
 }
 
@@ -22,43 +23,49 @@ export const CartProdiver: React.FC<{ children: ReactNode }> = ({ children }) =>
         }
     }
 
-    function _existingProduct(_products: CartProduct[], productId: number): boolean {
-        return _products.some((product) => product.id === productId);
+    function _findProductIndex(products: CartProduct[], productId: number): number {
+        return products.findIndex(p => p.id === productId);
     }
 
-    function _mergeProductVariants(products: CartProduct[], newProduct: CartProduct): void {
-        const existingProduct = products.find(p => p.id === newProduct.id);
-        if (!existingProduct) return;
+    function _findVariantIndex(variants: CartProductAmmountByDimmensionAndColor[], newVariant: CartProductAmmountByDimmensionAndColor): number {
+        return variants.findIndex(
+            v =>    v.dimmension_mm.alto_mm === newVariant.dimmension_mm.alto_mm && 
+                    v.dimmension_mm.ancho_mm === newVariant.dimmension_mm.ancho_mm && 
+                    v.dimmension_mm.profundidad_mm === newVariant.dimmension_mm.profundidad_mm && 
+                    v.color.hexValue === newVariant.color.hexValue
+        );
+    }
 
+    function _updateExistingProduct(existingProduct: CartProduct, newProduct: CartProduct): void {
         newProduct.orderDetails.forEach(newVariant => {
-            if (_variantExists(existingProduct.orderDetails, newVariant)) {
-                _increaseVariantQuantity(existingProduct.orderDetails, newVariant);
+            const existingVariantIndex = _findVariantIndex(existingProduct.orderDetails, newVariant);
+            
+            if (existingVariantIndex !== -1) {
+                // Misma dimensión y color - sumar cantidad
+                existingProduct.orderDetails[existingVariantIndex].ammount += newVariant.ammount;
             } else {
-                _addNewVariant(existingProduct.orderDetails, newVariant);
+                // Nueva combinación - agregar
+                existingProduct.orderDetails.push(newVariant);
             }
         });
     }
 
-
-    function _variantExists(variants: CartProductAmmountByDimmensionAndColor[], newVariant: CartProductAmmountByDimmensionAndColor): boolean {
-        return variants.some(variant =>
-            variant.dimmension_mm === newVariant.dimmension_mm &&
-            variant.color === newVariant.color
-        );
-    }
-
-    function _increaseVariantQuantity(variants: CartProductAmmountByDimmensionAndColor[], variantToUpdate: CartProductAmmountByDimmensionAndColor): void {
-        const existingVariant = variants.find(v =>
-            v.dimmension_mm === variantToUpdate.dimmension_mm &&
-            v.color === variantToUpdate.color
-        );
-        if (existingVariant) {
-            existingVariant.ammount += variantToUpdate.ammount;
-        }
-    }
-
-    function _addNewVariant(variants: CartProductAmmountByDimmensionAndColor[], newVariant: CartProductAmmountByDimmensionAndColor): void {
-        variants.push(newVariant);
+    function _addOrUpdateProducts(currentProducts: CartProduct[], newProducts: CartProduct[]): CartProduct[] {
+        const updatedProducts = [...currentProducts];
+        
+        newProducts.forEach(newProduct => {
+            const existingProductIndex = _findProductIndex(updatedProducts, newProduct.id);
+            
+            if (existingProductIndex !== -1) {
+                // Producto ya existe - actualizar variantes
+                _updateExistingProduct(updatedProducts[existingProductIndex], newProduct);
+            } else {
+                // Producto nuevo - agregar
+                updatedProducts.push(newProduct);
+            }
+        });
+        
+        return updatedProducts;
     }
 
 
@@ -67,18 +74,10 @@ export const CartProdiver: React.FC<{ children: ReactNode }> = ({ children }) =>
     //      de la funcion, por lo que cualquier hijo que reciba como prop esa funcion, estara recibiendo un "nuevo"
     //      prop, es decir, una nueva referencia. useCallback previene eso para la funcion especifica que se use.
     const addProducts = useCallback((_products: CartProduct[]) => {
-        _checkNotEmpty(_products, "La lista de productos no puede estar vacía");
-        setProducts((prevProducts) => {
-            let updatedProducts: CartProduct[] = [...prevProducts];
-            _products.forEach((product) => {
-                if (_existingProduct(updatedProducts, product.id)) _mergeProductVariants(updatedProducts, product);
-                else updatedProducts.push(product);
-            });
-            return updatedProducts;
-        });
-    }, []); 
+        setProducts((prevProducts) => _addOrUpdateProducts(prevProducts, _products));
+    }, []);
 
-    
+
     // useCallback es ideal, ya que a veces estas funciones pueden ser pasadas como props, y sin useCallback
     //      cada vez que el componente se re-rendederize por algun cambio de estado, tambien lo hara la referencia
     //      de la funcion, por lo que cualquier hijo que reciba como prop esa funcion, estara recibiendo un "nuevo"
@@ -96,14 +95,41 @@ export const CartProdiver: React.FC<{ children: ReactNode }> = ({ children }) =>
     //      prop, es decir, una nueva referencia. useCallback previene eso para la funcion especifica que se use.
     const clearCart = useCallback(() => {
         setProducts([]);
-    }, []); 
+    }, []);
+
+    const updateQuantity = useCallback((productId: number, dimension: string, colorName: string, change: number) => {
+        setProducts((prevProducts) => {
+            return prevProducts.map(product => {
+                if (product.id === productId) {
+                    const updatedOrderDetails = product.orderDetails.map(variant => {
+                        if (variant.dimmension_mm.alto_mm.toString() + 'x' + variant.dimmension_mm.ancho_mm.toString() + 'x' + variant.dimmension_mm.profundidad_mm.toString() === dimension   &&
+                            variant.color.nombre === colorName
+                        ) {
+                            return {
+                                ...variant,
+                                ammount: Math.max(0, variant.ammount + change) // No menor a 0
+                            };
+                        }
+                        return variant;
+                    }).filter(variant => variant.ammount > 0); // Eliminar si cantidad es 0
+                    
+                    return {
+                        ...product,
+                        orderDetails: updatedOrderDetails
+                    };
+                }
+                return product;
+            }).filter(product => product.orderDetails.length > 0); // Eliminar productos sin variantes
+        });
+    }, []);
 
     const contextValue = useMemo(() => ({
         add: addProducts,
         remove: removeProducts,
         clear: clearCart,
-        items: products
-    }), [addProducts, removeProducts, clearCart, products])
+        items: products,
+        updateAmmount: updateQuantity
+    }), [addProducts, removeProducts, clearCart, products, updateQuantity])
 
     return (
         <>

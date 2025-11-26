@@ -1,7 +1,7 @@
 import {} from 'react';
 import './button.css';
 
-type ButtonColor = "green" | "blue" | "red" | "yellow"
+type ButtonColor = "lighted" | "opaque" | "options" | 'add-remove'
 
 interface ButtonProps {
   color: ButtonColor;

@@ -1,5 +1,5 @@
 import "./cart.css"; // Archivo de estilos
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "../../components/button/button";
 import { mailService } from "../../service/mail.service";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -8,7 +8,7 @@ import { useCart } from "../../hooks/useCart";
 import { NavLink } from "react-router-dom";
 
 const CartComponent = () => {
-    const { items, clear, remove } = useCart();
+    const { items, clear, remove, updateAmmount } = useCart();
     const [precioTotal, setprecioTotal] = useState(0);
     const [mail, setMail] = useState("");
 
@@ -26,10 +26,6 @@ const CartComponent = () => {
         return /^[a-zA-Z0-9]{2,}@[^\s@]+\.com$/.test(email);
     }
 
-
-    useEffect(() => {
-
-    }, []);
 
     function vaciarCarro() {
         clear();
@@ -49,75 +45,67 @@ const CartComponent = () => {
     // };
 
     return (
-        <div className="cartContainer">
+        <div className="container__cart">
             {emptyCart() ? (
                 <div className="vacio">
-                        <p>El carrito se encuentra vacío, te invito a navegar la pagina y agregar aquellos articulos de tu interes.</p>
-                        <NavLink to={`/productos`}>
-                            <p>Ver productos</p>
-                        </NavLink>
+                    <p>El carrito se encuentra vacío, te invito a navegar la pagina y agregar aquellos articulos de tu interes.</p>
+                    <NavLink to={`/productos`}>
+                        <p>Ver productos</p>
+                    </NavLink>
                 </div>
             ) :
                 (
                     <>
-                        <table className="cartTable">
-                            <thead>
-                                <tr className="cartTableHeader">
-                                    <th>Articulo</th>
-                                    <th>Cantidad</th>
-                                    <th>Precio</th>
-                                    <th>Eliminar</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {items.map((item, index) => (
-                                    <tr key={index}>
-                                        <td >
-                                            <div className="articulo">
-                                                <div><p>{item.titulo}</p></div>
-                                                <div><img src={item.imagen_1} alt={item.titulo} /></div>
-                                            </div>
-                                        </td>
-
-                                        <td>
-                                            <div className="precio"><p>${item.precio_lista}</p></div>
-                                        </td>
-                                        <td >
-                                            <div className="eliminar">
-                                                <Button color="red" onClick={() => eliminarArticulo(item.id)}>
-                                                    <DeleteForeverIcon style={{ color: 'red', fontSize: '3rem' }}></DeleteForeverIcon>
-                                                </Button>
-
-
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                                <tr>
-                                    <td colSpan={3}><div className="precioFinal"><p>PrecioFinalPrecio Final</p></div></td>
-                                    <td ><div className="precioFinal"><p>${precioTotal}</p></div></td>
-                                </tr>
-                                <tr>
-                                    <td colSpan={4}>
-                                        <div className="datosMail">
-                                            <p>Introduce tu e-Mail y nos contactaremos para continuar la compra</p>
-                                            <input
-                                                className="inputMail"
-                                                type="email"
-                                                placeholder="Introduce tu e-Mail"
-                                                onChange={(e) => setMail(e.target.value)}
-                                                value={mail}
-                                            />
+                        <h1>Mi carrito de compras</h1>
+                        <div className="container__cartItems">
+                            {items.map((item) => (
+                                <div className="card__cartItem">
+                                    <div className="cartItem__main">
+                                        <img src={`${item.imagen}`} alt="" />
+                                        <div className="label">
+                                            <h4 className="">{item.titulo}</h4>
+                                            <p className="price">${item.precio_lista}</p>
                                         </div>
-                                    </td>
+                                    </div>
 
-                                </tr>
+                                    <div className="item__details">
+                                        {item.orderDetails.map((detail) => (
+                                            <div className="item__detail">
+                                                <p className="text-base detail__color">
+                                                    Color: <strong>{detail.color.nombre}</strong>
+                                                </p>
+                                                <p className="text-base detail__dimmension">
+                                                    Medida: <strong>
+                                                        {detail.dimmension_mm.alto_mm}x
+                                                        {detail.dimmension_mm.ancho_mm}x
+                                                        {detail.dimmension_mm.profundidad_mm}
+                                                    </strong>
+                                                </p>
+                                                <p className="text-base detail__ammount">
+                                                    <Button color="add-remove" onClick={()=>(
+                                                        updateAmmount(item.id, detail.dimmension_mm.alto_mm.toString() + 'x' + detail.dimmension_mm.ancho_mm.toString() + 'x' + detail.dimmension_mm.profundidad_mm.toString(), detail.color.nombre, 1))}
+                                                    >+</Button>
+                                                    <strong>{detail.ammount}</strong>
+                                                    <Button color="add-remove" onClick={()=>(
+                                                        updateAmmount(item.id, detail.dimmension_mm.alto_mm.toString() + 'x' + detail.dimmension_mm.ancho_mm.toString() + 'x' + detail.dimmension_mm.profundidad_mm.toString(), detail.color.nombre, -1))}
+                                                    >-</Button>
+                                                </p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
 
-                            </tbody>
-                        </table>
+                        <div className="cartItems__price">
+                            <h3>Total de compra</h3>
+                            <p>Subtotal: XXX</p>
+                            <p>ENvio: XXX</p>
+                            <h4>Total: XXX</h4>
+                        </div>
 
                         <div className="guardarCancelar">
-                            <Button color="red" onClick={() => vaciarCarro()}>
+                            <Button color="opaque" onClick={() => vaciarCarro()}>
                                 Vaciar carrito
                             </Button>
 

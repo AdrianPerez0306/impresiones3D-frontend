@@ -14,41 +14,39 @@ import { ProductInfo } from "../../components/productInfo/productInfo";
 export const ProductDetail = () => {
     const { id } = useParams<{ id: string }>();
     const [product, setProduct] = useState<ProductDetailType | null>(null);
-    const colorProducto = useRef<Color | undefined>(undefined);
-    const dimensionProducto = useRef<Dimension_mm | undefined>(undefined);
     const [loading, setLoading] = useState<boolean>(true);
-    const { items, add } = useCart();
+    const { add } = useCart();
     const toast = useToast();
 
     const navigate = useNavigate();
 
-    function _fromProductDetailToCartProduct(productDetail: ProductDetailType):CartProduct{
+    function _fromProductDetailToCartProduct(productDetail: ProductDetailType): CartProduct {
 
         return {
             id: productDetail.id,
             titulo: productDetail.titulo,
-            imagen_1: productDetail.imagen_1,
+            imagen: productDetail.imagenes[0],
             precio_lista: productDetail.precio_lista,
             orderDetails: [{
                 ammount: 1,
                 dimmension_mm: _fromStringToDimensionMM(_getCartProductHtmlElement('medida').value),
-                color: _fromHtmlDataIdToColor(_getCartProductHtmlElement('color').dataset.id!)
+                color: _fromHtmlDataIdToColor(_getCartProductHtmlElement('color').dataset.productId!)
             }]
         }
     }
 
-    function _getCartProductHtmlElement(inputHtmlName:string):HTMLInputElement{
+    function _getCartProductHtmlElement(inputHtmlName: string): HTMLInputElement {
         const element = document.querySelector(`input[name="${inputHtmlName}"]:checked`) as HTMLInputElement
         return (
             document.querySelector(`input[name="${inputHtmlName}"]:checked`) as HTMLInputElement
         );
     }
 
-    function _fromHtmlDataIdToColor(htmlElementDataId:string):Color{
-        return product?.colores.find((color)=>color.id == Number(htmlElementDataId))!
+    function _fromHtmlDataIdToColor(htmlElementDataId: string): Color {
+        return product?.colores.find((color) => color.id == Number(htmlElementDataId))!
     }
 
-    function _fromStringToDimensionMM(string:string):Dimension_mm{
+    function _fromStringToDimensionMM(string: string): Dimension_mm {
         // ////////////////////////////////////////////////////////
         //  El string llega de la forma AxBxC, se hace slice con X
         // ////////////////////////////////////////////////////////
@@ -60,11 +58,11 @@ export const ProductDetail = () => {
         }
     }
 
-    function addToCart(product: ProductDetailType){
+    function addToCart(product: ProductDetailType) {
         add([_fromProductDetailToCartProduct(product)]);
         toast.open("Producto agregado al carrito", "success")
     }
-    
+
     const fetchData = async () => {
         try {
 
@@ -86,12 +84,14 @@ export const ProductDetail = () => {
                 <div>Cargando...</div>
             )}
             {product && (
-                <div className="contenedorInfoProducto">
+                <div className="container__productDetail">
                     <Carrusel imagenes={product.imagenes} />
-                    <ProductInfo product={product} />
-                    <div className="guardarCancelar">
-                        <Button color="red" onClick={() => navigate("/home")}>Volver</Button>
-                        <Button color="green" onClick={()=>(addToCart(product))}>Comprar</Button>
+                    <div className="info__product">
+                        <ProductInfo product={product} />
+                        <div className="actions">
+                            <Button color="opaque" onClick={() => navigate("/home")}>Volver</Button>
+                            <Button color="lighted" onClick={() => (addToCart(product))}>Comprar</Button>
+                        </div>
                     </div>
                 </div>
             )}

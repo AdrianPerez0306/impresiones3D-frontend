@@ -1,42 +1,25 @@
-.infoProducto{
-    width: 45rem;
-    height: auto;
+.product__info{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: var(--colorGradietne);
+    gap: clamp(var(--space-md), 1vw, var(--space-xl));
+
+    & .product__price   {
+        & p{
+            color: var(--color-primary-bright);
+        }
+    }
 }
 
-
-.data {
-    width: 100%;
-    height: auto;
+.data__box {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    border: 2px solid black;
+    align-items: flex-start;
+    gap: clamp(var(--space-md), 1vw, var(--space-xl));
+    padding: clamp(var(--space-md), 1vw, var(--space-xl));
 
+    border-radius: var(--space-sm);
+    background-color: white;
     
-    padding: 1rem;
-    font-size: 1.4rem;
-    
-}
-
-.boxInputs{
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    
-    gap: 1rem;
-    padding: 1rem;
-    background: var(--colorGradietne);
-    font-size: 1.4rem;
-    border: 2px solid black;
 }
 
 .colores {
@@ -44,10 +27,8 @@
     flex-direction: wrap;
     justify-content: center;
     text-align: center;
-    
+
 }
-
-
 
 .medidas{
     display: flex;
@@ -66,24 +47,15 @@
     margin: 3rem 0;
 }
 
-.label{
-    font-size: 0.8rem;
-    font-weight: bold;
-}
+
 .input{
     width: 100%;
     height: 1.5rem;
     font-size: 1rem;
-    border: 1px solid black;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
 
-    .infoProducto{
-        width: 95vw;
-    }
-    .guardarCancelar {
-        flex-wrap: wrap;
-    }
+
     
-}
+} */

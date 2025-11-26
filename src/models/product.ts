@@ -8,7 +8,7 @@ import { Dimension_mm } from "./dimension_mm";
 export type ProductBasicType = {
     id: number,
     titulo: string,
-    imagen_1: string,
+    imagen: string,
     precio_lista: number,
     descuento?: number
 }

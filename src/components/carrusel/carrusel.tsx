@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { ArticuloDetalle } from "../../models/Articulo";
 import "./carrusel.css";
 
 
@@ -58,11 +57,10 @@ export const Carrusel = ( {imagenes} : CarruselProps ) => {
 
     return (
         <>
-            <div className="containerDetalleProducto">
-                <div className="img1">
+            <div className="carrusel">
+                <div className="container__images">
                     {imagenView && (
-
-                        <img className={`imagen1 ${fade ? "fade-out" : ""}`} src={imagenView} alt="Producto" />
+                        <img className={`image ${fade ? "fade-out" : ""}`} src={imagenView} alt="Producto" />
                         
                     )}
                 </div>
