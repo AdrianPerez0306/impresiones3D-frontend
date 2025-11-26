@@ -1,9 +1,14 @@
-.container__cart{
-
+.container__cartLayout {
     display: flex;
     flex-direction: column;
     gap: clamp(var(--space-md), 1vw, var(--space-lg));
 
+    padding: clamp(var(--space-md), 1vw, var(--space-lg));
+}
+
+.container__cart {
+    display: flex;
+    gap: clamp(var(--space-md), 1vw, var(--space-lg));
 }
 
 .container__cartItems {
@@ -14,6 +19,7 @@
 
     & .card__cartItem {
         display: flex;
+        width: var(--dimension-xl);
         flex-direction: column;
         background-color: white;
         border-radius: var(--space-xs);
@@ -24,6 +30,7 @@
             display: flex;
             flex-direction: row;
             gap: clamp(var(--space-sm), 1vw, var(--space-md));
+
             & img {
                 width: clamp(var(--image-xxs), 1vw, var(--image-md));
                 height: auto;
@@ -36,23 +43,91 @@
             display: flex;
             flex-direction: column;
             gap: clamp(var(--space-xs), 1vw, var(--space-xs));
+
+            padding: clamp(var(--space-xxs), 1vw, var(--space-sm));
+
             & .item__detail {
                 display: flex;
                 justify-content: space-between;
-                
-                & .detail__ammount{
+                align-items: center;
+
+                & .color__wrapper {
+                    position: relative;
                     display: flex;
+                    align-items: center;
+
                     gap: clamp(var(--space-xs), 1vw, var(--space-xs));
-                    height: fit-content;
+
+                    & .color__option--circle {
+                        cursor: pointer;
+                        width: var(--space-xl);
+                        height: var(--space-xl);
+                        border-radius: 1rem;
+                        position: relative;
+                        border: 1px solid rgb(128, 114, 114);
+
+                        &:hover+.color__option--hoverHexValue {
+                            display: flex;
+                        }
+                    }
+
+                    & .color__option--hoverHexValue {
+                        display: none;
+                        position: absolute;
+                        bottom: 100%;
+                        left: 0;
+                        background: rgba(0, 0, 0, 0.8);
+                        color: white;
+                        padding: var(--space-md);
+                        border-radius: 0.5rem;
+                        font-size: var(--text-md);
+                        white-space: nowrap;
+                        /* z-index: 10; */
+                        margin-bottom: 0.5rem;
+                        /* Espacio entre tooltip y círculo */
+                    }
                 }
 
-            
+                & .detail__ammount {
+                    display: flex;
+                    gap: clamp(var(--space-xs), 1vw, var(--space-xs));
+                    align-items: center;
+                }
+
+
             }
         }
     }
 }
 
-.vacio {
+
+.container__cartItems--price {
+    display: flex;
+    flex-direction: column;
+    /* height: var(--dimension-md); */
+    width: calc(var(--dimension-md)*1.2);
+
+    justify-content: space-evenly;
+    padding: clamp(var(--space-sm), 1vw, var(--space-md));
+
+    border-radius: var(--space-xs);
+    background-color: white;
+
+    & .price__details {
+
+        width: 95%;
+        display: flex;
+
+        justify-content: space-between;
+        font-size: var(--text-md);
+        color: var(--color-light-text);
+        font-weight: 300;
+
+        align-self: start;
+    }
+}
+
+/* .vacio {
     width: 90%;
     height: auto;
     display: flex;
@@ -82,5 +157,29 @@
         border: 2px solid black;
         border-radius: 0.5rem;
         padding: 0.5rem;
+    }
+} */
+
+@media (max-width:700px) {
+    .container__cart {
+        display: flex;
+        flex-direction: column;
+        /* gap: clamp(var(--space-md), 1vw, var(--space-lg)); */
+    }
+
+    .container__cartItems {
+
+        display: flex;
+        flex-direction: column;
+        gap: clamp(var(--space-sm), 1vw, var(--space-md));
+
+        & .card__cartItem {
+            width: 100%;
+            
+        }
+    }
+
+    .container__cartItems--price {
+        width: 100%;
     }
 }

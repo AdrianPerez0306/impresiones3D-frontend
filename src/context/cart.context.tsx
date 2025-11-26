@@ -7,6 +7,7 @@ type CartContextType = {
     remove: (productsIds: number[]) => void;
     clear: () => void;
     updateAmmount: (productId: number, dimension: string, color: string, change: number) => void;
+    price: ()=> number;
     items: CartProduct[];
 }
 
@@ -123,13 +124,24 @@ export const CartProdiver: React.FC<{ children: ReactNode }> = ({ children }) =>
         });
     }, []);
 
+    const cartPrice = useCallback(() => {
+        let total:number = 0
+        products.forEach((product)=>(
+            product.orderDetails.forEach((detail)=>(
+                total=+(detail.ammount * product.precio_lista)
+            ))
+        ))
+        return total
+    }, [products]);
+
     const contextValue = useMemo(() => ({
         add: addProducts,
         remove: removeProducts,
         clear: clearCart,
         items: products,
-        updateAmmount: updateQuantity
-    }), [addProducts, removeProducts, clearCart, products, updateQuantity])
+        updateAmmount: updateQuantity,
+        price:cartPrice,
+    }), [addProducts, removeProducts, clearCart, products, updateQuantity, cartPrice])
 
     return (
         <>

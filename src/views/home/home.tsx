@@ -4,11 +4,13 @@ import './home.css';
 import { useSelectedCategory } from "../../hooks/useSelectedCategory";
 import { getAll, getProductsByCategory, getProductsByTitleFilter } from "../../service/product.service";
 import { ProductCardHome } from "../../models/product";
+import { useSearchFilter } from "../../hooks/useSearchFilter";
 
 export const Home = () => {
     const [products, setProducts] = useState<ProductCardHome[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const { category } = useSelectedCategory();
+    const selectedCategory = useSelectedCategory();
+    const searchFilter = useSearchFilter();
 
     const getAllProducts = async () => {
         try {
@@ -24,7 +26,7 @@ export const Home = () => {
     const loadByCategory = async () => {
         try {
             setLoading(true);
-            const _products = await getProductsByCategory(category!);
+            const _products = await getProductsByCategory(selectedCategory.category!);
             setProducts(_products)
             setLoading(false);
         } catch (error) {
@@ -32,16 +34,10 @@ export const Home = () => {
         }
     }
 
-    function getInputSearchValue(inputHtmlName: string): HTMLInputElement {
-        return (
-            document.querySelector(`input[name="${inputHtmlName}"]`) as HTMLInputElement
-        );
-    }
-
     const loadByTitleSearch = async () => {
         try {
             setLoading(true);
-            const _products = await getProductsByTitleFilter(getInputSearchValue("input__search").value);
+            const _products = await getProductsByTitleFilter(searchFilter.value!);
             setProducts(_products)
             setLoading(false);
         } catch (error) {
@@ -50,14 +46,19 @@ export const Home = () => {
     }
 
     useEffect(() => {
-        if (category) {
-            if(category=='search') loadByTitleSearch
-            else loadByCategory()
+        console.log("filtro",searchFilter.value)
+        console.log("filterValid: ",searchFilter.valid())
+        console.log("categoria",selectedCategory.category)
+        if (selectedCategory.category){
+            loadByCategory()
         }
-        // if (category && category=='search') { loadByTitleSearch(); }
-        
-        else { getAllProducts(); }
-    }, [category])
+        else if(searchFilter.valid()){
+            loadByTitleSearch();
+        }
+        else {
+            getAllProducts();
+        }
+    }, [selectedCategory.category, searchFilter.value])
 
 
     if (loading) {

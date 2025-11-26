@@ -104,25 +104,25 @@
 h1,
 .text-xxl {
   font-weight: normal;
-  font-size: var(--text-xxl, 2.074em);
+  font-size: var(--text-xxl, 2.074rem);
 }
 
 h2,
 .text-xl {
   font-weight: normal;
-  font-size: var(--text-xl, 1.728em);
+  font-size: var(--text-xl, 1.728rem);
 }
 
 h3,
 .text-lg {
   font-weight: normal;
-  font-size: var(--text-lg, 1.44em);
+  font-size: var(--text-lg, 1.44rem);
 }
 
 h4,
 .text-md {
   font-weight: normal;
-  font-size: var(--text-md, 1.2em);
+  font-size: var(--text-md, 1.2rem);
 }
 
 p,
@@ -162,6 +162,7 @@ a {
 
 hr {
   height: 0;
+  width: 100%;
 }
 
 .toast-message {

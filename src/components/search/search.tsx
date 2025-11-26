@@ -1,48 +1,48 @@
 import { useState } from 'react';
 import './search.css'
-import { getProductsByFilter } from '../../service/product.service';
-import { useSelectedCategory } from '../../hooks/useSelectedCategory';
 import { useToast } from '../../hooks/useToast';
+import { useSearchFilter } from '../../hooks/useSearchFilter';
 
 export const Search = () => {
     const [filter, setFilter] = useState("");
-    const category = useSelectedCategory();
+    const searchFilter = useSearchFilter();
     const toast = useToast();
-    const inputSearchHtmlName:string = "input__search"
-    function updateInput(){
-        setFilter(getInputSearchValue(inputSearchHtmlName).value)
+
+    function updateInput(event: React.ChangeEvent<HTMLInputElement>) {
+        setFilter(event.target.value);
     }
 
-    function emptyInput():boolean{
-        return getInputSearchValue(inputSearchHtmlName).value==""
+    function emptyInput(): boolean {
+        return filter.trim() === ""; // Usar el estado local 'filter'
     }
-    function getInputSearchValue(inputHtmlName: string): HTMLInputElement {
-        return (
-            document.querySelector(`input[name="${inputHtmlName}"]`) as HTMLInputElement
-        );
-    }
+
     function handleSubmit(event: React.FormEvent) {
+        event.preventDefault();//Previene el reload del form
         if(emptyInput()){
             toast.open("Debe completar con algun caracter para buscar!", "error")
-            return
+        }else{
+            searchFilter.setValue(filter)
+            setFilter("")
+            // searchFilter.reset()
         }
-        event.preventDefault();//Previene el reload del form
-        category.setCategory('search')
     }
 
-    function handleClick() {
+    function handleClick(event: React.MouseEvent) {
+        event.preventDefault();//Previene el reload del form
         if(emptyInput()){
             toast.open("Debe completar con algun caracter para buscar!", "error")
             return
+        }else{
+            searchFilter.setValue(filter)
+            setFilter("")
         }
-        category.setCategory('search')
     }
 
     return (
         <form className='search' onSubmit={handleSubmit}>
             <input id="input__search" name="input__search" type="text" placeholder="Buscar productos"
                     value={filter} onChange={updateInput}
-                    className='input__search'
+                    className='input__search' 
                     
             />
             <div className="lupa">

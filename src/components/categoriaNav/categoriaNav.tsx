@@ -3,6 +3,7 @@ import { CategoriaType } from "../../models/category";
 import './categoriaNav.css'
 import { useSelectedCategory } from "../../hooks/useSelectedCategory";
 import { Button } from "../button/button";
+import { useSearchFilter } from "../../hooks/useSearchFilter";
 type CategoriaProps = {
     listCategoria: CategoriaType[];
 };
@@ -12,14 +13,19 @@ export const CategoriaNav = ({ listCategoria }: CategoriaProps) => {
     const dropdownRef = useRef<HTMLDivElement>(null);
     const selectedCategory = useSelectedCategory();
 
+    const { reset } = useSearchFilter();
+
     const clickDetectado = (event: MouseEvent) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
             setMenuVisible(false);
             selectedCategory.reset();
         }
     };
-
-
+    function changeCategory(categoria: CategoriaType){
+        reset();
+        selectedCategory.setCategory(categoria.nombre);
+    };
+    
     useEffect(() => {
         document.addEventListener("mousedown", clickDetectado);
         return () => {
@@ -41,7 +47,7 @@ export const CategoriaNav = ({ listCategoria }: CategoriaProps) => {
             {menuVisible && (
                 <div className="dropdown-menu">
                     {listCategoria.map((categoria: CategoriaType, index: number) => (
-                        <Button color="options" onClick={() => (selectedCategory.setCategory(categoria.nombre))} key={categoria.id}>
+                        <Button color="options" onClick={() => (changeCategory(categoria))} key={categoria.id}>
                             <p key={categoria.id} className="dropdown-item">
                                 {categoria.nombre[0].toUpperCase() + categoria.nombre.slice(1)}
                             </p>

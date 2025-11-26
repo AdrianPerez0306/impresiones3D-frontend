@@ -8,11 +8,11 @@ import { Search } from '../search/search';
 import { Badge, IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useCart } from '../../hooks/useCart';
-import { ProductBasicType } from '../../models/product';
+import { useSearchFilter } from '../../hooks/useSearchFilter';
 
 export const Header = () => {
     const [categorias, setCategorias] = useState<CategoriaType[]>([]);
-
+    const { reset } = useSearchFilter();
     const cart = useCart();
 
     const fetchDataNav = async () => {
@@ -35,7 +35,7 @@ export const Header = () => {
             </div>
             <nav className='header__nav'>
                 <div className="enlaces">
-                    <NavLink to={`/productos`} className="hover-underline">
+                    <NavLink to={`/productos`} className="hover-underline" onClick={()=>(reset())}>
                         <img src="/src/assets/home.svg" alt="" />
                         <p className='enlace__label'>Productos</p>
                     </NavLink>

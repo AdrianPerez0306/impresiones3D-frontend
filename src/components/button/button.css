@@ -37,9 +37,10 @@
     padding: var(--space-xxs); */
     display: flex;
     border-radius: 50%;
-    justify-items: center;
+    justify-content: center;
     align-items: center;
-    height: var(--space-lg);
+    height: var(--space-xl);
+    width: var(--space-xl);
     background-image: var(--color-complementary-3-bright);
     color: black;
     /* padding: var(--space-xxs) var(--space-xxs); */
