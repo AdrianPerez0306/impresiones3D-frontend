@@ -20,7 +20,7 @@ El objetivo del proyecto es proporcionar a **Vm.automotivedesign** una plataform
 
 3. **Barra de Búsqueda**
    - Función de búsqueda rápida con sugerencias en tiempo real.
-   - Permite encontrar productos por nombre, tipo o características específicas.
+   - Permite encontrar productos por nombre o categoria.
 
 4. **Carrito de Compras**
    - Visualización de los productos seleccionados con detalles como precio, cantidad y subtotal.
