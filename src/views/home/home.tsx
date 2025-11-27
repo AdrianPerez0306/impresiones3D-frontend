@@ -70,6 +70,12 @@ export const Home = () => {
             {products.map((product, index) =>
                 <Product key={index} product={product}></Product>
             )}
+            {products.map((product, index) =>
+                <Product key={index} product={product}></Product>
+            )}
+            {products.map((product, index) =>
+                <Product key={index} product={product}></Product>
+            )}
         </div>
     </>
 };

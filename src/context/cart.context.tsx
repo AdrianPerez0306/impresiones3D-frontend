@@ -128,7 +128,7 @@ export const CartProdiver: React.FC<{ children: ReactNode }> = ({ children }) =>
         let total:number = 0
         products.forEach((product)=>(
             product.orderDetails.forEach((detail)=>(
-                total=+(detail.ammount * product.precio_lista)
+                total+=(detail.ammount * product.precio_lista)
             ))
         ))
         return total

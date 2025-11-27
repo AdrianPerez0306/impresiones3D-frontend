@@ -126,6 +126,44 @@ button {
     }
   }
 
+  &.action__emptyCart {
+    /* width: fit-content; */
+    /* position: absolute; */
+    top: var(--space-md);
+    right: var(--space-md);
+    background-color: var(--color-complementary-3-bright);
+    transition: background-color 0.25s ease;
+
+      transition: box-shadow 0.25s ease;
+
+    &:hover {
+      background-color: var(--color-delete);
+      transition: background-color 0.25s ease;
+
+      transition: box-shadow 0.25s ease;
+      box-shadow: var(--shadow-elevation-high);
+    }
+  }
+
+  &.action__confirm {
+    /* width: fit-content; */
+    /* position: absolute; */
+    top: var(--space-md);
+    right: var(--space-md);
+    background-color: var(--color-confirm-mate);
+    transition: background-color 0.25s ease;
+    
+      transition: box-shadow 0.25s ease;
+
+    &:hover {
+      background-color: var(--color-confirm-bright);
+      transition: background-color 0.25s ease;
+
+      transition: box-shadow 0.25s ease;
+      box-shadow: var(--shadow-elevation-high);
+    }
+  }
+
   /* &:hover{
     box-shadow: var(--shadow-elevation-high);
   } */

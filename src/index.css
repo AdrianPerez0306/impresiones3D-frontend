@@ -61,6 +61,11 @@
   --color-complementary-3-mate: rgb(85, 90, 94);
 
   --color-light-text: #595961;
+
+  --color-delete: #d42525;
+  --color-confirm-bright: #3cb240;
+
+  --color-confirm-mate: #39813c;
   --color-gradient-primary: linear-gradient(to right, #eaa10f, #ea870f);
   --color-gradient-secondary: linear-gradient(to right, #c8440c, #e2c037);
   --color-gradient-terciary: linear-gradient(to right, #573627, #74662d);
