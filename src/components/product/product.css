@@ -55,13 +55,16 @@
         border-radius: 1rem;
         position: relative;
         border: 1px solid rgb(128, 114, 114);
+
         &:hover+.color__option--hoverHexValue {
-            display: flex;
+            transition: opacity 0.5s ease;
+            opacity: 1;
         }
     }
 
     & .color__option--hoverHexValue {
-        display: none;
+        /* display: none; */
+        opacity: 0;
         position: absolute;
         bottom: 100%;
         left: 0;
@@ -73,6 +76,8 @@
         white-space: nowrap;
         /* z-index: 10; */
         margin-bottom: 0.5rem;
+
+        transition: opacity 0.5s ease;
         /* Espacio entre tooltip y círculo */
     }
 

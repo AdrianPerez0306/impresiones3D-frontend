@@ -11,7 +11,7 @@ div.banner {
     width: 100%;
     height: clamp(var(--space-xs), 1.5vw, var(--space-xxl));
 
-    padding: clamp(var(--space-xs), 1.5vw, var(--space-xxl));
+    padding: clamp(var(--space-md), 1.5vw, var(--space-xxl));
     position: relative;
     justify-content: center;
     align-items: center;
@@ -64,7 +64,7 @@ nav.header__nav {
 
             & p {
                 /* font-size: var(--text-xl); */
-                color: rgb(235, 229, 229);
+                /* color: rgb(235, 229, 229); */
                 font-size: clamp(var(--text-xxs), 1.5vw, var(--text-md));
             }
         }
@@ -74,6 +74,28 @@ nav.header__nav {
     & .carrito {
         display: flex;
         justify-self: flex-end;
+        gap: clamp(var(--space-sm), 1vw, var(--space-md));
+        & > div.chango{
+            display: flex;
+            align-items: center;
+            & > button{
+                height: fit-content;
+                border-radius: var(--space-xs);
+
+                transition: background-color 0.25s ease;
+
+                &:hover{
+                    background: var(--color-complementary-1-bright);
+                    transition: background-color 0.25s ease;
+
+
+                    &>a>span{
+                        transition: filter 0.25s ease;
+                        filter: invert();
+                    }
+                }
+            }
+        }
     }
 
     & .shortcut-home {
@@ -87,9 +109,6 @@ nav.header__nav {
         }
     }
 
-    & .burger {
-        display: none;
-    }
 }
 
 .hover-underline {
@@ -97,6 +116,11 @@ nav.header__nav {
     color: #ffffff;
     position: relative;
     display: inline-block;
+
+    & p {
+        transition: color 0.25s ease;
+        color: white;
+    }
 }
 
 .hover-underline::after,
@@ -123,6 +147,19 @@ nav.header__nav {
     transform: scaleX(1);
 }
 
+
+.hover-underline:hover{
+    transition: filter 0.25s ease;
+    & img{
+        transition: filter 0.25s ease;
+        filter: invert();
+    }
+    & p {
+        color: black;
+
+    }
+
+}
 @keyframes fadeInOut {
 
     0%,

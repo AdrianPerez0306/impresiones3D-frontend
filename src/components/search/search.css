@@ -18,14 +18,20 @@
     background-color: transparent;
     color: white;
     border: none;
-    font-size: clamp(var(--text-sm), 1vw, var(--text-lg));
-    font-weight: bold;
+    /* font-weight: bold; */
     cursor: pointer;
-
+    transition: color 0.25s ease;
     &::placeholder {
+        transition: color 0.25s ease;
+        font-size: clamp(var(--text-sm), 1.5vw, var(--text-md));
         font-weight: bold;
         color: white;
         font-style: italic;
+    }
+
+    &:hover::placeholder{
+        transition: color 0.25s ease;
+        color: black;
     }
 
     &:focus {
@@ -38,7 +44,7 @@
 .inputBusqueda {
     height: 100%;
 
-    & input {}
+    /* & input {} */
 
     
 }

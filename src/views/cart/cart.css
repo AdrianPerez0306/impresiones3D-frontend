@@ -26,6 +26,13 @@
         padding: clamp(var(--space-sm), 1vw, var(--space-md));
         gap: clamp(var(--space-sm), 1vw, var(--space-md));
 
+        position: relative;
+        & button{
+            &  > img.icon__delete{
+                width: 1.5rem;
+            }
+        }
+
         & .cartItem__main {
             display: flex;
             flex-direction: row;
@@ -65,14 +72,14 @@
                         border-radius: 1rem;
                         position: relative;
                         border: 1px solid rgb(128, 114, 114);
-
                         &:hover+.color__option--hoverHexValue {
+                            transition: opacity 0.5s ease;
+                            opacity: 1;
                             display: flex;
                         }
                     }
 
                     & .color__option--hoverHexValue {
-                        display: none;
                         position: absolute;
                         bottom: 100%;
                         left: 0;
@@ -84,6 +91,8 @@
                         white-space: nowrap;
                         /* z-index: 10; */
                         margin-bottom: 0.5rem;
+                        transition: opacity 0.5s ease;
+                        opacity: 0;
                         /* Espacio entre tooltip y círculo */
                     }
                 }

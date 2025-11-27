@@ -1,7 +1,7 @@
 import {} from 'react';
 import './button.css';
 
-type ButtonColor = "lighted" | "opaque" | "options" | 'add-remove'
+type ButtonColor = "lighted" | "opaque" | "options" | 'add-remove' | 'action__delete' | 'action__search';
 
 interface ButtonProps {
   color: ButtonColor;

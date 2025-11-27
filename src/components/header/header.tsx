@@ -31,7 +31,7 @@ export const Header = () => {
         <header>
             <div className='banner fade'>
                 <p className='banner__title message1'>Productos de vanguardia</p>
-                <p className='banner__title message2'>V Laboratory</p>
+                <p className='banner__title message2'>V Laboratory - Automotive Design</p>
             </div>
             <nav className='header__nav'>
                 <div className="enlaces">
@@ -47,9 +47,7 @@ export const Header = () => {
                         <p className='enlace__label'>Info</p>
                     </NavLink>
                 </div>
-                <div className="burger">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#000000" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path></svg>
-                </div>
+
 
                 <div className="carrito">
                     <Search/>
