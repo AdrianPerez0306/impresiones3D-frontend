@@ -94,7 +94,7 @@ const CartComponent = () => {
                                             <img src="/src/assets/delete.svg" alt="" className="icon__delete" />
                                         </Button>
                                         <div className="cartItem__main">
-                                            <img src={`${item.imagen}`} alt="" />
+                                            <img src={`src/assets/${item.imagen}`} alt="" />
                                             <div className="label">
                                                 <h4 className="">{item.titulo}</h4>
                                                 <p className="price">${item.precio_lista}</p>
