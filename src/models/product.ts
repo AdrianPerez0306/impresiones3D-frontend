@@ -100,3 +100,30 @@ export type CartProduct = ProductBasicType & {
 //  ########################################################
 //  ########################################################
 //  ########################################################
+
+
+//  ########################################################
+//  PRODUCT PRE MAIL SERVICE DTO STRUCTURE
+//  ########################################################
+
+export type CartItemForMailService = ProductBasicType & {
+    colores: string[],
+    dimensiones_mm: string[],
+    cantidades: number[]
+}
+
+// export class ProductCart extends ProductBase {
+//     constructor(
+//         public detail: string = "",
+//         public dimensions_mm: string = "",
+//         ...inheritedParams: ConstructorParameters<typeof ProductBase>
+//     ) {
+//         super(...inheritedParams);
+//     }
+// }
+// export function productCartFromJSON(data: ProductCardCartJSON): ProductCart {
+//     return Object.assign(new ProductCart(), data);
+// }
+//  ########################################################
+//  ########################################################
+//  ########################################################

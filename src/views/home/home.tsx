@@ -5,6 +5,7 @@ import { useSelectedCategory } from "../../hooks/useSelectedCategory";
 import { getAll, getProductsByCategory, getProductsByTitleFilter } from "../../service/product.service";
 import { ProductCardHome } from "../../models/product";
 import { useSearchFilter } from "../../hooks/useSearchFilter";
+import { Loader } from "../../components/loader/loader";
 
 export const Home = () => {
     const [products, setProducts] = useState<ProductCardHome[]>([]);
@@ -19,7 +20,6 @@ export const Home = () => {
             setProducts(_products)
             setLoading(false);
         } catch (error) {
-            console.log(error);
         }
     }
 
@@ -30,7 +30,6 @@ export const Home = () => {
             setProducts(_products)
             setLoading(false);
         } catch (error) {
-            console.log(error);
         }
     }
 
@@ -41,14 +40,10 @@ export const Home = () => {
             setProducts(_products)
             setLoading(false);
         } catch (error) {
-            console.log(error);
         }
     }
 
     useEffect(() => {
-        console.log("filtro",searchFilter.value)
-        console.log("filterValid: ",searchFilter.valid())
-        console.log("categoria",selectedCategory.category)
         if (selectedCategory.category){
             loadByCategory()
         }
@@ -62,17 +57,11 @@ export const Home = () => {
 
 
     if (loading) {
-        return <div>Cargando...</div>
+        return <Loader message="productos"></Loader>;
     }
 
     return <>
         <div className="productsList">
-            {products.map((product, index) =>
-                <Product key={index} product={product}></Product>
-            )}
-            {products.map((product, index) =>
-                <Product key={index} product={product}></Product>
-            )}
             {products.map((product, index) =>
                 <Product key={index} product={product}></Product>
             )}

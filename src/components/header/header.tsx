@@ -20,7 +20,6 @@ export const Header = () => {
             const res = await getCategoriaNav();
             setCategorias(res);
         } catch (error: unknown) {
-            console.log(error);
         }
     };
 

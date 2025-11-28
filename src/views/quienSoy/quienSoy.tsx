@@ -55,7 +55,7 @@ export const QuienSoy = () => {
             <div className="container__me">
 
                 <div className='me__imagen'>
-                    <img src="./src/assets/valen.png" alt="" />
+                    <img src="" alt="FOTO" defaultValue={'foto'}/>
                 </div>
 
                 <div className='me__name me'>

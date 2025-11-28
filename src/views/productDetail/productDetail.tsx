@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../../components/button/button";
 import { Carrusel } from "../../components/carrusel/carrusel";
@@ -10,6 +10,7 @@ import { useCart } from "../../hooks/useCart";
 import { Color } from "../../models/color";
 import { Dimension_mm } from "../../models/dimension_mm";
 import { ProductInfo } from "../../components/productInfo/productInfo";
+import { Loader } from "../../components/loader/loader";
 
 export const ProductDetail = () => {
     const { id } = useParams<{ id: string }>();
@@ -36,7 +37,6 @@ export const ProductDetail = () => {
     }
 
     function _getCartProductHtmlElement(inputHtmlName: string): HTMLInputElement {
-        const element = document.querySelector(`input[name="${inputHtmlName}"]:checked`) as HTMLInputElement
         return (
             document.querySelector(`input[name="${inputHtmlName}"]:checked`) as HTMLInputElement
         );
@@ -81,7 +81,7 @@ export const ProductDetail = () => {
     return (
         <>
             {loading && (
-                <div>Cargando...</div>
+                <Loader message="detalles de producto"></Loader>
             )}
             {product && (
                 <div className="container__productDetail">

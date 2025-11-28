@@ -22,7 +22,7 @@ export const ProductInfo = ({ product }: { product: ProductDetailType }) => {
                 <div className="product__options data__box">
                     <h5 className="text-lg">Selecciona un color</h5>
                     <div className="colores">
-                        {product?.colores.sort((a, b) => a.id - b.id).map((color, index) => (
+                        {product?.colores.sort((a, b) => a.id - b.id).map((color, _) => (
                             <label className="" key={color.id}>
                                 <input
                                     id="color"

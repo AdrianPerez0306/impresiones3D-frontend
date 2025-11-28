@@ -1,11 +1,11 @@
 import "./cart.css"; // Archivo de estilos
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "../../components/button/button";
-import { mailService } from "../../service/mail.service";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { sendMailMock } from "../../service/mail.service";
 import { useToast } from "../../hooks/useToast";
 import { useCart } from "../../hooks/useCart";
 import { NavLink } from "react-router-dom";
+import { CartItemForMailService, CartProduct } from "../../models/product";
 
 const CartComponent = () => {
     const { items, clear, remove, updateAmmount, price } = useCart();
@@ -21,8 +21,10 @@ const CartComponent = () => {
     function emptyCart(): boolean {
         return items.length == 0;
     }
-    const isValid = (email: string) => {
-        return /^[a-zA-Z0-9]{2,}@[^\s@]+\.com$/.test(email);
+
+    const isValid = (_: string) => {
+        return true
+        // return /^[a-zA-Z0-9]{2,}@[^\s@]+\.com$/.test(email);
     }
 
 
@@ -30,17 +32,36 @@ const CartComponent = () => {
         clear();
         toast.open("Carrito vaciado!", "info");
     };
+    
+    function cartItemToArticuloUser(item: CartProduct): CartItemForMailService {
+        return {
+                id: item.id,
+                titulo: item.titulo,
+                precio_lista: item.precio_lista,
+                imagen: item.imagen,
+                colores: item.orderDetails.map(detail => detail.color.nombre),
+                dimensiones_mm: item.orderDetails.map(detail => detail.dimmension_mm.alto_mm.toString() + 'x' + detail.dimmension_mm.ancho_mm.toString() + 'x' + detail.dimmension_mm.profundidad_mm.toString()),
+                cantidades:item.orderDetails.map((detail)=>detail.ammount)
+            }
+    }
+    function _parseCartItemsForMailService(items: CartProduct[]): CartItemForMailService[] {
+        return items.map((item)=>cartItemToArticuloUser(item));
+    }
 
-    // const comprar = () => {
-    //     if (isValid(mail)) {
-    //         mailService.sendMail(mail, articuloUser, precioTotal);
-    //         vaciarCarro(true);
-    //     }
-    //     else {
-    //         toast.open("Mail inválido", "error");
-    //     }
-    //     return;
-    // };
+    async function buyCart(mail: string, cartItems: CartProduct[], precioTotal: number) {
+        if (!isValid(mail)) {
+            toast.open("Mail inválido", "error");
+            return;
+        }
+        try {
+            // await sendMail(mail, _parseCartItemsForMailService(cartItems), precioTotal);
+            await sendMailMock(mail, _parseCartItemsForMailService(cartItems), precioTotal);
+            toast.open("Gracias por tu compra!", "info");
+        }
+        catch(e){
+            toast.open("Ocurrio un error inesperado", "error");
+        }
+    };
 
     return (
         <div className="container__cartLayout">
@@ -131,17 +152,25 @@ const CartComponent = () => {
                                     Total: <strong>${price()}</strong>
                                 </h3>
 
-                                <Button color="action__confirm" onClick={() => { }}>
+                                <Button color="action__confirm" onClick={() => buyCart(mail,items, price())}>
                                     Comprar
                                 </Button>
-                                <Button color="lighted" onClick={() => vaciarCarro()}>
-                                    Seguir comprando
+                                <Button color="lighted" onClick={() => {}}>
+                                    <NavLink to='/products'>Seguir comprando</NavLink>
                                 </Button>
                                 <Button color="action__emptyCart" onClick={() => vaciarCarro()}>
                                     Vaciar carrito
                                 </Button>
 
                             </div>
+
+                        </div>
+
+                        <div className="container__mailInput">
+
+                            <input id="mail" type="text" className="mail" value={mail} onChange={(event)=>(setMail(event.target.value))}/>
+                            <p className="text-base placeholder">Introduce un email</p>
+
                         </div>
 
 

@@ -1,8 +1,8 @@
-.container__cartLayout {
+div.container__cartLayout {
 
     height: auto;
     min-height: 60vh;
-    
+
     display: flex;
     flex-direction: column;
     gap: clamp(var(--space-md), 1vw, var(--space-lg));
@@ -13,9 +13,15 @@
     align-items: center;
 }
 
-.container__cart {
+div.container__cart {
     display: flex;
     gap: clamp(var(--space-md), 1vw, var(--space-lg));
+}
+
+div.container__mailInput {
+    display: flex;
+    gap: clamp(var(--space-md), 1vw, var(--space-lg));
+    position: relative;
 }
 
 .container__cartItems {
@@ -34,8 +40,9 @@
         gap: clamp(var(--space-sm), 1vw, var(--space-md));
 
         position: relative;
-        & button{
-            &  > img.icon__delete{
+
+        & button {
+            &>img.icon__delete {
                 width: 1.5rem;
             }
         }
@@ -79,6 +86,7 @@
                         border-radius: 1rem;
                         position: relative;
                         border: 1px solid rgb(128, 114, 114);
+
                         &:hover+.color__option--hoverHexValue {
                             transition: opacity 0.5s ease;
                             opacity: 1;
@@ -145,7 +153,7 @@
 
 .vacio {
     width: clamp(var(--dimension-xl), 1vw, var(--dimension-xxl));
-    
+
     display: flex;
     flex-direction: column;
     gap: clamp(var(--space-md), 1vw, var(--space-lg));
@@ -154,7 +162,7 @@
 
     padding: clamp(var(--space-md), 1vw, var(--space-lg));
 
-    & > a {
+    &>a {
         display: flex;
         width: var(--dimension-md);
     }
@@ -175,11 +183,51 @@
 
         & .card__cartItem {
             width: 100%;
-            
+
         }
     }
 
     .container__cartItems--price {
         width: 100%;
     }
+}
+
+
+div.container__mailInput {
+    align-items: center;
+    & > p.placeholder{
+        position: absolute;
+        color: gray;
+        z-index: 1;
+        pointer-events: none;
+        transition: position 0.25s ease;
+    }
+    &>input.mail {
+        width: 100%;
+        height: auto;
+
+        padding: clamp(var(--space-xxs), 1vw, var(--space-xs));
+        /* background-color: transparent; */
+        /* color: white; */
+        /* border: none; */
+        /* font-weight: bold; */
+        cursor: pointer;
+        transition: background-color 0.25s ease;
+
+        position: relative;
+
+        &:focus {
+            outline: none;
+            background-color: red;
+
+            & + p.placeholder{
+
+                transition: all 0.25s ease;
+                right: 1rem;
+                bottom: 1rem;
+            }
+        }
+    }
+
+
 }

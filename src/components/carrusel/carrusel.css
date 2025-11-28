@@ -5,6 +5,8 @@
     justify-content: center;
     align-items: center;
     width: clamp(var(--image-md), 10vw, var(--image-xl));
+
+    height: clamp(var(--image-md), 10vw, var(--image-xl));
     
 }
 
@@ -58,9 +60,9 @@
 @media (max-width: 768px) {
 
 
-    .image {
+    /* .image {
         height: 18rem;
-    }
+    } */
 
    
 }

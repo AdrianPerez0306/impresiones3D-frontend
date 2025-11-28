@@ -1,29 +1,29 @@
-div.container__aboutMe{
+div.container__aboutMe {
     display: flex;
     width: 100%;
     height: 100%;
-    flex-direction:column;
+    flex-direction: column;
     padding: clamp(var(--space-md), 2vw, var(--space-xxl));
 
-    &   > div.container__designs,
-        > div.container__values,
-        > div.contianer__me{
-            display: flex;
-            flex-direction:column;
-            gap: clamp(var(--space-sm), 1vw, var(--space-xl));
+    &>div.container__designs,
+    >div.container__values,
+    >div.contianer__me {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(var(--space-sm), 1vw, var(--space-xl));
     }
 }
 
-div.container__cards{
+div.container__cards {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
     gap: 2rem;
     padding: 2rem;
-    align-items: center; 
+    align-items: center;
     justify-items: center;
 
-    &  > div.card{
+    &>div.card {
         width: 100%;
         height: 100%;
         display: flex;
@@ -39,11 +39,12 @@ div.container__cards{
 
         position: relative;
 
-        & > p{
+        &>p {
 
             color: var(--color-light-text);
         }
-        & > svg{
+
+        &>svg {
             position: absolute;
             top: var(--space-md);
             right: var(--space-md);
@@ -53,13 +54,13 @@ div.container__cards{
 }
 
 
-div.container__me{
+div.container__me {
 
     display: flex;
     flex-direction: column;
     gap: clamp(var(--space-md), 2vw, var(--space-xxl));
 
-    & > div.me__imagen{
+    &>div.me__imagen {
         width: 100%;
         height: var(--image-xs);
         display: flex;
@@ -67,31 +68,41 @@ div.container__me{
         justify-content: center;
         align-items: center;
 
-        & > img{
+        &>img {
+
             width: auto;
             height: 100%;
             aspect-ratio: 1/1;
             border-radius: var(--space-md);
 
             border-radius: 50%;
+
+            background: white;
+            color: black;
+            font-size: var(--text-xxl);
+            line-height: var(--dimension-sm);
+            text-align: center;
         }
     }
 
-    & > div.me__occupation{
+    &>div.me__occupation {
         display: flex;
         flex-direction: column;
-        & h2, h3{
+
+        & h2,
+        h3 {
             color: var(--color-primary-bright);
         }
     }
 
-    & > div.me{
+    &>div.me {
         display: flex;
         justify-content: center;
         align-items: center;
 
-        & > p{
-            width: fit-content;;
+        &>p {
+            width: fit-content;
+            ;
         }
     }
 

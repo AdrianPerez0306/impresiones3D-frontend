@@ -1,8 +1,10 @@
 import './loader.css'
 
-export const Loader = () => {
+export const Loader = ({message}:{message:string}) => {
 
     return (
-        <div className="container__loader"></div>
+        <div className="container__loader">
+            Cargando {message}...
+        </div>
     );
 };
