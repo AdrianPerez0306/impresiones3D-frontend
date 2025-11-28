@@ -46,7 +46,7 @@ export const CategoriaNav = ({ listCategoria }: CategoriaProps) => {
             {/* <p className="dropdown-trigger">{selectedCategory.category}</p> */}
             {menuVisible && (
                 <div className="dropdown-menu">
-                    {listCategoria.map((categoria: CategoriaType, index: number) => (
+                    {listCategoria.map((categoria: CategoriaType, _: number) => (
                         <Button color="options" onClick={() => (changeCategory(categoria))} key={categoria.id}>
                             <p key={categoria.id} className="dropdown-item">
                                 {categoria.nombre[0].toUpperCase() + categoria.nombre.slice(1)}
