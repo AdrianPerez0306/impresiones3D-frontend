@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './header.css'
 import { getCategoriaNav } from '../../service/categoria.service';
 import { CategoriaType } from '../../models/category';
