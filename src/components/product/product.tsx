@@ -1,10 +1,10 @@
 
 import { useNavigate } from 'react-router-dom';
 import './product.css'
-import ButtonGreen from '../buttonGreen/buttonGreen';
-import { ArticuloInterface } from '../../models/Articulo';
+import { Button } from '../button/button';
+import { ProductCardHome } from '../../models/product';
 
-export const Product = ({ product }: { product: ArticuloInterface }) => {
+export const Product = ({ product }: { product: ProductCardHome }) => {
     const navigate = useNavigate()
 
     function goToDetail() {
@@ -12,14 +12,25 @@ export const Product = ({ product }: { product: ArticuloInterface }) => {
     }
 
     return <>
-        <div className="product">
-            <img src={`${product.imagen}`} alt="IMG" />
+        <div className="product"  >
+            <img src={`/src/assets/${product.imagen}`} alt="IMG" />
 
             <div className="content">
-                <h5>{`${product.titulo}`}</h5>
-                <p className='price'>{`$ ${product.precio_lista}`}</p>
+                <h4 className='title'>{`${product.titulo}`}</h4>
+                <p className='price'>{`$${product.precio_lista}`}</p>
+                <div className='color__options' key={product.id}>
+                    {product.colores.map((color) => (<>
+                        <div className="color__wrapper" key={color.id}>
+                            <div  style={{ backgroundColor: `#${color.hexValue}` }} className='color__option--circle'></div>
+                            <div className='color__option--hoverHexValue'>{color.nombre[0].toUpperCase() + color.nombre.slice(1)} | #{color.hexValue}</div>
+                        </div>
+                    </>))}
+                </div>
             </div>
-                <ButtonGreen label='Ver' onClick={goToDetail}></ButtonGreen>
+
+            <Button color='lighted' onClick={goToDetail}>Comprar</Button>
+
+
         </div>
     </>
 };

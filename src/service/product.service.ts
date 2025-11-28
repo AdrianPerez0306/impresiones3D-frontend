@@ -1,39 +1,44 @@
-import axios from "axios";
-import { Articulo, ArticuloDetalle, IDimension } from "../models/Articulo";
+import axios, { AxiosResponse } from "axios";
+import { ProductCardHome, ProductDetailType } from "../models/product";
+import { SERVER_CONNECTION } from "./constants";
 
-class ProductService {
-    constructor(){}
+export async function getProductById(id: number): Promise<ProductDetailType> {
+    const res = await axios.get(`${SERVER_CONNECTION}/articulos/${id}`);
+    const productDetail = res.data;
 
-    async getAllProduct() : Promise<Articulo[]>{
-        return (await axios.get<Articulo[]>('http://localhost:8080/articulos')).data;
-    }
-
-    async getProduct(id : number) : Promise<ArticuloDetalle>{
-        const res = await axios.get(`http://localhost:8080/articulos/${id}`);
-        const item = res.data;
-        const dimensiones: string[] = item.dimensiones_mm.map((dim: IDimension) => {
-            return `${dim.alto_mm} X ${dim.ancho_mm} X ${dim.profundidad_mm}`;
-        });
-
-        return new ArticuloDetalle(
-            item.id, 
-            item.titulo, 
-            item.detalle, 
-            item.precio_lista, 
-            item.descuento, 
-            item.categorias, 
-            item.colores,
-            dimensiones, 
-            item.imagenes
-        );
+    return {
+        id: productDetail.id,
+        titulo: productDetail.titulo,
+        imagen: productDetail.imagen_1,
+        precio_lista: productDetail.precio_lista,
+        detalle: productDetail.detalle,
+        categorias: productDetail.categorias,
+        colores: productDetail.colores,
+        imagenes: productDetail.imagenes,
+        dimensiones_mm: productDetail.dimensiones_mm
     }
 
 }
 
-export async function getProductsByFilter(filterValue:string) : Promise<Articulo[]>{
-    const promise: Promise<AxiosResponse<Articulo[], any>> = axios.get('http://localhost:8080/articulos/filter', {params:{filter:filterValue}})
+export async function getAll(): Promise<ProductCardHome[]> {
+    return (await axios.get<ProductCardHome[]>(`${SERVER_CONNECTION}/articulos`)).data;
+}
+
+export async function getProductsByFilter(filterValue: string): Promise<ProductCardHome[]> {
+    const promise: Promise<AxiosResponse<ProductCardHome[], any>> = axios.get(`${SERVER_CONNECTION}/articulos/filter`, { params: { filter: filterValue } })
     const products = (await promise).data
     return products
 }
 
-export const productService = new ProductService();
+export async function getProductsByCategory(category: string): Promise<ProductCardHome[]> {
+    const promise: Promise<AxiosResponse<ProductCardHome[], any>> = axios.get(`${SERVER_CONNECTION}/articulos/categoria?categoria=${category}`)
+    const products = (await promise).data
+    return products
+}
+
+
+export async function getProductsByTitleFilter(filter: string): Promise<ProductCardHome[]> {
+    const promise: Promise<AxiosResponse<ProductCardHome[], any>> = axios.get(`${SERVER_CONNECTION}/articulos/filter?filter=${filter}`)
+    const products = (await promise).data
+    return products
+}

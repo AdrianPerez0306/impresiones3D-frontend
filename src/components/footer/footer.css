@@ -1,92 +1,69 @@
 footer {
-    height: 40vh;
     width: 100%;
+    height: var(--dimension-md);
+
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: center; */
-    background-color: black;
-}
+    padding: clamp(var(--space-sm), 1vw, var(--space-xl));
+    gap: clamp(var(--space-sm), 1vw, var(--space-xl));
+    
+    background-color: var(--color-primary-mate);
 
-.redesIcon {
-    display: flex;
-    flex-direction: row;
-    padding: 1rem;
     justify-content: space-between;
+    /* margin-top: auto; */
+}
+
+div.network {
+    display: flex;
+    justify-content: space-between;
+
+    &>div.social {
+        display: flex;
+
+        gap: clamp(var(--space-sm), 1vw, var(--space-xl));
+
+        & img {
+            width: var(--space-xxl);
+
+            height: var(--space-xxl);
+
+            filter: invert(1);
+        }
+    }
+
+    &>div.icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+}
+
+div.info {
+    display: flex;
+    justify-content: space-around;
+    &>p {
+        width: fit-content;
+    }
+}
+
+
+div.payment {
+    display: flex;
     align-items: center;
-    border-bottom: 1px solid grey;
-    height: 5vh;
-    
-    & p{
-        color: white;
-    }
-}
-
-
-.redes {
-    display: flex;
-    gap: 1rem;
-    
-    & img {
-        filter: invert(100%);
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-}
-
-.icon {
-    display: flex;
-    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    fill: white;
-}
-
-.infoAdicional{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1rem;
-    border-bottom: 1px solid grey;
-    height: 10vh;
     
-    & p{
-        color: white;
+    gap: clamp(var(--space-sm), 2vw, var(--space-xl));
+
+    & >div.tarjetas{
+        display: flex;
+        gap: clamp(var(--space-sm), 1vw, var(--space-md));
     }
 }
 
-.pagos{
-    height: 15vh;
+div.client {
     display: flex;
-    flex-direction: column;
-    /* padding: 1rem; */
-    justify-content: space-around;
     align-items: center;
-    border-bottom: 1px solid grey;
+    justify-content: center;
     
-    & p {
-        color: white;
-    }
-    & img, svg{
-        width: 5rem;
-        height: 5rem;
-        fill: white;
-    }
 }
-.tarjetas{
-    display: flex;
-    gap: 3rem;
-}
-.emprendimiento{
-    height: 10vh;
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-
-    & p{
-        color: white;
-    }
-
-}
-

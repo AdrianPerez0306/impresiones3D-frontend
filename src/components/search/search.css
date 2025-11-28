@@ -1,53 +1,65 @@
-.search{
+.search {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    min-width: 15rem;
-    height: 95%;
-    background-color: grey;
-    border: 1px solid yellow;
+    /* min-width: 15rem; */
+    /* height: 95%; */
+    padding: clamp(var(--space-xxs), 1vw, var(--space-xs)) clamp(var(--space-xs), 1vw, var(--space-sm));
+    /* padding: 1rem 2rem; */
+    background-color: var(--color-primary-mate);
+    /* border: 1px solid yellow; */
     border-radius: 1rem;
 }
 
-.inputBusqueda {
-    height: 100%;
-
-    & input {
-        width: 100%;
-        height: 2rem;
-        background-color: transparent;
+.input__search {
+    width: 100%;
+    height: 2rem;
+    background-color: transparent;
+    color: white;
+    border: none;
+    /* font-weight: bold; */
+    cursor: pointer;
+    transition: color 0.25s ease;
+    &::placeholder {
+        transition: color 0.25s ease;
+        font-size: clamp(var(--text-sm), 1.5vw, var(--text-md));
+        font-weight: bold;
         color: white;
-        padding-left: 1rem;
-        border-radius: 1rem;
-        border: none;
-        font-size: 1rem;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    
-    & input::placeholder {
-        font-weight: bold;
-        color: black;
         font-style: italic;
     }
 
-    & input:focus {
-        border: none; 
+    &:hover::placeholder{
+        transition: color 0.25s ease;
+        color: black;
+    }
+
+    &:focus {
+        border: none;
         outline: none;
         cursor: pointer;
     }
 }
 
+.inputBusqueda {
+    height: 100%;
 
-.lupa{
+    /* & input {} */
+
+    
+}
+
+
+.lupa {
     background-color: transparent;
     border: none;
-    & button{
+
+    & button {
         background-color: transparent;
         border: none;
-        margin-right:1rem ;
-        & svg{
+        margin-right: 1rem;
+
+        & svg {
             background-color: transparent;
             width: 2rem;
             height: 2.5rem;

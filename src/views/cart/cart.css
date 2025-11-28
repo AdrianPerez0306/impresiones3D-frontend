@@ -1,178 +1,233 @@
+div.container__cartLayout {
 
-th,
-td {
-    text-align: center;
-    border: 1px solid yellow;
-}
-
-div p{
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.cartContainer {
     height: auto;
-    padding: 1rem;
-    /* margin: 3rem 0 3rem 0; */
-}
+    min-height: 60vh;
 
-.cartTable {
-    border-collapse: collapse;
-    background: linear-gradient(to top, #fbc901, #fb4b01);
-}
-
-.cartTableHeader {
-    height: 10rem;
-    font-size: 1.5rem;
-    padding: 1rem;
-}
-
-.articulo {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    width: 20rem;
+    gap: clamp(var(--space-md), 1vw, var(--space-lg));
 
-    & img{
-        width: 12rem;
-        height: 10rem;
-        object-fit: fit;
-        border-radius: 1rem;
-        border: 1px solid yellow;
-    }
-}
+    padding: clamp(var(--space-md), 1vw, var(--space-lg));
 
-.contador {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 15rem;
-}
-
-.eliminar {
-    width: 8rem;
-}
-
-.precio {
-    width: 8rem;
-}
-
-.precioFinal {
-    margin: 2rem 0 2rem 0;
-    height: 3rem;
-    display: flex;
     justify-content: center;
     align-items: center;
-
-    & p {
-        font-size: 1.3rem;
-    }
 }
 
-
-.datosMail{
-    height: 8rem;
-    gap: 1rem;
-    margin-top: 1rem;
-
-    & p {
-        font-size: 1.2rem;
-        font-weight: bold;
-    }
-
-    & input {
-        width: 30rem;
-        height: 3rem;
-        font-size: 1.2rem;
-        padding: 1rem;
-        border: 1px solid black;
-        border-radius: 1rem;
-        margin-top: 1rem;
-    }
-}
-
-.guardarCancelar{
+div.container__cart {
     display: flex;
-    width: 100%;
-    & button {
-        width: 7rem;
-        height: 3rem;
+    gap: clamp(var(--space-md), 1vw, var(--space-lg));
+}
+
+div.container__mailInput {
+    display: flex;
+    gap: clamp(var(--space-md), 1vw, var(--space-lg));
+    position: relative;
+}
+
+.container__cartItems {
+
+    display: flex;
+    flex-direction: column;
+    gap: clamp(var(--space-sm), 1vw, var(--space-md));
+
+    & .card__cartItem {
+        display: flex;
+        width: var(--dimension-xl);
+        flex-direction: column;
+        background-color: white;
+        border-radius: var(--space-xs);
+        padding: clamp(var(--space-sm), 1vw, var(--space-md));
+        gap: clamp(var(--space-sm), 1vw, var(--space-md));
+
+        position: relative;
+
+        & button {
+            &>img.icon__delete {
+                width: 1.5rem;
+            }
+        }
+
+        & .cartItem__main {
+            display: flex;
+            flex-direction: row;
+            gap: clamp(var(--space-sm), 1vw, var(--space-md));
+
+            & img {
+                width: clamp(var(--image-xxs), 1vw, var(--image-md));
+                height: auto;
+                aspect-ratio: 16/9;
+                border-radius: 1rem;
+            }
+        }
+
+        & .item__details {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(var(--space-xs), 1vw, var(--space-xs));
+
+            padding: clamp(var(--space-xxs), 1vw, var(--space-sm));
+
+            & .item__detail {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                & .color__wrapper {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+
+                    gap: clamp(var(--space-xs), 1vw, var(--space-xs));
+
+                    & .color__option--circle {
+                        cursor: pointer;
+                        width: var(--space-xl);
+                        height: var(--space-xl);
+                        border-radius: 1rem;
+                        position: relative;
+                        border: 1px solid rgb(128, 114, 114);
+
+                        &:hover+.color__option--hoverHexValue {
+                            transition: opacity 0.5s ease;
+                            opacity: 1;
+                            display: flex;
+                        }
+                    }
+
+                    & .color__option--hoverHexValue {
+                        position: absolute;
+                        bottom: 100%;
+                        left: 0;
+                        background: rgba(0, 0, 0, 0.8);
+                        color: white;
+                        padding: var(--space-md);
+                        border-radius: 0.5rem;
+                        font-size: var(--text-md);
+                        white-space: nowrap;
+                        /* z-index: 10; */
+                        margin-bottom: 0.5rem;
+                        transition: opacity 0.5s ease;
+                        opacity: 0;
+                        /* Espacio entre tooltip y círculo */
+                    }
+                }
+
+                & .detail__ammount {
+                    display: flex;
+                    gap: clamp(var(--space-xs), 1vw, var(--space-xs));
+                    align-items: center;
+                }
+
+
+            }
+        }
     }
 }
 
 
-@media screen and (max-width: 960px) {
+.container__cartItems--price {
+    display: flex;
+    flex-direction: column;
+    height: var(--dimension-md);
+    width: calc(var(--dimension-md)*1.2);
 
-    div p {
-        font-size: 0.8rem;
-    }
+    justify-content: space-evenly;
+    padding: clamp(var(--space-sm), 1vw, var(--space-md));
 
-    .cartContainer {
-        padding: 0.5rem;
-    }
+    border-radius: var(--space-xs);
+    background-color: white;
 
-    .cartTableHeader {
-        height: 5rem;
-        font-size: 1rem;
-    }
+    & .price__details {
 
-    .articulo {
-        /* padding: 1rem; */
-        font-size: 0.9rem;
-        width: 35vw;
-        margin: 0 auto;
-        
-        & img {
-            width: 7.5rem;
-            height: 7rem;
-        }
-    }
-
-    .contador {
-        flex-direction: column-reverse;
-        height: 12rem;
-        width: 20vw;
-       
-    }
-
-    .eliminar {
-        width: 20vw;
-    }
-
-    .eliminarProducto {
-        width: 2rem;
-        height: 2rem;
-    }
-
-    .precio {
-        width: 18vw;
-    }
-
-    .precioFinal {
-        height: 1rem;
+        width: 95%;
         display: flex;
-        justify-content: center;
-        align-items: center;
 
-        & p {
-            font-size: 1rem;
+        justify-content: space-between;
+        font-size: var(--text-md);
+        color: var(--color-light-text);
+        font-weight: 300;
+
+        align-self: start;
+    }
+}
+
+.vacio {
+    width: clamp(var(--dimension-xl), 1vw, var(--dimension-xxl));
+
+    display: flex;
+    flex-direction: column;
+    gap: clamp(var(--space-md), 1vw, var(--space-lg));
+
+    align-items: center;
+
+    padding: clamp(var(--space-md), 1vw, var(--space-lg));
+
+    &>a {
+        display: flex;
+        width: var(--dimension-md);
+    }
+}
+
+@media (max-width:700px) {
+    .container__cart {
+        display: flex;
+        flex-direction: column;
+        /* gap: clamp(var(--space-md), 1vw, var(--space-lg)); */
+    }
+
+    .container__cartItems {
+
+        display: flex;
+        flex-direction: column;
+        gap: clamp(var(--space-sm), 1vw, var(--space-md));
+
+        & .card__cartItem {
+            width: 100%;
+
         }
     }
 
-    .datosMail {
-        height: 6rem;
-        & p {
-            font-size: 0.8rem;
+    .container__cartItems--price {
+        width: 100%;
+    }
+}
+
+
+div.container__mailInput {
+    align-items: center;
+    & > p.placeholder{
+        position: absolute;
+        color: gray;
+        z-index: 1;
+        pointer-events: none;
+        transition: position 0.25s ease;
+    }
+    &>input.mail {
+        width: 100%;
+        height: auto;
+
+        padding: clamp(var(--space-xxs), 1vw, var(--space-xs));
+        /* background-color: transparent; */
+        /* color: white; */
+        /* border: none; */
+        /* font-weight: bold; */
+        cursor: pointer;
+        transition: background-color 0.25s ease;
+
+        position: relative;
+
+        &:focus {
+            outline: none;
+            background-color: red;
+
+            & + p.placeholder{
+
+                transition: all 0.25s ease;
+                right: 1rem;
+                bottom: 1rem;
+            }
         }
-        & .inputMail {
-            width: 20rem;
-            height: 2rem;
-            font-size: 0.7rem;
-            padding: 1rem;
-    
-        }
-    }   
+    }
+
+
 }

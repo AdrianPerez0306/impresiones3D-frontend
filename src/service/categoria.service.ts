@@ -1,14 +1,8 @@
 import axios from "axios"
-import { CategoriaType } from "../models/Categoria"
+import { CategoriaType } from "../models/category"
+import { SERVER_CONNECTION } from "./constants"
 
 
-class CategoriaService {
-    constructor(){}
-
-    async getCategoriaNav(){
-        return (await axios.get<CategoriaType[]>('http://localhost:8080/categorias_nav')).data
-    }
-
+export async function getCategoriaNav() {
+    return (await axios.get<CategoriaType[]>(`${SERVER_CONNECTION}/categorias/disponibles`)).data
 }
-
-export const categoriaService = new CategoriaService()

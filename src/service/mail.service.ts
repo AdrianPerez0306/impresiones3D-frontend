@@ -1,17 +1,17 @@
 import axios from "axios";
-import { ArticuloUser } from "../models/ArticuloUser";
+import { MailType } from "../models/mail";
+import { CartItemForMailService } from "../models/product";
+import { SERVER_CONNECTION } from "./constants";
 
-interface MailType {
-    to: string;
-    cartItems: Array<ArticuloUser>;
-    total: number;
+
+
+export async function sendMail(to: string, cartItems: CartItemForMailService[], total: number): Promise<MailType> {
+    const payload: MailType = { to, cartItems, total };
+    return (await axios.post<MailType>(`${SERVER_CONNECTION}/send`, payload)).data;
 }
 
-class MailService {
-    async sendMail(to: string, cartItems: ArticuloUser[], total: number): Promise<MailType> {
-        const payload: MailType = { to, cartItems, total };
-        return (await axios.post<MailType>("http://localhost:8080/send", payload)).data;
-    }
+
+export async function sendMailMock(_: string, __: CartItemForMailService[], ___: number): Promise<any> {
+    return 1;
 }
 
-export const mailService = new MailService();

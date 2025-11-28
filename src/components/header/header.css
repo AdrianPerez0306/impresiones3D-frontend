@@ -1,26 +1,186 @@
-header{
-    height: 2rem;
-    padding: 1rem;
-    background: black;
+header {
+    height: auto;
     width: 100%;
     display: flex;
+    flex-direction: column;
+    background: var(--color-gradient-primary);
+}
+
+div.banner {
+    display: flex;
+    width: 100%;
+    height: clamp(var(--space-xs), 1.5vw, var(--space-xxl));
+
+    padding: clamp(var(--space-md), 1.5vw, var(--space-xxl));
+    position: relative;
     justify-content: center;
     align-items: center;
+    background: black;
+
+    & .banner__title {
+        display: flex;
+
+        opacity: 0;
+        color: white;
+        font-size: clamp(var(--text-xs), 1.5vw, var(--text-xxl));
+        position: absolute;
+
+        &.message1 {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            animation: fadeInOut 8s infinite;
+        }
+
+        &.message2 {
+            font-family: 'Courier New', Courier, monospace;
+            animation: fadeInOut 8s infinite 3s;
+        }
+    }
+}
+
+nav.header__nav {
+    padding: clamp(var(--space-sm), 1vw, var(--space-md));
+    gap: var(--space-xxs);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    & .enlaces {
+        display: flex;
+        align-items: center;
+        gap: clamp(var(--space-xxs), 1.5vw, var(--space-xs));
+
+        & a {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            padding: var(--space-xs);
+            gap: clamp(var(--space-sm), 1vw, var(--space-md));
+            /* & img {
+                filter: invert();
+            } */
+
+            & p {
+                /* font-size: var(--text-xl); */
+                /* color: rgb(235, 229, 229); */
+                font-size: clamp(var(--text-xxs), 1.5vw, var(--text-md));
+            }
+        }
+
+    }
+
+    & .carrito {
+        display: flex;
+        justify-self: flex-end;
+        gap: clamp(var(--space-sm), 1vw, var(--space-md));
+        & > div.chango{
+            display: flex;
+            align-items: center;
+            & > button{
+                height: fit-content;
+                border-radius: var(--space-xs);
+
+                transition: background-color 0.25s ease;
+
+                &:hover{
+                    background: var(--color-complementary-1-bright);
+                    transition: background-color 0.25s ease;
+
+
+                    &>a>span{
+                        transition: filter 0.25s ease;
+                        filter: invert();
+                    }
+                }
+            }
+        }
+    }
+
+    & .shortcut-home {
+        max-width: 50%;
+        width: 25%;
+        min-width: 30%;
+
+        & img {
+            width: 100%;
+            height: auto;
+        }
+    }
 
 }
 
+.hover-underline {
+    font-size: 2rem;
+    color: #ffffff;
+    position: relative;
+    display: inline-block;
 
- .titulo{
-        opacity: 0;
+    & p {
+        transition: color 0.25s ease;
         color: white;
-        animation: fadeInOut 6s infinite;
+    }
+}
+
+.hover-underline::after,
+.hover-underline::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--color-gradient-secondary);
+    bottom: -5px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease-out;
+}
+
+.hover-underline::before {
+    top: -5px;
+    transform-origin: left;
+}
+
+.hover-underline:hover::after,
+.hover-underline:hover::before {
+    transform: scaleX(1);
+}
+
+
+.hover-underline:hover{
+    transition: filter 0.25s ease;
+    & img{
+        transition: filter 0.25s ease;
+        filter: invert();
+    }
+    & p {
+        color: black;
+
     }
 
+}
 @keyframes fadeInOut {
-    0%, 100% {
-        opacity: 0;
+
+    0%,
+    100% {
+        display: 0;
     }
+
     50% {
         opacity: 1;
+    }
+
+}
+
+@media (max-width:580px) {
+    nav.header__nav {
+        & .enlaces {
+            & a {
+                & p.enlace__label {
+                    display: none;
+                }
+            }
+        }
     }
 }

@@ -1,0 +1,10 @@
+span.message__veryImportant{
+    /* display: flex; */
+    padding: clamp(var(--space-xs), 2vw, var(--space-md));
+    text-align: justify;
+    font-size: clamp(var(--space-lg), 2vw, var(--space-xl));
+
+    & > span.text__strong{
+        font-weight: bold;
+    }
+}
