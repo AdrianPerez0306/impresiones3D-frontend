@@ -37,7 +37,7 @@ export const CategoriaNav = ({ listCategoria }: CategoriaProps) => {
         <div className="dropdown" ref={dropdownRef} onClick={() => setMenuVisible(!menuVisible)}>
 
             <div style={{display:'flex', alignItems:'center'}}>
-                <img src="/src/assets/filter.svg" alt="" />
+                <img src="/public/assets/filter.svg" alt="" />
                 <p className="dropdown-trigger dropdown__label">
                     Categorías
                 </p>

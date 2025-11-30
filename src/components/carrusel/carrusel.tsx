@@ -60,7 +60,7 @@ export const Carrusel = ( {imagenes} : CarruselProps ) => {
             <div className="carrusel">
                 <div className="container__images">
                     {imagenView && (
-                        <img className={`image ${fade ? "fade-out" : ""}`} src={`/src/assets/${imagenView}`} alt="Producto" />
+                        <img className={`image ${fade ? "fade-out" : ""}`} src={`/public/assets/${imagenView}`} alt="Producto" />
                         
                     )}
                 </div>
