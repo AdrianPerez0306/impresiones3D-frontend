@@ -91,7 +91,7 @@ const CartComponent = () => {
                                     <div className="card__cartItem">
 
                                         <Button color="action__delete" onClick={() => (eliminarArticulo(item.id))}>
-                                            <img src="/src/assets/delete.svg" alt="" className="icon__delete" />
+                                            <img src="/public/assets/delete.svg" alt="" className="icon__delete" />
                                         </Button>
                                         <div className="cartItem__main">
                                             <img src={`src/assets/${item.imagen}`} alt="" />

@@ -13,7 +13,7 @@ export const Product = ({ product }: { product: ProductCardHome }) => {
 
     return <>
         <div className="product"  >
-            <img src={`/src/assets/${product.imagen}`} alt="IMG" />
+            <img src={`/public/assets/${product.imagen}`} alt="IMG" />
 
             <div className="content">
                 <h4 className='title'>{`${product.titulo}`}</h4>

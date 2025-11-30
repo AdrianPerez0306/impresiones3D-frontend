@@ -35,14 +35,14 @@ export const Header = () => {
             <nav className='header__nav'>
                 <div className="enlaces">
                     <NavLink to={`/productos`} className="hover-underline" onClick={()=>(reset())}>
-                        <img src="/src/assets/home.svg" alt="" />
+                        <img src="/public/assets/home.svg" alt="" />
                         <p className='enlace__label'>Productos</p>
                     </NavLink>
                     <NavLink to={`/productos`} className="hover-underline">
                         <CategoriaNav listCategoria={categorias}></CategoriaNav>
                     </NavLink>
                     <NavLink to={`/quienSoy`} className="hover-underline">
-                        <img src="/src/assets/info.svg" alt="" />
+                        <img src="/public/assets/info.svg" alt="" />
                         <p className='enlace__label'>Info</p>
                     </NavLink>
                 </div>
